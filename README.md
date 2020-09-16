@@ -18,3 +18,12 @@ Laravel 7x + Vue
 1. php artisan serve --host 127.0.0.1
 2. npm run watch
 ```
+
+## Domain
+
+```
+1. admin
+admin.localhost:800
+2. client
+localhost:800
+```
