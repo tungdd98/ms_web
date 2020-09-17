@@ -20,6 +20,7 @@
             ]"
             :body-class="bodyClasses"
             :aria-hidden="!show"
+            :hide-footer="hideFooter"
         >
             <template v-slot:modal-header>
                 <slot name="header"></slot>
@@ -59,6 +60,10 @@ export default {
             type: Boolean,
             default: true
         },
+        hideFooter: {
+            type: Boolean,
+            default: true
+        },
         type: {
             type: String,
             default: "",
@@ -76,7 +81,7 @@ export default {
             type: String,
             description: "Modal size",
             validator(value) {
-                let acceptedValues = ["", "sm", "lg"];
+                let acceptedValues = ["", "sm", "lg", "xl"];
                 return acceptedValues.indexOf(value) !== -1;
             }
         },

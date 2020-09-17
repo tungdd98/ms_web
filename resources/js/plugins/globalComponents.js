@@ -1,4 +1,3 @@
-import Vue from "vue";
 import BaseInput from "@/components/Inputs/BaseInput.vue";
 import BaseDropdown from "@/components/BaseDropdown.vue";
 import Card from "@/components/Cards/Card.vue";
@@ -7,6 +6,7 @@ import StatsCard from "@/components/Cards/StatsCard.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import Badge from "@/components/Badge.vue";
 import BaseCheckbox from "@/components/Inputs/BaseCheckbox.vue";
+import BaseUploadAvatar from "@/components/Inputs/BaseUploadAvatar.vue";
 import BaseRadio from "@/components/Inputs/BaseRadio";
 import BaseProgress from "@/components/BaseProgress";
 import BasePagination from "@/components/BasePagination";
@@ -14,17 +14,15 @@ import BaseAlert from "@/components/BaseAlert";
 import BaseNav from "@/components/Navbar/BaseNav";
 import BaseHeader from "@/components/BaseHeader";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
+import VueSimpleAlert from "vue-simple-alert";
 import {
     Input,
     Tooltip,
     Popover,
-    Loading,
     Table,
-    TableColumn
+    TableColumn,
+    Upload
 } from "element-ui";
-/**
- * You can register global components here and use them as a plugin in your main Vue instance
- */
 
 const GlobalComponents = {
     install(Vue) {
@@ -39,6 +37,7 @@ const GlobalComponents = {
         Vue.component(BasePagination.name, BasePagination);
         Vue.component(BaseProgress.name, BaseProgress);
         Vue.component(BaseRadio.name, BaseRadio);
+        Vue.component(BaseUploadAvatar.name, BaseUploadAvatar);
         Vue.component(Card.name, Card);
         Vue.component(Modal.name, Modal);
         Vue.component(StatsCard.name, StatsCard);
@@ -49,9 +48,15 @@ const GlobalComponents = {
         Vue.use(Popover);
         Vue.use(Table);
         Vue.use(TableColumn);
-        Vue.use(Loading.directive);
+        Vue.use(Upload);
+        Vue.use(VueSimpleAlert, {
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        });
     }
 };
-Vue.prototype.$loading = Loading.service;
 
 export default GlobalComponents;

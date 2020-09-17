@@ -1,6 +1,5 @@
 <template>
     <div class="wrapper">
-        <notifications></notifications>
         <side-bar>
             <template slot="links">
                 <sidebar-item
@@ -51,7 +50,6 @@
                     origin="center top"
                     mode="out-in"
                 >
-                    <!-- your content here -->
                     <router-view></router-view>
                 </fade-transition>
             </div>

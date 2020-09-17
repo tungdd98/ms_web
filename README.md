@@ -15,7 +15,7 @@ Laravel 7x + Vue
 ## Run app
 
 ```
-1. php artisan serve --host 127.0.0.1
+1. php artisan serve
 2. npm run watch
 ```
 
@@ -23,7 +23,7 @@ Laravel 7x + Vue
 
 ```
 1. admin
-admin.localhost:800
+admin.localhost:8000
 2. client
-localhost:800
+localhost:8000
 ```
