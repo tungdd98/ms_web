@@ -2,5 +2,17 @@
     "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/pages.js": "/pages.js",
-    "/vendors~pages.js": "/vendors~pages.js"
+    "/pages0.js": "/pages0.js",
+    "/pages0~pages4~pages6.js": "/pages0~pages4~pages6.js",
+    "/pages1.js": "/pages1.js",
+    "/pages3.js": "/pages3.js",
+    "/pages4.js": "/pages4.js",
+    "/pages5.js": "/pages5.js",
+    "/pages6.js": "/pages6.js",
+    "/pages7.js": "/pages7.js",
+    "/vendors~pages0.js": "/vendors~pages0.js",
+    "/vendors~pages0~pages4~pages6.js": "/vendors~pages0~pages4~pages6.js",
+    "/vendors~pages4.js": "/vendors~pages4.js",
+    "/pages2.js": "/pages2.js",
+    "/vendors~pages3.js": "/vendors~pages3.js"
 }

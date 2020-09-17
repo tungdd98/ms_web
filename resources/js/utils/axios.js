@@ -13,7 +13,9 @@ const instance = axios.create({
 instance.defaults.headers.get["Content-Type"] = "application/json";
 
 const onRequest = config => {
-    store.commit("display/setLoadingTable", true);
+    if (config.method === "get") {
+        store.commit("display/setLoadingTable", true);
+    }
     return config;
 };
 

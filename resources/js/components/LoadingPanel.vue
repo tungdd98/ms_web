@@ -20,6 +20,6 @@ export default {};
 }
 
 .el-loading-mask {
-    background: transparent !important;
+    background: hsla(0, 0%, 100%, 0.9) !important;
 }
 </style>

@@ -1,31 +1,31 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import NotFound from "@/views/NotFoundPage.vue";
+import NotFound from "@/views/admin/pages/NotFoundPage.vue";
+
+const importComponent = path =>
+    import(/* webpackChunkName: "pages" */ `../views/admin/pages/${path}.vue`);
 
 Vue.use(VueRouter);
 
 const routes = [
     {
+        path: "/",
+        redirect: "dashboard"
+    },
+    {
         path: "/dashboard",
         name: "dashboard",
-        component: () =>
-            import(
-                /* webpackChunkName: "pages" */ "../views/admin/pages/dashboard/Dashboard.vue"
-            )
+        component: () => importComponent("dashboard/Dashboard")
     },
     {
         path: "/users",
         name: "users",
-        component: () =>
-            import(
-                /* webpackChunkName: "pages" */ "../views/admin/pages/user/User.vue"
-            )
+        component: () => importComponent("user/List")
     },
     {
         path: "/login",
         name: "login",
-        component: () =>
-            import(/* webpackChunkName: "pages" */ "../views/Login.vue"),
+        component: () => importComponent("Login"),
         meta: {
             layout: "AuthLayout"
         }
@@ -33,8 +33,7 @@ const routes = [
     {
         path: "/register",
         name: "register",
-        component: () =>
-            import(/* webpackChunkName: "pages" */ "../views/Register.vue"),
+        component: () => importComponent("Register"),
         meta: {
             layout: "AuthLayout"
         }

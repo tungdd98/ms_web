@@ -19,8 +19,3 @@ export default {
     }
 };
 </script>
-<style lang="scss">
-.el-loading-mask {
-    background: hsla(0, 0%, 100%, 0.9) !important;
-}
-</style>

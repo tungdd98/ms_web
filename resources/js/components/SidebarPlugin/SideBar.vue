@@ -7,13 +7,13 @@
             <!--Toggler-->
             <navbar-toggle-button @click.native="showSidebar">
             </navbar-toggle-button>
-            <router-link class="navbar-brand" to="/">
+            <a class="navbar-brand" href="http://localhost:8000/">
                 <img
                     src="img/brand/green.png"
                     class="navbar-brand-img"
                     alt="..."
                 />
-            </router-link>
+            </a>
 
             <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
