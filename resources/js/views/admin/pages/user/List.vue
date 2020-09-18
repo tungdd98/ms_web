@@ -1,10 +1,8 @@
 <template>
     <div>
-        <b-container fluid class="mt--7">
-            <b-card no-body>
-                <b-card-header class="border-0">
-                    <h3 class="mb-0">List User</h3>
-                </b-card-header>
+        <div class="container-fluid mt--7">
+            <div class="bg-white position-relative p-3 shadow rounded">
+                <h3 class="mb-0">List User</h3>
                 <edit @onSubmit="onSubmit" :item="currentUser"></edit>
                 <el-table
                     class="table-responsive table"
@@ -58,15 +56,14 @@
                     </el-table-column>
                 </el-table>
 
-                <b-card-footer class="py-4 d-flex justify-content-end">
+                <div class="py-4 d-flex justify-content-end">
                     <base-pagination
-                        v-model="currentPage"
-                        :per-page="10"
-                        :total="50"
+                        :page-count="pageCount"
+                        v-if="pageCount"
                     ></base-pagination>
-                </b-card-footer>
-            </b-card>
-        </b-container>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -78,15 +75,9 @@ export default {
     },
     data() {
         return {
-            currentPage: 1,
             users: null,
             currentUser: null,
-            config: {
-                page: 1,
-                limit: 10,
-                sortBy: "created_at",
-                orderBy: "desc"
-            }
+            pageCount: 0
         };
     },
     computed: {
@@ -95,7 +86,7 @@ export default {
         })
     },
     async created() {
-        await this.fetchData(this.config);
+        await this.fetchData(this.$route.query);
     },
     methods: {
         ...mapActions({
@@ -106,9 +97,11 @@ export default {
         }),
         async fetchData(query) {
             const data = await this.getUsers(query);
+            console.log(data);
 
             if (data) {
                 this.users = data.data || [];
+                this.pageCount = data.last_page;
             }
         },
         async onSubmit(data) {
@@ -123,7 +116,7 @@ export default {
                 this.notify(
                     !this.currentUser ? "Add success" : "Update success"
                 );
-                this.fetchData(this.config);
+                this.fetchData();
             }
         },
         async handleDelete(id) {
@@ -134,9 +127,14 @@ export default {
 
                 if (res.success) {
                     this.notify("Delete success");
-                    this.fetchData(this.config);
+                    this.fetchData();
                 }
             }
+        },
+        async beforeRouteUpdate(to, from, next) {
+            this.currentPage = to.query.page;
+            await this.fetchData(to.query);
+            next();
         }
     }
 };

@@ -1,3 +1,3 @@
-const API_URL = "https://5eaf78cd0605ed0016d2c9a1.mockapi.io/api/tv/";
+const API_URL = "http://127.0.0.1:8000/api";
 
 export { API_URL };

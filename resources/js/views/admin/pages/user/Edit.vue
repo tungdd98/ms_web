@@ -7,12 +7,7 @@
         </div>
         <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <card
-                type="secondary"
-                header-classes="bg-transparent pb-5"
-                body-classes="px-lg-5 py-lg-5"
-                class="border-0 mb-0"
-            >
+            <div class="p-4">
                 <template>
                     <validation-observer
                         ref="observer"
@@ -79,7 +74,7 @@
                         </b-form>
                     </validation-observer>
                 </template>
-            </card>
+            </div>
         </modal>
     </div>
 </template>

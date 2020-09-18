@@ -119,7 +119,7 @@ export default {
     props: {
         type: {
             type: String,
-            default: "default", // default|light
+            default: "default",
             description:
                 "Look of the dashboard navbar. Default (Green) or light (gray)"
         }

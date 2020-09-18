@@ -1,13 +1,8 @@
-// Core
-
 @import "custom/functions";
 @import "custom/variables";
 @import "custom/mixins";
 
-// Custom variables
 @import "admin/variables";
-
-// Bootstrap components
 
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
@@ -42,15 +37,10 @@
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/print";
 
-// Argon utilities and components
-
 @import "custom/reboot";
 @import "custom/utilities";
 @import "custom/components";
 
-// Vendor (Plugins)
-
 @import "custom/vendors";
 
-// Custom style
 @import "admin/custom";

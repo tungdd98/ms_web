@@ -1,5 +1,12 @@
 /node_modules
-/public
+/public/hot
+/public/storage
+/public/css
+/public/js
+/public/images
+/public/swagger
+/public/fonts
+/public/*.json
 /storage/*.key
 /vendor
 .env

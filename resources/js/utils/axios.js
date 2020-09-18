@@ -21,7 +21,7 @@ const onRequest = config => {
 
 const onSuccess = response => {
     store.commit("display/setLoadingTable", false);
-    return response;
+    return response.data;
 };
 
 const onError = error => {
