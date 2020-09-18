@@ -10,9 +10,9 @@
         </div>
 
         <footer class="py-5" id="footer-main">
-            <b-container>
-                <b-row align-v="center" class="justify-content-xl-between">
-                    <b-col xl="12">
+            <div class="container">
+                <row class="justify-content-center justify-content-xl-between">
+                    <div class="col-12">
                         <div
                             class="copyright text-center text-xl-left text-muted"
                         >
@@ -24,9 +24,9 @@
                                 >Made by MS</a
                             >
                         </div>
-                    </b-col>
-                </b-row>
-            </b-container>
+                    </div>
+                </row>
+            </div>
         </footer>
     </div>
 </template>
@@ -86,7 +86,6 @@ export default {
         this.removeBackgroundColor();
     },
     beforeRouteUpdate(to, from, next) {
-        // Close the mobile menu first then transition to next page
         if (this.showMenu) {
             this.closeMenu();
             setTimeout(() => {
