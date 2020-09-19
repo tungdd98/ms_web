@@ -22,8 +22,6 @@ import Modal from "./Modal.vue";
 import BaseSlider from "./BaseSlider.vue";
 import LoadingPanel from "./LoadingPanel.vue";
 
-import BasePagination from "./BasePagination.vue";
-
 import SidebarPlugin from "./SidebarPlugin";
 
 export {
@@ -31,7 +29,6 @@ export {
     Badge,
     BaseAlert,
     BaseProgress,
-    BasePagination,
     BaseRadio,
     BaseInput,
     Card,

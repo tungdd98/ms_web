@@ -113,11 +113,20 @@ export default {
                 };
                 this.thumbnail = avatar;
             }
+        },
+        isVisible(val) {
+            if (val && this.item) {
+                this.title = "Update user";
+            } else {
+                this.title = "Add new user";
+                this.onReset();
+            }
         }
     },
     methods: {
         onSubmit() {
             this.$emit("onSubmit", this.form);
+            this.isVisible = false;
             this.onReset();
         },
         onUpload(file) {
@@ -131,7 +140,7 @@ export default {
                 phone: "",
                 avatar: null
             };
-            this.isVisible = false;
+            this.thumbnail = "";
         }
     }
 };

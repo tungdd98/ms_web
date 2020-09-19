@@ -57,10 +57,11 @@
                 </el-table>
 
                 <div class="py-4 d-flex justify-content-end">
-                    <base-pagination
-                        :page-count="pageCount"
-                        v-if="pageCount"
-                    ></base-pagination>
+                    <pagination
+                        :total="totalRecord"
+                        v-model="config.page"
+                        @change="onChangePage"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -77,7 +78,10 @@ export default {
         return {
             users: null,
             currentUser: null,
-            pageCount: 0
+            totalRecord: 0,
+            config: {
+                page: 1
+            }
         };
     },
     computed: {
@@ -97,11 +101,10 @@ export default {
         }),
         async fetchData(query) {
             const data = await this.getUsers(query);
-            console.log(data);
 
             if (data) {
                 this.users = data.data || [];
-                this.pageCount = data.last_page;
+                this.totalRecord = data.total;
             }
         },
         async onSubmit(data) {
@@ -131,10 +134,8 @@ export default {
                 }
             }
         },
-        async beforeRouteUpdate(to, from, next) {
-            this.currentPage = to.query.page;
-            await this.fetchData(to.query);
-            next();
+        async onChangePage(page) {
+            await this.fetchData({ page });
         }
     }
 };

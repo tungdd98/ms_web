@@ -9,10 +9,11 @@ import BaseCheckbox from "@/components/Inputs/BaseCheckbox.vue";
 import BaseUploadAvatar from "@/components/Inputs/BaseUploadAvatar.vue";
 import BaseRadio from "@/components/Inputs/BaseRadio";
 import BaseProgress from "@/components/BaseProgress";
-import BasePagination from "@/components/BasePagination";
 import BaseAlert from "@/components/BaseAlert";
 import BaseNav from "@/components/Navbar/BaseNav";
 import BaseHeader from "@/components/BaseHeader";
+import Pagination from "@/components/Paginations/Pagination";
+import PaginationNav from "@/components/Paginations/PaginationNav";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import VueSimpleAlert from "vue-simple-alert";
 import {
@@ -34,7 +35,6 @@ const GlobalComponents = {
         Vue.component(BaseInput.name, BaseInput);
         Vue.component(BaseDropdown.name, BaseDropdown);
         Vue.component(BaseNav.name, BaseNav);
-        Vue.component(BasePagination.name, BasePagination);
         Vue.component(BaseProgress.name, BaseProgress);
         Vue.component(BaseRadio.name, BaseRadio);
         Vue.component(BaseUploadAvatar.name, BaseUploadAvatar);
@@ -42,6 +42,8 @@ const GlobalComponents = {
         Vue.component(Modal.name, Modal);
         Vue.component(StatsCard.name, StatsCard);
         Vue.component(Input.name, Input);
+        Vue.component(Pagination.name, Pagination);
+        Vue.component(PaginationNav.name, PaginationNav);
         Vue.component("validation-provider", ValidationProvider);
         Vue.component("validation-observer", ValidationObserver);
         Vue.use(Tooltip);
@@ -49,13 +51,7 @@ const GlobalComponents = {
         Vue.use(Table);
         Vue.use(TableColumn);
         Vue.use(Upload);
-        Vue.use(VueSimpleAlert, {
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true
-        });
+        Vue.use(VueSimpleAlert);
     }
 };
 
