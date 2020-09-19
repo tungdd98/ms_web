@@ -7,7 +7,7 @@
                         title="Total traffic"
                         type="gradient-red"
                         sub-title="350,897"
-                        icon="ni ni-active-40"
+                        icon="icon-plus"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -21,7 +21,7 @@
                         title="Total traffic"
                         type="gradient-orange"
                         sub-title="2,356"
-                        icon="ni ni-chart-pie-35"
+                        icon="icon-support"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -35,7 +35,7 @@
                         title="Sales"
                         type="gradient-green"
                         sub-title="924"
-                        icon="ni ni-money-coins"
+                        icon="icon-puzzle"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -49,7 +49,7 @@
                         title="Performance"
                         type="gradient-info"
                         sub-title="49,65%"
-                        icon="ni ni-chart-bar-32"
+                        icon="icon-bookmark"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -142,13 +142,13 @@
 </template>
 <script>
 // Charts
-import * as chartConfigs from "@/components/Charts/config";
-import LineChart from "@/components/Charts/LineChart";
-import BarChart from "@/components/Charts/BarChart";
+import * as chartConfigs from "@/components/charts/config";
+import LineChart from "@/components/charts/LineChart";
+import BarChart from "@/components/charts/BarChart";
 
 // Components
 import BaseProgress from "@/components/BaseProgress";
-import StatsCard from "@/components/Cards/StatsCard";
+import StatsCard from "@/components/cards/StatsCard";
 
 // Tables
 import SocialTrafficTable from "./SocialTrafficTable";

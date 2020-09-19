@@ -1,7 +1,7 @@
-import BaseCheckbox from "./Inputs/BaseCheckbox.vue";
+import BaseCheckbox from "./inputs/BaseCheckbox.vue";
 import BaseAlert from "./BaseAlert.vue";
-import BaseRadio from "./Inputs/BaseRadio.vue";
-import BaseInput from "./Inputs/BaseInput.vue";
+import BaseRadio from "./inputs/BaseRadio.vue";
+import BaseInput from "./inputs/BaseInput.vue";
 import Badge from "./Badge";
 import BaseProgress from "./BaseProgress.vue";
 import BaseButton from "./BaseButton.vue";
@@ -9,15 +9,15 @@ import BaseButton from "./BaseButton.vue";
 import BaseDropdown from "./BaseDropdown.vue";
 import BaseTable from "./BaseTable.vue";
 
-import Card from "./Cards/Card.vue";
-import StatsCard from "./Cards/StatsCard.vue";
-import BaseNav from "./Navbar/BaseNav";
-import NavbarToggleButton from "./Navbar/NavbarToggleButton";
+import Card from "./cards/Card.vue";
+import StatsCard from "./cards/StatsCard.vue";
+import BaseNav from "./navbar/BaseNav";
+import NavbarToggleButton from "./navbar/NavbarToggleButton";
 
-import TabPane from "./Tabs/Tab.vue";
-import Tabs from "./Tabs/Tabs.vue";
-import Collapse from "./Collapse/Collapse.vue";
-import CollapseItem from "./Collapse/CollapseItem.vue";
+import TabPane from "./tabs/Tab.vue";
+import Tabs from "./tabs/Tabs.vue";
+import Collapse from "./collapse/Collapse.vue";
+import CollapseItem from "./collapse/CollapseItem.vue";
 import Modal from "./Modal.vue";
 import BaseSlider from "./BaseSlider.vue";
 import LoadingPanel from "./LoadingPanel.vue";

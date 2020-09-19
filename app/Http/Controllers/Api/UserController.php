@@ -2,21 +2,34 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Http\Controllers\Api\ApiResponse;
+use App\Http\Controllers\Api\ApiController;
+use App\Services\UserServiceInterface;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
+    protected $userService;
+
+    public function __construct(
+        Request $request,
+        ApiResponse $response,
+        UserServiceInterface $userService
+    ) {
+        $this->userService = $userService;
+
+        parent::__construct($request, $response);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::paginate(10);
-        return response()->json($data);
+        $data = $this->userService->listUser($request->all());
+
+        return $this->response->withData($data);
     }
 
     /**

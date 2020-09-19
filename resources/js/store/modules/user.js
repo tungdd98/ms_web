@@ -13,7 +13,7 @@ const actions = {
                 params
             });
 
-            return res;
+            return res.data;
         } catch (error) {
             return error;
         }

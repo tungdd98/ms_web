@@ -6,7 +6,7 @@
                     :link="{
                         name: 'Dashboard',
                         path: '/dashboard',
-                        icon: 'ni ni-tv-2 text-primary'
+                        icon: 'icon-bookmark text-primary'
                     }"
                 >
                 </sidebar-item>
@@ -15,7 +15,7 @@
                     :link="{
                         name: 'Users',
                         path: '/users',
-                        icon: 'ni ni-bullet-list-67 text-red'
+                        icon: 'icon-puzzle text-red'
                     }"
                 >
                 </sidebar-item>
@@ -24,7 +24,7 @@
                     :link="{
                         name: 'Login',
                         path: '/login',
-                        icon: 'ni ni-key-25 text-info'
+                        icon: 'icon-padlock text-info'
                     }"
                 >
                 </sidebar-item>
@@ -32,7 +32,7 @@
                     :link="{
                         name: 'Register',
                         path: '/register',
-                        icon: 'ni ni-circle-08 text-pink'
+                        icon: 'icon-connect text-pink'
                     }"
                 >
                 </sidebar-item>

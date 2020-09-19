@@ -17,8 +17,17 @@ export default {
         }
     },
     methods: {
-        linkGen(pageNum) {
-            return pageNum === 1 ? "?" : `?page=${pageNum}`;
+        linkGen(page) {
+            const { name, params, query } = this.$route;
+
+            return {
+                name,
+                params,
+                query: {
+                    ...query,
+                    page
+                }
+            };
         }
     }
 };

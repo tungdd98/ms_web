@@ -1,5 +1,7 @@
 <template>
-    <component :is="layout" :key="$route.fullPath"></component>
+    <component :is="layout">
+        <router-view :key="$route.fullPath"></router-view>
+    </component>
 </template>
 
 <script>

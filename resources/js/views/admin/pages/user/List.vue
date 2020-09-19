@@ -3,16 +3,20 @@
         <div class="container-fluid mt--7">
             <div class="bg-white position-relative p-3 shadow rounded">
                 <h3 class="mb-0">List User</h3>
-                <edit @onSubmit="onSubmit" :item="currentUser"></edit>
+                <edit
+                    @onSubmit="onSubmit"
+                    :item="currentItem"
+                    @change="setCurrentItem"
+                ></edit>
                 <el-table
-                    class="table-responsive table"
+                    class="table-responsive table w-100"
                     header-row-class-name="thead-light"
                     :data="users"
                     v-loading="loading"
                     element-loading-text="Loading..."
                     element-loading-spinner="ni ni-settings-gear-65 circular"
                 >
-                    <el-table-column label="Name" min-width="310px" prop="name">
+                    <el-table-column label="Name" prop="name" width="250">
                         <template v-slot="{ row }">
                             <b-media no-body class="align-items-center">
                                 <a href="#" class="avatar rounded-circle mr-3">
@@ -30,27 +34,31 @@
                             </b-media>
                         </template>
                     </el-table-column>
-                    <el-table-column label="Email" prop="email">
+                    <el-table-column label="Email" prop="email" width="210">
+                    </el-table-column>
+                    <el-table-column label="Phone" prop="phone" width="145">
+                    </el-table-column>
+                    <el-table-column label="Nation" prop="nation" width="120">
                     </el-table-column>
                     <el-table-column label="Address" prop="address">
-                    </el-table-column>
-                    <el-table-column label="Phone" prop="phone">
                     </el-table-column>
                     <el-table-column label="Actions" width="120">
                         <template v-slot="{ row }">
                             <base-button
                                 size="sm"
                                 type="success"
-                                @click="currentUser = row"
+                                icon
+                                @click="setCurrentItem(row)"
                             >
-                                Edit
+                                <span class="icon-edit"></span>
                             </base-button>
                             <base-button
                                 size="sm"
                                 type="danger"
-                                @click="handleDelete(row.id)"
+                                icon
+                                @click="onDelete(row.id)"
                             >
-                                Delete
+                                <span class="icon-trash"></span>
                             </base-button>
                         </template>
                     </el-table-column>
@@ -77,7 +85,7 @@ export default {
     data() {
         return {
             users: null,
-            currentUser: null,
+            currentItem: null,
             totalRecord: 0,
             config: {
                 page: 1
@@ -103,26 +111,26 @@ export default {
             const data = await this.getUsers(query);
 
             if (data) {
-                this.users = data.data || [];
+                this.users = data.users || [];
                 this.totalRecord = data.total;
             }
         },
         async onSubmit(data) {
-            const res = !this.currentUser
+            const res = !this.currentItem
                 ? await this.addUser(data)
                 : await this.updateUser({
-                      id: this.currentUser.id,
+                      id: this.currentItem.id,
                       data
                   });
 
             if (res.success) {
                 this.notify(
-                    !this.currentUser ? "Add success" : "Update success"
+                    !this.currentItem ? "Add success" : "Update success"
                 );
                 this.fetchData();
             }
         },
-        async handleDelete(id) {
+        async onDelete(id) {
             const result = await this.confirm();
 
             if (result.value) {
@@ -136,6 +144,9 @@ export default {
         },
         async onChangePage(page) {
             await this.fetchData({ page });
+        },
+        setCurrentItem(value) {
+            this.currentItem = value;
         }
     }
 };

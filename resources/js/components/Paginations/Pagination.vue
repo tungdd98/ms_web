@@ -10,20 +10,6 @@
             :align="align"
             :total-rows="total"
         >
-            <template v-slot:prev-text>
-                <a class="page-link" aria-label="Previous">
-                    <span aria-hidden="true"
-                        ><i class="fa fa-angle-left" aria-hidden="true"></i
-                    ></span>
-                </a>
-            </template>
-            <template v-slot:next-text>
-                <a class="page-link" aria-label="Next">
-                    <span aria-hidden="true"
-                        ><i class="fa fa-angle-right" aria-hidden="true"></i
-                    ></span>
-                </a>
-            </template>
         </b-pagination>
     </div>
 </template>

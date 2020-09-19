@@ -24,7 +24,7 @@
                                 name="name"
                                 class="mb-3"
                                 placeholder="Enter name"
-                                rules="required|alpha"
+                                rules="required"
                                 label="Name"
                             >
                             </base-input>
@@ -44,9 +44,24 @@
                                 name="phone"
                                 class="mb-3"
                                 placeholder="Enter phone"
-                                rules="numeric"
                                 label="Phone"
                             >
+                            </base-input>
+                            <base-input label="Nation">
+                                <select
+                                    class="form-control"
+                                    v-model="form.nation"
+                                >
+                                    <option value="" disabled
+                                        >-- Select --</option
+                                    >
+                                    <option
+                                        :value="nation"
+                                        v-for="(nation, index) in NATIONS"
+                                        :key="index"
+                                        >{{ nation }}</option
+                                    >
+                                </select>
                             </base-input>
                             <base-input label="Address">
                                 <textarea
@@ -81,12 +96,14 @@
 
 <script>
 import { mapActions } from "vuex";
+import { NATIONS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object }
     },
     data() {
         return {
+            NATIONS,
             title: "Add new user",
             isVisible: false,
             form: {
@@ -94,6 +111,7 @@ export default {
                 email: "",
                 address: "",
                 phone: "",
+                nation: "",
                 avatar: null
             },
             thumbnail: ""
@@ -103,30 +121,31 @@ export default {
         item(val) {
             if (val) {
                 this.isVisible = true;
-                const { name, email, address, phone, avatar } = val;
+                const { name, email, address, phone, avatar, nation } = val;
                 this.form = {
                     name,
                     email,
                     address,
                     phone,
-                    avatar
+                    avatar,
+                    nation
                 };
                 this.thumbnail = avatar;
+                this.title = "Update user";
+            } else {
+                this.onReset();
+                this.title = "Add new user";
             }
         },
         isVisible(val) {
-            if (val && this.item) {
-                this.title = "Update user";
-            } else {
-                this.title = "Add new user";
-                this.onReset();
+            if (!val) {
+                this.$emit("change", null);
             }
         }
     },
     methods: {
         onSubmit() {
             this.$emit("onSubmit", this.form);
-            this.isVisible = false;
             this.onReset();
         },
         onUpload(file) {
@@ -138,9 +157,11 @@ export default {
                 email: "",
                 address: "",
                 phone: "",
+                nation: "",
                 avatar: null
             };
             this.thumbnail = "";
+            this.isVisible = false;
         }
     }
 };

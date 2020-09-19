@@ -43,4 +43,4 @@ export default {
 
 // asset imports
 import "@/assets/scss/admin.scss";
-import "@/assets/vendor/nucleo/css/nucleo.css";
+import "@/assets/vendor/icomoon/style.css";
