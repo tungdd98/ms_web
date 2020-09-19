@@ -14,6 +14,7 @@
                     :data="users"
                     v-loading="loading"
                     element-loading-text="Loading..."
+                    element-loading-spinner="ni ni-settings-gear-65 circular"
                 >
                     <el-table-column label="Name" prop="name" width="250">
                         <template v-slot="{ row }">
