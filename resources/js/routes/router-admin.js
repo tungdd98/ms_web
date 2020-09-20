@@ -37,8 +37,7 @@ const routes = [
         name: "register",
         component: Register,
         meta: {
-            layout: "AuthLayout",
-            noAuthorize: true
+            layout: "AuthLayout"
         }
     },
     {
@@ -70,17 +69,21 @@ router.beforeEach((to, from, next) => {
         authenticate: { accessToken }
     } = store.state;
 
-    if (to.name !== "login" && !accessToken && !to.meta.noAuthorize) {
-        next({
-            name: "login",
-            query: {
-                redirect: to.fullPath
-            }
-        });
-    } else if (to.name === "login" && accessToken) {
-        next("/");
+    if (to.matched.some(record => record.meta.layout !== "AuthLayout")) {
+        if (!accessToken) {
+            next({
+                path: "/login",
+                query: { redirect: to.fullPath }
+            });
+        } else {
+            next();
+        }
     } else {
-        next();
+        if (accessToken) {
+            next("/");
+        } else {
+            next();
+        }
     }
 });
 

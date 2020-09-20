@@ -19,23 +19,6 @@
                     }"
                 >
                 </sidebar-item>
-
-                <sidebar-item
-                    :link="{
-                        name: 'Login',
-                        path: '/login',
-                        icon: 'icon-padlock text-info'
-                    }"
-                >
-                </sidebar-item>
-                <sidebar-item
-                    :link="{
-                        name: 'Register',
-                        path: '/register',
-                        icon: 'icon-connect text-pink'
-                    }"
-                >
-                </sidebar-item>
             </template>
         </side-bar>
         <div class="main-content d-flex flex-column min-vh-100">
