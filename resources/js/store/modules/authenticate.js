@@ -1,17 +1,21 @@
 import { apisAuth } from "@/utils/apis";
 
 const state = {
-    accessToken: null
+    accessToken: null,
+    userInfo: null
 };
 
 const getters = {};
 
 const mutations = {
-    setAccessToken(state, data = null) {
-        state.accessToken = data;
+    setAccessToken(state, data) {
+        state.accessToken = data || null;
         if (!data) {
             this.$cookie.remove("ms_web");
         }
+    },
+    setUserInfo(state, data) {
+        state.userInfo = data || null;
     }
 };
 
@@ -20,9 +24,28 @@ const actions = {
         try {
             const res = await this.$axios.post(apisAuth.auth.login, data);
             commit("setAccessToken", res.access_token);
+            commit("setUserInfo", res.user_info.original);
 
             return {
-                success: res
+                success: true,
+                token: res.access_token,
+                userInfo: res.user_info.original
+            };
+        } catch (error) {
+            return {
+                success: false,
+                error
+            };
+        }
+    },
+    async logout({ commit }) {
+        try {
+            await this.$axios.post(apisAuth.auth.logout);
+            commit("setAccessToken", null);
+            commit("setUserInfo", null);
+
+            return {
+                success: true
             };
         } catch (error) {
             return {

@@ -19,6 +19,16 @@ class AuthController extends Controller
     }
 
     /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\Guard
+     */
+    public function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
      * Get a JWT token via given credentials.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -29,8 +39,8 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if ($token = Auth::attempt($credentials)) {
-            return $this->respondWithToken($token);
+        if ($token = $this->guard()->attempt($credentials)) {
+            return $this->respondWithToken($token, $request->remember == 1 ? true : false);
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
@@ -43,7 +53,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(Auth::user());
+        return response()->json($this->guard()->user());
     }
 
     /**
@@ -53,7 +63,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        Auth::logout();
+        $this->guard()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -65,7 +75,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(Auth::refresh());
+        return $this->respondWithToken($this->guard()->refresh(), false);
     }
 
     /**
@@ -75,12 +85,12 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token, $remember)
     {
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
+            'expires_in' => $remember ? $this->guard()->factory()->getTTL() * 60 * 24 * 7 : null,
+            'user_info' => $this->me()
         ]);
     }
 }

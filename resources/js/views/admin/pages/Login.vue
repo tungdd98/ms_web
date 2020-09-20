@@ -59,7 +59,6 @@
                                         class="mb-3"
                                         name="Email"
                                         :rules="{ required: true, email: true }"
-                                        prepend-icon="ni ni-email-83"
                                         placeholder="Email"
                                         v-model="form.email"
                                     >
@@ -70,14 +69,13 @@
                                         class="mb-3"
                                         name="Password"
                                         :rules="{ required: true, min: 6 }"
-                                        prepend-icon="ni ni-lock-circle-open"
                                         type="password"
                                         placeholder="Password"
                                         v-model="form.password"
                                     >
                                     </base-input>
 
-                                    <b-form-checkbox v-model="form.rememberMe"
+                                    <b-form-checkbox v-model="form.remember"
                                         >Remember me</b-form-checkbox
                                     >
                                     <div class="text-center">
@@ -117,7 +115,7 @@ export default {
             form: {
                 email: "tungdd98@gmail.com",
                 password: "password",
-                rememberMe: false
+                remember: false
             }
         };
     },
@@ -126,19 +124,31 @@ export default {
             login: "authenticate/login"
         }),
         async onSubmit() {
-            const { email, password } = this.form;
-            const data = await this.login({
+            const { email, password, remember } = this.form;
+            const response = await this.login({
                 email,
-                password
+                password,
+                remember: remember ? 1 : 0
             });
 
-            if (data.success) {
-                if (this.rememberMe) {
-                    this.$cookie.set("ms_web", data.success.access_token, {
-                        expires: 30
+            if (response.success) {
+                if (remember) {
+                    this.$cookie.set("ms_web", response.token, {
+                        expires: 7
                     });
+                    this.$cookie.set(
+                        "user_ms_web",
+                        JSON.stringify(response.userInfo),
+                        {
+                            expires: 7
+                        }
+                    );
                 } else {
-                    this.$cookie.set("ms_web", data.success.access_token);
+                    this.$cookie.set("ms_web", response.token);
+                    this.$cookie.set(
+                        "user_ms_web",
+                        JSON.stringify(response.userInfo)
+                    );
                 }
                 return this.$router.push(this.$route.query.redirect || "/");
             }
@@ -149,7 +159,7 @@ export default {
             this.form = {
                 email: "",
                 password: "",
-                rememberMe: false
+                remember: false
             };
         }
     }

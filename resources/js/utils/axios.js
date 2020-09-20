@@ -11,10 +11,18 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.get["Content-Type"] = "application/json";
+axios.defaults.headers.post["Content-Type"] =
+    "application/x-www-form-urlencoded";
 
 const onRequest = config => {
+    const {
+        authenticate: { accessToken }
+    } = store.state;
     if (config.method === "get") {
         store.commit("display/setLoadingTable", true);
+    }
+    if (accessToken) {
+        config.headers.common["Authorization"] = "Bearer" + accessToken;
     }
     return config;
 };

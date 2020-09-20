@@ -61,34 +61,31 @@
                                     <base-input
                                         alternative
                                         class="mb-3"
-                                        prepend-icon="ni ni-hat-3"
                                         placeholder="Name"
                                         name="Name"
                                         :rules="{ required: true }"
-                                        v-model="model.name"
+                                        v-model="form.name"
                                     >
                                     </base-input>
 
                                     <base-input
                                         alternative
                                         class="mb-3"
-                                        prepend-icon="ni ni-email-83"
                                         placeholder="Email"
                                         name="Email"
                                         :rules="{ required: true, email: true }"
-                                        v-model="model.email"
+                                        v-model="form.email"
                                     >
                                     </base-input>
 
                                     <base-input
                                         alternative
                                         class="mb-3"
-                                        prepend-icon="ni ni-lock-circle-open"
                                         placeholder="password"
                                         type="password"
                                         name="Password"
                                         :rules="{ required: true, min: 6 }"
-                                        v-model="model.password"
+                                        v-model="form.password"
                                     >
                                     </base-input>
                                     <div class="text-muted font-italic">
@@ -112,7 +109,7 @@
                                                 Policy
                                             >
                                                 <b-form-checkbox
-                                                    v-model="model.agree"
+                                                    v-model="form.agree"
                                                 >
                                                     <span class="text-muted"
                                                         >I agree with the
@@ -129,8 +126,11 @@
                                             type="submit"
                                             variant="primary"
                                             class="mt-4"
-                                            >Create account</b-button
                                         >
+                                            <router-link to="/login"
+                                                >Create account
+                                            </router-link>
+                                        </b-button>
                                     </div>
                                 </b-form>
                             </validation-observer>
@@ -146,7 +146,7 @@ export default {
     name: "register",
     data() {
         return {
-            model: {
+            form: {
                 name: "",
                 email: "",
                 password: "",
@@ -155,9 +155,7 @@ export default {
         };
     },
     methods: {
-        onSubmit() {
-            // this will be called only after form is valid. You can do an api call here to register users
-        }
+        onSubmit() {}
     }
 };
 </script>

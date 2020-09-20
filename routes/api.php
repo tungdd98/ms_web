@@ -20,6 +20,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-    // User
-    Route::resource('users', 'Api\UserController');
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        // User
+        Route::resource('users', 'Api\UserController');
+    });
 });

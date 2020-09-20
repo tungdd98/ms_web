@@ -19,8 +19,14 @@ const store = new Vuex.Store({
 });
 
 const accessToken = cookie.get("ms_web");
+const userInfo = cookie.get("user_ms_web");
+
 if (accessToken) {
     store.commit("authenticate/setAccessToken", accessToken);
+}
+
+if (userInfo) {
+    store.commit("authenticate/setUserInfo", JSON.parse(userInfo));
 }
 
 export default store;

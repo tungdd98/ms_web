@@ -61,17 +61,17 @@
                     @click.prevent
                     slot="title-container"
                 >
-                    <b-media no-body class="align-items-center">
+                    <b-media no-body class="align-items-center" v-if="userInfo">
                         <span class="avatar avatar-sm rounded-circle">
                             <img
                                 alt="Image placeholder"
-                                src="img/theme/team-4.jpg"
+                                :src="userInfo.avatar"
                             />
                         </span>
                         <b-media-body class="ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold"
-                                >John Snow</span
-                            >
+                            <span class="mb-0 text-sm  font-weight-bold">{{
+                                userInfo.name
+                            }}</span>
                         </b-media-body>
                     </b-media>
                 </a>
@@ -84,20 +84,8 @@
                         <i class="icon-connect"></i>
                         <span>My profile</span>
                     </b-dropdown-item>
-                    <b-dropdown-item href="#!">
-                        <i class="icon-support"></i>
-                        <span>Settings</span>
-                    </b-dropdown-item>
-                    <b-dropdown-item href="#!">
-                        <i class="icon-upload"></i>
-                        <span>Activity</span>
-                    </b-dropdown-item>
-                    <b-dropdown-item href="#!">
-                        <i class="icon-edit"></i>
-                        <span>Support</span>
-                    </b-dropdown-item>
                     <div class="dropdown-divider"></div>
-                    <b-dropdown-item href="#!">
+                    <b-dropdown-item @click="onLogout">
                         <i class="icon-padlock"></i>
                         <span>Logout</span>
                     </b-dropdown-item>
@@ -109,6 +97,7 @@
 <script>
 import { CollapseTransition } from "vue2-transitions";
 import { BaseNav, Modal } from "@/components";
+import { mapActions, mapState } from "vuex";
 
 export default {
     components: {
@@ -119,12 +108,13 @@ export default {
     props: {
         type: {
             type: String,
-            default: "default",
-            description:
-                "Look of the dashboard navbar. Default (Green) or light (gray)"
+            default: "default"
         }
     },
     computed: {
+        ...mapState({
+            userInfo: state => state.authenticate.userInfo
+        }),
         routeName() {
             const { name } = this.$route;
             return this.capitalizeFirstLetter(name);
@@ -139,6 +129,9 @@ export default {
         };
     },
     methods: {
+        ...mapActions({
+            logout: "authenticate/logout"
+        }),
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
@@ -147,6 +140,15 @@ export default {
         },
         closeDropDown() {
             this.activeNotifications = false;
+        },
+        async onLogout() {
+            const response = await this.logout();
+
+            if (response.success) {
+                this.$cookie.remove("ms_web");
+                this.$cookie.remove("user_ms_web");
+                this.$router.push("/login");
+            }
         }
     }
 };
