@@ -40,7 +40,3 @@ export default {
         });
     }
 };
-
-// asset imports
-import "@/assets/scss/admin.scss";
-import "@/assets/vendor/icomoon/style.css";
