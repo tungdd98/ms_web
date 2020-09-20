@@ -1,4 +1,4 @@
-import apis from "@/utils/apis";
+import { apisAuth } from "@/utils/apis";
 
 const state = {
     isLoadingTable: false

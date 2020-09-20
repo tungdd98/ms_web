@@ -61,7 +61,7 @@
                                         :rules="{ required: true, email: true }"
                                         prepend-icon="ni ni-email-83"
                                         placeholder="Email"
-                                        v-model="model.email"
+                                        v-model="form.email"
                                     >
                                     </base-input>
 
@@ -73,11 +73,11 @@
                                         prepend-icon="ni ni-lock-circle-open"
                                         type="password"
                                         placeholder="Password"
-                                        v-model="model.password"
+                                        v-model="form.password"
                                     >
                                     </base-input>
 
-                                    <b-form-checkbox v-model="model.rememberMe"
+                                    <b-form-checkbox v-model="form.rememberMe"
                                         >Remember me</b-form-checkbox
                                     >
                                     <div class="text-center">
@@ -110,19 +110,47 @@
     </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
     data() {
         return {
-            model: {
-                email: "",
-                password: "",
+            form: {
+                email: "tungdd98@gmail.com",
+                password: "password",
                 rememberMe: false
             }
         };
     },
     methods: {
-        onSubmit() {
-            // this will be called only after form is valid. You can do api call here to login
+        ...mapActions({
+            login: "authenticate/login"
+        }),
+        async onSubmit() {
+            const { email, password } = this.form;
+            const data = await this.login({
+                email,
+                password
+            });
+
+            if (data.success) {
+                if (this.rememberMe) {
+                    this.$cookie.set("ms_web", data.success.access_token, {
+                        expires: 30
+                    });
+                } else {
+                    this.$cookie.set("ms_web", data.success.access_token);
+                }
+                return this.$router.push(this.$route.query.redirect || "/");
+            }
+
+            this.onReset();
+        },
+        onReset() {
+            this.form = {
+                email: "",
+                password: "",
+                rememberMe: false
+            };
         }
     }
 };

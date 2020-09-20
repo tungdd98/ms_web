@@ -1,10 +1,14 @@
-const apis = {
+const apisAuth = {
     users: {
-        get: "/users",
-        post: "/users",
-        delete: "users/:id",
-        put: "/users/:id"
+        get: "auth/users",
+        post: "auth/users",
+        delete: "auth/users/:id",
+        put: "auth/users/:id"
+    },
+    auth: {
+        login: "auth/login",
+        logout: "auth/logout"
     }
 };
 
-export default apis;
+export { apisAuth };

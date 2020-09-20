@@ -27,3 +27,7 @@ admin.localhost:8000
 2. client
 localhost:8000
 ```
+
+## gitignore public folder
+
+git rm --cached -r public

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from "@/store";
 import VueRouter from "vue-router";
 import NotFound from "@/views/admin/pages/NotFoundPage.vue";
 import Dashboard from "@/views/admin/pages/dashboard/Dashboard.vue";
@@ -36,7 +37,8 @@ const routes = [
         name: "register",
         component: Register,
         meta: {
-            layout: "AuthLayout"
+            layout: "AuthLayout",
+            noAuthorize: true
         }
     },
     {
@@ -60,6 +62,25 @@ const router = new VueRouter({
             return { selector: to.hash };
         }
         return { x: 0, y: 0 };
+    }
+});
+
+router.beforeEach((to, from, next) => {
+    const {
+        authenticate: { accessToken }
+    } = store.state;
+
+    if (to.name !== "login" && !accessToken && !to.meta.noAuthorize) {
+        next({
+            name: "login",
+            query: {
+                redirect: to.fullPath
+            }
+        });
+    } else if (to.name === "login" && accessToken) {
+        next("/");
+    } else {
+        next();
     }
 });
 
