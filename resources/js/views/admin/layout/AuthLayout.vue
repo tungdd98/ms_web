@@ -11,21 +11,17 @@
 
         <footer class="py-5" id="footer-main">
             <div class="container">
-                <row class="justify-content-center justify-content-xl-between">
-                    <div class="col-12">
-                        <div
-                            class="copyright text-center text-xl-left text-muted"
+                <div class="justify-content-center justify-content-xl-between">
+                    <div class="copyright text-center text-xl-left text-muted">
+                        © {{ year }}
+                        <a
+                            href="https://www.creative-tim.com"
+                            class="font-weight-bold ml-1"
+                            target="_blank"
+                            >Made by MS</a
                         >
-                            © {{ year }}
-                            <a
-                                href="https://www.creative-tim.com"
-                                class="font-weight-bold ml-1"
-                                target="_blank"
-                                >Made by MS</a
-                            >
-                        </div>
                     </div>
-                </row>
+                </div>
             </div>
         </footer>
     </div>

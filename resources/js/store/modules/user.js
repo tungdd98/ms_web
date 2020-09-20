@@ -1,4 +1,4 @@
-import apis from "@/utils/apis";
+import { apisAuth } from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getUsers({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.users.get, {
+            const res = await this.$axios.get(apisAuth.users.get, {
                 params
             });
 
@@ -20,7 +20,7 @@ const actions = {
     },
     async addUser({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.users.post, data);
+            const res = await this.$axios.post(apisAuth.users.post, data);
 
             return {
                 success: res.data,
@@ -36,7 +36,7 @@ const actions = {
     async deleteUser({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.users.delete.replace(/:id/, id)
+                apisAuth.users.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +53,7 @@ const actions = {
     async updateUser({ commit }, { id, data }) {
         try {
             const res = await this.$axios.put(
-                apis.users.put.replace(/:id/, id),
+                apisAuth.users.put.replace(/:id/, id),
                 data
             );
 

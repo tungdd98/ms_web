@@ -15,6 +15,10 @@ import store from "@/store";
 import axios from "@/utils/axios";
 Vue.prototype.$axios = axios;
 
+// cookie
+import cookie from "js-cookie";
+Vue.prototype.$cookie = cookie;
+
 new Vue({
     el: "#admin",
     router,
