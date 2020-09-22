@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="d-flex justify-content-end p-2">
+        <div class="d-flex justify-content-end p-2 align-items-center">
             <base-button type="outline-primary" @click="isVisible = true">
                 Add new
             </base-button>
@@ -52,9 +52,7 @@
                                     class="form-control"
                                     v-model="form.nation"
                                 >
-                                    <option value="" disabled
-                                        >-- Select --</option
-                                    >
+                                    <option value>-- Select --</option>
                                     <option
                                         :value="nation"
                                         v-for="(nation, index) in NATIONS"
@@ -62,6 +60,31 @@
                                         >{{ nation }}</option
                                     >
                                 </select>
+                            </base-input>
+                            <base-input label="Permission">
+                                <select
+                                    class="form-control"
+                                    v-model="form.permission"
+                                >
+                                    <option
+                                        :value="permission.value"
+                                        v-for="permission in PERMISSIONS"
+                                        :key="permission.value"
+                                        >{{ permission.label }}</option
+                                    >
+                                </select>
+                            </base-input>
+                            <base-input
+                                label="Password"
+                                alternative
+                                class="mb-3"
+                                placeholder="Password"
+                                type="password"
+                                name="Password"
+                                :rules="{ required: true, min: 6 }"
+                                :disabled="item ? true : false"
+                                v-model="form.password"
+                            >
                             </base-input>
                             <base-input label="Address">
                                 <textarea
@@ -96,7 +119,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import { NATIONS } from "@/utils/constants";
+import { NATIONS, PERMISSIONS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object }
@@ -104,6 +127,7 @@ export default {
     data() {
         return {
             NATIONS,
+            PERMISSIONS,
             title: "Add new user",
             isVisible: false,
             form: {
@@ -112,7 +136,9 @@ export default {
                 address: "",
                 phone: "",
                 nation: "",
-                avatar: null
+                permission: 0,
+                password: "",
+                avatar: ""
             },
             thumbnail: ""
         };
@@ -121,16 +147,25 @@ export default {
         item(val) {
             if (val) {
                 this.isVisible = true;
-                const { name, email, address, phone, avatar, nation } = val;
+                const {
+                    name,
+                    email,
+                    address,
+                    phone,
+                    avatar,
+                    nation,
+                    permission
+                } = val;
                 this.form = {
                     name,
                     email,
                     address,
                     phone,
                     avatar,
-                    nation
+                    nation: nation ? nation : "",
+                    permission
                 };
-                this.thumbnail = avatar;
+                this.thumbnail = `images/upload/users/${avatar}`;
                 this.title = "Update user";
             } else {
                 this.onReset();
@@ -149,7 +184,7 @@ export default {
             this.onReset();
         },
         onUpload(file) {
-            this.form.avatar = file[0];
+            this.form.avatar = file[0].raw;
         },
         onReset() {
             this.form = {
@@ -158,6 +193,8 @@ export default {
                 address: "",
                 phone: "",
                 nation: "",
+                permission: 0,
+                password: "",
                 avatar: null
             };
             this.thumbnail = "";

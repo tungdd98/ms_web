@@ -15,7 +15,8 @@ mix.webpackConfig({
     resolve: {
         extensions: [".js", ".vue"],
         alias: {
-            "@": __dirname + "/resources/js"
+            "@": __dirname + "/resources/js",
+            "~": __dirname + "/resources/images"
         }
     }
 });

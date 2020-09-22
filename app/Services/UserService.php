@@ -11,7 +11,7 @@ class UserService implements UserServiceInterface
      */
     public function listUser($dataRequest)
     {
-        $users = User::orderBy("created_at");
+        $users = User::orderBy("created_at", 'desc');
         $usersPaginate = $users->paginate(User::PER_PAGE);
 
         return [

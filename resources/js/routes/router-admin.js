@@ -66,7 +66,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const {
-        authenticate: { accessToken }
+        authenticate: { accessToken, userInfo }
     } = store.state;
 
     if (to.matched.some(record => record.meta.layout !== "AuthLayout")) {
@@ -76,7 +76,11 @@ router.beforeEach((to, from, next) => {
                 query: { redirect: to.fullPath }
             });
         } else {
-            next();
+            if (userInfo && userInfo.permission === 1) {
+                next();
+            } else {
+                window.location.href = "http://localhost:8000";
+            }
         }
     } else {
         if (accessToken) {

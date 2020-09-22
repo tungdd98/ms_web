@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiResponse;
 use App\Http\Controllers\Api\ApiController;
 use App\Services\UserServiceInterface;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
     protected $userService;
+    protected $folder = "upload/users";
 
     public function __construct(
         Request $request,
@@ -40,7 +43,24 @@ class UserController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $dataRequest = $request->all();
+        if ($request->hasFile('avatar')) {
+            $avatar = time() . $dataRequest['avatar']->getClientOriginalName();
+            $dataRequest['avatar']->move("images/{$this->folder}", $avatar);
+            $dataRequest['avatar'] = $avatar;
+        }
+        $user = [
+            'name' => $dataRequest['name'],
+            'email' => $dataRequest['email'],
+            'phone' => $dataRequest['phone'],
+            'nation' => $dataRequest['nation'],
+            'address' => $dataRequest['address'],
+            'avatar' => $dataRequest['avatar'],
+            'permission' => $dataRequest['permission'],
+            'password' => Hash::make($dataRequest['password'])
+        ];
+
+        return $this->response->withData(User::create($user), 201);
     }
 
     /**
@@ -63,7 +83,22 @@ class UserController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataRequest = $request->all();
+        $user = User::findOrFail($id);
+        if ($request->hasFile('avatar')) {
+            // Update avatar
+            $avatar = time() . $dataRequest['avatar']->getClientOriginalName();
+            $dataRequest['avatar']->move("images/{$this->folder}", $avatar);
+            $dataRequest['avatar'] = $avatar;
+            // Remove old avatar
+            $avatarRemove = public_path() . "/images/{$this->folder}/" . $user->avatar;
+            if (file_exists($avatarRemove)) {
+                unlink($avatarRemove);
+            }
+        }
+        $user->update($dataRequest);
+
+        return $this->response->withData($user->save(), 200);
     }
 
     /**
@@ -74,6 +109,14 @@ class UserController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if (isset($user->avatar)) {
+            $imagePath = public_path() . "/images/{$this->folder}/" . $user->avatar;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        $user->delete();
     }
 }
