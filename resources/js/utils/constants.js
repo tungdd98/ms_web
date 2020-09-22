@@ -13,4 +13,15 @@ const PERMISSIONS = [
     }
 ];
 
-export { API_URL, NATIONS, PERMISSIONS };
+const IS_NATION = [
+    {
+        value: 0,
+        label: "Trong nước"
+    },
+    {
+        value: 1,
+        label: "Ngoài nước"
+    }
+];
+
+export { API_URL, NATIONS, PERMISSIONS, IS_NATION };

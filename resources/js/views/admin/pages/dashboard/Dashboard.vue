@@ -7,7 +7,7 @@
                         title="Total traffic"
                         type="gradient-red"
                         sub-title="350,897"
-                        icon="icon-plus"
+                        icon="icon icon-star"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -21,7 +21,7 @@
                         title="Total traffic"
                         type="gradient-orange"
                         sub-title="2,356"
-                        icon="icon-support"
+                        icon="icon icon-key"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -35,7 +35,7 @@
                         title="Sales"
                         type="gradient-green"
                         sub-title="924"
-                        icon="icon-puzzle"
+                        icon="icon icon-heart"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">
@@ -49,7 +49,7 @@
                         title="Performance"
                         type="gradient-info"
                         sub-title="49,65%"
-                        icon="icon-bookmark"
+                        icon="icon icon-share-2"
                         class="mb-4 h-100"
                     >
                         <template slot="footer">

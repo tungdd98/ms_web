@@ -6,7 +6,7 @@
                     :link="{
                         name: 'Dashboard',
                         path: '/dashboard',
-                        icon: 'icon-bookmark text-primary'
+                        icon: 'icon icon-home text-primary'
                     }"
                 >
                 </sidebar-item>
@@ -15,7 +15,16 @@
                     :link="{
                         name: 'Users',
                         path: '/users',
-                        icon: 'icon-puzzle text-red'
+                        icon: 'icon icon-users text-red'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
+                        name: 'Countries',
+                        path: '/countries',
+                        icon: 'icon icon-key text-info'
                     }"
                 >
                 </sidebar-item>
