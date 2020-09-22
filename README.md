@@ -31,3 +31,11 @@ localhost:8000
 ## gitignore public folder
 
 git rm --cached -r public
+
+## Make controller
+
+php artisan make:controller Api/AppController --resource --model=Models/App
+
+## Make migration
+
+php artisan make:migration create_app_table

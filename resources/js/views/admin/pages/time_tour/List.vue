@@ -2,7 +2,7 @@
     <div>
         <div class="container-fluid mt--7">
             <div class="bg-white position-relative p-3 shadow rounded">
-                <h3 class="mb-0">List User</h3>
+                <h3 class="mb-0">List Time tour</h3>
                 <edit
                     @onSubmit="onSubmit"
                     :item="currentItem"
@@ -11,45 +11,12 @@
                 <el-table
                     class="table-responsive table w-100"
                     header-row-class-name="thead-light"
-                    :data="listUser"
+                    :data="timesTour"
                     v-loading="loading"
                     element-loading-text="Loading..."
                     element-loading-spinner="icon icon-settings circular"
                 >
-                    <el-table-column label="Name" prop="name" width="250">
-                        <template v-slot="{ row }">
-                            <b-media no-body class="align-items-center">
-                                <base-thumbnail
-                                    path="users"
-                                    :thumbnail="row.avatar"
-                                ></base-thumbnail>
-                                <b-media-body>
-                                    <span
-                                        class="font-weight-600 name mb-0 text-sm"
-                                        >{{ row.name }}</span
-                                    >
-                                </b-media-body>
-                            </b-media>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Email" prop="email" width="210">
-                    </el-table-column>
-                    <el-table-column
-                        label="Permission"
-                        prop="permission"
-                        width="120"
-                    >
-                        <template v-slot="{ row }">
-                            <span class="font-weight-600 name mb-0 text-sm">
-                                {{ row.permission === 0 ? "Member" : "Admin" }}
-                            </span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Phone" prop="phone" width="145">
-                    </el-table-column>
-                    <el-table-column label="Nation" prop="nation" width="120">
-                    </el-table-column>
-                    <el-table-column label="Address" prop="address">
+                    <el-table-column label="Title" prop="title">
                     </el-table-column>
                     <el-table-column label="Actions" width="120">
                         <template v-slot="{ row }">
@@ -95,7 +62,7 @@ export default {
     },
     data() {
         return {
-            users: null,
+            timesTour: null,
             currentItem: null,
             totalRecord: 0,
             config: {
@@ -107,29 +74,23 @@ export default {
         ...mapState({
             loading: state => state.display.isLoadingTable,
             userInfo: state => state.authenticate.userInfo
-        }),
-        listUser() {
-            if (this.users && this.users.length && this.userInfo) {
-                return this.users.filter(user => user.id !== this.userInfo.id);
-            }
-            return [];
-        }
+        })
     },
     async created() {
         await this.fetchData(this.config);
     },
     methods: {
         ...mapActions({
-            getUsers: "user/getUsers",
-            addUser: "user/addUser",
-            deleteUser: "user/deleteUser",
-            updateUser: "user/updateUser"
+            getTimesTour: "timeTour/getTimesTour",
+            addTimeTour: "timeTour/addTimeTour",
+            deleteTimeTour: "timeTour/deleteTimeTour",
+            updateTimeTour: "timeTour/updateTimeTour"
         }),
         async fetchData(query) {
-            const data = await this.getUsers(query);
+            const data = await this.getTimesTour(query);
 
             if (data) {
-                this.users = data.users || [];
+                this.timesTour = data.time_tour || [];
                 this.totalRecord = data.total;
             }
         },
@@ -139,8 +100,8 @@ export default {
                 formData.append(key, value);
             });
             const res = !this.currentItem
-                ? await this.addUser(formData)
-                : await this.updateUser({
+                ? await this.addTimeTour(formData)
+                : await this.updateTimeTour({
                       id: this.currentItem.id,
                       data: formData
                   });
@@ -154,7 +115,7 @@ export default {
             const result = await this.confirm();
 
             if (result.value) {
-                const res = await this.deleteUser(id);
+                const res = await this.deleteTimeTour(id);
 
                 if (res.success) {
                     this.notify(res.message);

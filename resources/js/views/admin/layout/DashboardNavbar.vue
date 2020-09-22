@@ -79,12 +79,12 @@
                         <h6 class="text-overflow m-0">Welcome!</h6>
                     </b-dropdown-header>
                     <b-dropdown-item href="#!">
-                        <i class="icon-connect"></i>
+                        <i class="icon icon-user-check"></i>
                         <span>My profile</span>
                     </b-dropdown-item>
                     <div class="dropdown-divider"></div>
                     <b-dropdown-item @click="onLogout">
-                        <i class="icon-padlock"></i>
+                        <i class="icon icon-log-out"></i>
                         <span>Logout</span>
                     </b-dropdown-item>
                 </template>

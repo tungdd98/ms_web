@@ -33,5 +33,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('countries', 'CountryController@store');
         Route::delete('countries/{id}', 'CountryController@destroy');
         Route::post('countries/{id}', 'CountryController@update');
+
+        // Time tour
+        Route::get('time_tour', 'TimeTourController@index');
+        Route::post('time_tour', 'TimeTourController@store');
+        Route::delete('time_tour/{id}', 'TimeTourController@destroy');
+        Route::post('time_tour/{id}', 'TimeTourController@update');
     });
 });
