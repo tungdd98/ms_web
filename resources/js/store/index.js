@@ -4,6 +4,7 @@ import axios from "@/utils/axios";
 import cookie from "js-cookie";
 import user from "./modules/user";
 import country from "./modules/country";
+import timeTour from "./modules/time_tour";
 import display from "./modules/display";
 import authenticate from "./modules/authenticate";
 
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     modules: {
         user,
         country,
+        timeTour,
         display,
         authenticate
     }

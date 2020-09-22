@@ -88,7 +88,7 @@ export default {
         })
     },
     async created() {
-        await this.fetchData(this.$route.query);
+        await this.fetchData(this.config);
     },
     methods: {
         ...mapActions({

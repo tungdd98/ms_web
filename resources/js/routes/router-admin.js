@@ -5,6 +5,7 @@ import NotFound from "@/views/admin/pages/NotFoundPage.vue";
 import Dashboard from "@/views/admin/pages/dashboard/Dashboard.vue";
 import User from "@/views/admin/pages/user/List.vue";
 import Country from "@/views/admin/pages/country/List.vue";
+import TimeTour from "@/views/admin/pages/time_tour/List.vue";
 import Login from "@/views/admin/pages/Login.vue";
 import Register from "@/views/admin/pages/Register.vue";
 
@@ -29,6 +30,11 @@ const routes = [
         path: "/countries",
         name: "countries",
         component: Country
+    },
+    {
+        path: "/time_tour",
+        name: "time_tour",
+        component: TimeTour
     },
     {
         path: "/login",

@@ -28,6 +28,15 @@
                     }"
                 >
                 </sidebar-item>
+
+                <sidebar-item
+                    :link="{
+                        name: 'Times tour',
+                        path: '/time_tour',
+                        icon: 'icon icon-clock text-success'
+                    }"
+                >
+                </sidebar-item>
             </template>
         </side-bar>
         <div class="main-content d-flex flex-column min-vh-100">
