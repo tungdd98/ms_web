@@ -11,7 +11,7 @@
                 <el-table
                     class="table-responsive table w-100"
                     header-row-class-name="thead-light"
-                    :data="users"
+                    :data="listUser"
                     v-loading="loading"
                     element-loading-text="Loading..."
                     element-loading-spinner="icon-spinner6 circular"
@@ -19,12 +19,10 @@
                     <el-table-column label="Name" prop="name" width="250">
                         <template v-slot="{ row }">
                             <b-media no-body class="align-items-center">
-                                <a href="#" class="avatar rounded-circle mr-3">
-                                    <img
-                                        alt="Image placeholder"
-                                        :src="row.avatar"
-                                    />
-                                </a>
+                                <base-thumbnail
+                                    path="users"
+                                    :thumbnail="row.avatar"
+                                ></base-thumbnail>
                                 <b-media-body>
                                     <span
                                         class="font-weight-600 name mb-0 text-sm"
@@ -36,6 +34,17 @@
                     </el-table-column>
                     <el-table-column label="Email" prop="email" width="210">
                     </el-table-column>
+                    <el-table-column
+                        label="Permission"
+                        prop="permission"
+                        width="120"
+                    >
+                        <template v-slot="{ row }">
+                            <span class="font-weight-600 name mb-0 text-sm">
+                                {{ row.permission === 0 ? "Member" : "Admin" }}
+                            </span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="Phone" prop="phone" width="145">
                     </el-table-column>
                     <el-table-column label="Nation" prop="nation" width="120">
@@ -44,22 +53,20 @@
                     </el-table-column>
                     <el-table-column label="Actions" width="120">
                         <template v-slot="{ row }">
-                            <base-button
-                                size="sm"
-                                type="success"
-                                icon
-                                @click="setCurrentItem(row)"
-                            >
-                                <span class="icon-edit"></span>
-                            </base-button>
-                            <base-button
-                                size="sm"
-                                type="danger"
-                                icon
-                                @click="onDelete(row.id)"
-                            >
-                                <span class="icon-trash"></span>
-                            </base-button>
+                            <div class="d-flex font-20">
+                                <div
+                                    class="cursor-pointer px-1"
+                                    @click="setCurrentItem(row)"
+                                >
+                                    <span class="icon-edit text-success"></span>
+                                </div>
+                                <div
+                                    class="cursor-pointer px-1"
+                                    @click="onDelete(row.id)"
+                                >
+                                    <span class="icon-trash text-danger"></span>
+                                </div>
+                            </div>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -94,8 +101,15 @@ export default {
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable
-        })
+            loading: state => state.display.isLoadingTable,
+            userInfo: state => state.authenticate.userInfo
+        }),
+        listUser() {
+            if (this.users && this.users.length && this.userInfo) {
+                return this.users.filter(user => user.id !== this.userInfo.id);
+            }
+            return [];
+        }
     },
     async created() {
         await this.fetchData(this.$route.query);
@@ -116,17 +130,19 @@ export default {
             }
         },
         async onSubmit(data) {
+            const formData = new FormData();
+            Object.entries(data).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
             const res = !this.currentItem
-                ? await this.addUser(data)
+                ? await this.addUser(formData)
                 : await this.updateUser({
                       id: this.currentItem.id,
-                      data
+                      data: formData
                   });
 
             if (res.success) {
-                this.notify(
-                    !this.currentItem ? "Add success" : "Update success"
-                );
+                this.notify(res.message);
                 this.fetchData();
             }
         },
@@ -137,7 +153,7 @@ export default {
                 const res = await this.deleteUser(id);
 
                 if (res.success) {
-                    this.notify("Delete success");
+                    this.notify(res.message);
                     this.fetchData();
                 }
             }

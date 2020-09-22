@@ -62,12 +62,10 @@
                     slot="title-container"
                 >
                     <b-media no-body class="align-items-center" v-if="userInfo">
-                        <span class="avatar avatar-sm rounded-circle">
-                            <img
-                                alt="Image placeholder"
-                                :src="userInfo.avatar"
-                            />
-                        </span>
+                        <base-thumbnail
+                            path="users"
+                            :thumbnail="userInfo.avatar"
+                        ></base-thumbnail>
                         <b-media-body class="ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{
                                 userInfo.name
@@ -111,6 +109,14 @@ export default {
             default: "default"
         }
     },
+    data() {
+        return {
+            activeNotifications: false,
+            showMenu: false,
+            searchModalVisible: false,
+            searchQuery: ""
+        };
+    },
     computed: {
         ...mapState({
             userInfo: state => state.authenticate.userInfo
@@ -119,14 +125,6 @@ export default {
             const { name } = this.$route;
             return this.capitalizeFirstLetter(name);
         }
-    },
-    data() {
-        return {
-            activeNotifications: false,
-            showMenu: false,
-            searchModalVisible: false,
-            searchQuery: ""
-        };
     },
     methods: {
         ...mapActions({

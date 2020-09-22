@@ -68,7 +68,6 @@
                                         alternative
                                         class="mb-3"
                                         name="Password"
-                                        :rules="{ required: true, min: 6 }"
                                         type="password"
                                         placeholder="Password"
                                         v-model="form.password"
@@ -108,16 +107,24 @@
     </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
     data() {
         return {
             form: {
-                email: "tungdd98@gmail.com",
-                password: "password",
+                email: "",
+                password: "123456",
                 remember: false
             }
         };
+    },
+    computed: {
+        ...mapState({
+            emailRegister: state => state.authenticate.emailRegister
+        })
+    },
+    created() {
+        this.form.email = this.emailRegister || "admin@gmail.com";
     },
     methods: {
         ...mapActions({

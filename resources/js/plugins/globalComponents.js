@@ -14,6 +14,7 @@ import BaseNav from "@/components/navbar/BaseNav";
 import BaseHeader from "@/components/BaseHeader";
 import Pagination from "@/components/paginations/Pagination";
 import PaginationNav from "@/components/paginations/PaginationNav";
+import BaseThumbnail from "@/components/BaseThumbnail";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import VueSimpleAlert from "vue-simple-alert";
 import {
@@ -44,6 +45,7 @@ const GlobalComponents = {
         Vue.component(Input.name, Input);
         Vue.component(Pagination.name, Pagination);
         Vue.component(PaginationNav.name, PaginationNav);
+        Vue.component(BaseThumbnail.name, BaseThumbnail);
         Vue.component("validation-provider", ValidationProvider);
         Vue.component("validation-observer", ValidationObserver);
         Vue.use(Tooltip);

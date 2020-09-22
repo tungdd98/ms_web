@@ -11,7 +11,7 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.get["Content-Type"] = "application/json";
-axios.defaults.headers.post["Content-Type"] =
+instance.defaults.headers.post["Content-Type"] =
     "application/x-www-form-urlencoded";
 
 const onRequest = config => {

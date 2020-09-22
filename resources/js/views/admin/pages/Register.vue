@@ -81,60 +81,35 @@
                                     <base-input
                                         alternative
                                         class="mb-3"
-                                        placeholder="password"
+                                        placeholder="Password"
                                         type="password"
                                         name="Password"
                                         :rules="{ required: true, min: 6 }"
                                         v-model="form.password"
                                     >
                                     </base-input>
-                                    <div class="text-muted font-italic">
-                                        <small
-                                            >password strength:
-                                            <span
-                                                class="text-success font-weight-700"
-                                                >strong</span
-                                            ></small
-                                        >
-                                    </div>
-                                    <b-row class=" my-4">
-                                        <b-col cols="12">
-                                            <base-input
-                                                :rules="{
-                                                    required: {
-                                                        allowFalse: false
-                                                    }
-                                                }"
-                                                name="Privacy"
-                                                Policy
-                                            >
-                                                <b-form-checkbox
-                                                    v-model="form.agree"
-                                                >
-                                                    <span class="text-muted"
-                                                        >I agree with the
-                                                        <a href="#!"
-                                                            >Privacy Policy</a
-                                                        ></span
-                                                    >
-                                                </b-form-checkbox>
-                                            </base-input>
-                                        </b-col>
-                                    </b-row>
                                     <div class="text-center">
                                         <b-button
                                             type="submit"
                                             variant="primary"
                                             class="mt-4"
                                         >
-                                            <router-link to="/login"
-                                                >Create account
-                                            </router-link>
+                                            Create account
                                         </b-button>
                                     </div>
                                 </b-form>
                             </validation-observer>
                         </b-card-body>
+                        <b-card-footer>
+                            <div class="text-muted text-center mt-2 mb-4">
+                                <small
+                                    >If you have a account,
+                                    <router-link to="/login"
+                                        >sign in</router-link
+                                    ></small
+                                >
+                            </div>
+                        </b-card-footer>
                     </b-card>
                 </b-col>
             </b-row>
@@ -142,6 +117,7 @@
     </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "register",
     data() {
@@ -149,14 +125,29 @@ export default {
             form: {
                 name: "",
                 email: "",
-                password: "",
-                agree: false
+                password: ""
             }
         };
     },
     methods: {
-        onSubmit() {}
+        ...mapActions({
+            register: "authenticate/register"
+        }),
+        async onSubmit() {
+            const response = await this.register(this.form);
+            if (response.success) {
+                await this.notify("Register successful", "success", 1000);
+                this.$router.push("/login");
+            }
+            this.onReset();
+        },
+        onReset() {
+            this.form = {
+                name: "",
+                email: "",
+                password: ""
+            };
+        }
     }
 };
 </script>
-<style></style>

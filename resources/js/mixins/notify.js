@@ -1,11 +1,11 @@
-const notify = function(title = "", type = "success") {
-    this.$fire({
+const notify = function(title = "", type = "success", timer = 3000) {
+    return this.$fire({
         title,
         type,
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000
+        timer
     });
 };
 

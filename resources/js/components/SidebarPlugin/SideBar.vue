@@ -33,12 +33,10 @@
                                 class="media align-items-center"
                                 v-if="userInfo"
                             >
-                                <span class="avatar avatar-sm rounded-circle">
-                                    <img
-                                        alt="Image placeholder"
-                                        :src="userInfo.avatar"
-                                    />
-                                </span>
+                                <base-thumbnail
+                                    path="users"
+                                    :thumbnail="userInfo.avatar"
+                                ></base-thumbnail>
                             </div>
                         </a>
 
