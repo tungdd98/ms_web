@@ -5,6 +5,12 @@ const apisAuth = {
         delete: "auth/users/:id",
         update: "auth/users/:id"
     },
+    countries: {
+        get: "auth/countries",
+        create: "auth/countries",
+        delete: "auth/countries/:id",
+        update: "auth/countries/:id"
+    },
     auth: {
         login: "auth/login",
         logout: "auth/logout",

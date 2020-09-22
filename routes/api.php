@@ -27,5 +27,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('users', 'UserController@store');
         Route::delete('users/{id}', 'UserController@destroy');
         Route::post('users/{id}', 'UserController@update');
+
+        // Country
+        Route::get('countries', 'CountryController@index');
+        Route::post('countries', 'CountryController@store');
+        Route::delete('countries/{id}', 'CountryController@destroy');
+        Route::post('countries/{id}', 'CountryController@update');
     });
 });
