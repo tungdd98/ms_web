@@ -39,5 +39,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('time_tour', 'TimeTourController@store');
         Route::delete('time_tour/{id}', 'TimeTourController@destroy');
         Route::post('time_tour/{id}', 'TimeTourController@update');
+
+        // Vehicle tour
+        Route::get('vehicle_tour', 'VehicleTourController@index');
+        Route::post('vehicle_tour', 'VehicleTourController@store');
+        Route::delete('vehicle_tour/{id}', 'VehicleTourController@destroy');
+        Route::post('vehicle_tour/{id}', 'VehicleTourController@update');
     });
 });

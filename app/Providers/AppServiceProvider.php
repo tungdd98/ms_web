@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\TimeTourServiceInterface::class,
             \App\Services\TimeTourService::class
         );
+
+        $this->app->singleton(
+            \App\Services\VehicleTourServiceInterface::class,
+            \App\Services\VehicleTourService::class
+        );
     }
 
     /**
