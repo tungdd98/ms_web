@@ -159,13 +159,13 @@ export default {
                 this.form = {
                     name,
                     email,
-                    address,
-                    phone,
-                    avatar,
-                    nation: nation ? nation : "",
+                    address: address || "",
+                    phone: phone || "",
+                    avatar: avatar || "",
+                    nation: nation || "",
                     permission
                 };
-                this.thumbnail = `images/upload/users/${avatar}`;
+                this.thumbnail = avatar ? `images/upload/users/${avatar}` : "";
                 this.title = "Update user";
             } else {
                 this.onReset();

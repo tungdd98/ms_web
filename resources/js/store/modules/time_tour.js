@@ -20,11 +20,11 @@ const actions = {
     },
     async addTimeTour({ commit }, data) {
         try {
-            await this.$axios.post(apisAuth.timeTour.create, data);
+            const res = await this.$axios.post(apisAuth.timeTour.create, data);
 
             return {
-                success: true,
-                message: "Add successful"
+                success: res.data,
+                message: res.message
             };
         } catch (error) {
             return {
@@ -35,13 +35,13 @@ const actions = {
     },
     async deleteTimeTour({ commit }, id) {
         try {
-            await this.$axios.delete(
+            const res = await this.$axios.delete(
                 apisAuth.timeTour.delete.replace(/:id/, id)
             );
 
             return {
                 success: true,
-                message: "Delete successful"
+                message: res.message
             };
         } catch (error) {
             return {
@@ -52,14 +52,14 @@ const actions = {
     },
     async updateTimeTour({ commit }, { id, data }) {
         try {
-            await this.$axios.post(
+            const res = await this.$axios.post(
                 apisAuth.timeTour.update.replace(/:id/, id),
                 data
             );
 
             return {
-                success: true,
-                message: "Update successful"
+                success: res.data,
+                message: res.message
             };
         } catch (error) {
             return {

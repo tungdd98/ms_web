@@ -31,9 +31,18 @@
 
                 <sidebar-item
                     :link="{
-                        name: 'Times tour',
+                        name: 'Times Tour',
                         path: '/time_tour',
                         icon: 'icon icon-clock text-success'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
+                        name: 'User Profile',
+                        path: '/user_profile',
+                        icon: 'icon icon-user-check text-yellow'
                     }"
                 >
                 </sidebar-item>

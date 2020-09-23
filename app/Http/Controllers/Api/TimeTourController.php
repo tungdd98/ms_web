@@ -53,11 +53,12 @@ class TimeTourController extends ApiController
     public function store(Request $request)
     {
         $dataRequest = $request->all();
-        $country = [
+        $timeTour = [
             'title' => $dataRequest['title'],
         ];
+        TimeTour::create($timeTour);
 
-        return $this->response->withData(TimeTour::create($country), 201);
+        return $this->response->withMessage("Add successful", $timeTour, 201);
     }
 
     /**
@@ -94,8 +95,9 @@ class TimeTourController extends ApiController
         $dataRequest = $request->all();
         $timeTour = TimeTour::findOrFail($id);
         $timeTour->update($dataRequest);
+        $timeTour->save();
 
-        return $this->response->withData($timeTour->save(), 200);
+        return $this->response->withMessage("Update successful", $timeTour);
     }
 
     /**
@@ -108,5 +110,7 @@ class TimeTourController extends ApiController
     {
         $timeTour = TimeTour::findOrFail($id);
         $timeTour->delete();
+
+        return $this->response->withMessage("Delete successful");
     }
 }

@@ -19,7 +19,7 @@
                 class="avatar-uploader__image"
             />
             <img v-if="image" :src="image" class="avatar-uploader__image" />
-            <i v-else class="avatar-uploader__icon icon-upload"></i>
+            <i v-else class="avatar-uploader__icon icon icon-upload"></i>
         </el-upload>
     </div>
 </template>
