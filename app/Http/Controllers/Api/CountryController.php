@@ -57,8 +57,9 @@ class CountryController extends ApiController
             'title' => $dataRequest['title'],
             'is_nation' => $dataRequest['is_nation']
         ];
+        Country::create($country);
 
-        return $this->response->withData(Country::create($country), 201);
+        return $this->response->withMessage("Add successful", $country, 201);
     }
 
     /**
@@ -95,8 +96,9 @@ class CountryController extends ApiController
         $dataRequest = $request->all();
         $country = Country::findOrFail($id);
         $country->update($dataRequest);
+        $country->save();
 
-        return $this->response->withData($country->save(), 200);
+        return $this->response->withMessage("Update successful", $country);
     }
 
     /**
@@ -109,5 +111,7 @@ class CountryController extends ApiController
     {
         $country = Country::findOrFail($id);
         $country->delete();
+
+        return $this->response->withMessage("Delete successful");
     }
 }

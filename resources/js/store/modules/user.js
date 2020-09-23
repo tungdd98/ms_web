@@ -20,11 +20,11 @@ const actions = {
     },
     async addUser({ commit }, data) {
         try {
-            await this.$axios.post(apisAuth.users.create, data);
+            const res = await this.$axios.post(apisAuth.users.create, data);
 
             return {
-                success: true,
-                message: "Add successful"
+                success: res.data,
+                message: res.message
             };
         } catch (error) {
             return {
@@ -35,11 +35,13 @@ const actions = {
     },
     async deleteUser({ commit }, id) {
         try {
-            await this.$axios.delete(apisAuth.users.delete.replace(/:id/, id));
+            const res = await this.$axios.delete(
+                apisAuth.users.delete.replace(/:id/, id)
+            );
 
             return {
                 success: true,
-                message: "Delete successful"
+                message: res.message
             };
         } catch (error) {
             return {
@@ -50,14 +52,14 @@ const actions = {
     },
     async updateUser({ commit }, { id, data }) {
         try {
-            await this.$axios.post(
+            const res = await this.$axios.post(
                 apisAuth.users.update.replace(/:id/, id),
                 data
             );
 
             return {
-                success: true,
-                message: "Update successful"
+                success: res.data,
+                message: res.message
             };
         } catch (error) {
             return {

@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     /**
@@ -60,8 +60,11 @@ class AuthController extends Controller
             'password' => Hash::make($dataRequest['password']),
             'permission' => 0
         ];
+        if (User::create($user)) {
+            return response()->json(['message' => 'Register successful', 'user' => $user], 201);
+        }
 
-        return response()->json(['message' => 'Register successful', 'user' => User::create($user)], 201);
+        return response()->json(['error' => 'Error']);
     }
 
     /**

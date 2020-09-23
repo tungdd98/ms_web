@@ -59,8 +59,9 @@ class UserController extends ApiController
             'permission' => $dataRequest['permission'],
             'password' => Hash::make($dataRequest['password'])
         ];
+        User::create($user);
 
-        return $this->response->withData(User::create($user), 201);
+        return $this->response->withMessage("Add successful", $user, 201);
     }
 
     /**
@@ -91,14 +92,17 @@ class UserController extends ApiController
             $dataRequest['avatar']->move("images/{$this->folder}", $avatar);
             $dataRequest['avatar'] = $avatar;
             // Remove old avatar
-            $avatarRemove = public_path() . "/images/{$this->folder}/" . $user->avatar;
-            if (file_exists($avatarRemove)) {
-                unlink($avatarRemove);
+            if (!empty($user->avatar)) {
+                $avatarRemove = public_path() . "/images/{$this->folder}/" . $user->avatar;
+                if (file_exists($avatarRemove)) {
+                    unlink($avatarRemove);
+                }
             }
         }
         $user->update($dataRequest);
+        $user->save();
 
-        return $this->response->withData($user->save(), 200);
+        return $this->response->withMessage("Update successful", $user);
     }
 
     /**
@@ -110,13 +114,14 @@ class UserController extends ApiController
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        if (isset($user->avatar)) {
+        if (!empty($user->avatar)) {
             $imagePath = public_path() . "/images/{$this->folder}/" . $user->avatar;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
         }
-
         $user->delete();
+
+        return $this->response->withMessage("Delete successful");
     }
 }

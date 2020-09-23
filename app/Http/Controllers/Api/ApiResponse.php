@@ -69,6 +69,7 @@ class ApiResponse
         $contentMeta = [
             'errors' => $errors,
             'data' => $data,
+            'message' => $message
         ];
 
         if (!empty($this->headers)) {
