@@ -113,7 +113,7 @@ export default {
         return {
             form: {
                 email: "",
-                password: "123456",
+                password: "password",
                 remember: false
             }
         };

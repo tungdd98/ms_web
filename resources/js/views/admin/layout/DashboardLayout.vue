@@ -40,6 +40,15 @@
 
                 <sidebar-item
                     :link="{
+                        name: 'Vehicle Tour',
+                        path: '/vehicle_tour',
+                        icon: 'icon icon-star text-danger'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
                         name: 'User Profile',
                         path: '/user_profile',
                         icon: 'icon icon-user-check text-yellow'
