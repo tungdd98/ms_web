@@ -195,7 +195,7 @@ export default {
                 nation: "",
                 permission: 0,
                 password: "",
-                avatar: null
+                avatar: ""
             };
             this.thumbnail = "";
             this.isVisible = false;

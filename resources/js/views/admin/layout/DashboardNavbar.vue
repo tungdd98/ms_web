@@ -20,7 +20,7 @@
                     data-action="search-show"
                     data-target="#navbar-search-main"
                 >
-                    <i class="ni ni-zoom-split-in"></i>
+                    <i class="icon icon-search"></i>
                 </a>
             </li>
         </b-navbar-nav>
@@ -42,7 +42,7 @@
 
                         <div class="input-group-append">
                             <span class="input-group-text"
-                                ><i class="fas fa-search"></i
+                                ><i class="icon icon-search"></i
                             ></span>
                         </div>
                     </b-input-group>

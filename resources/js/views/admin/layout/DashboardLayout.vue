@@ -31,6 +31,15 @@
 
                 <sidebar-item
                     :link="{
+                        name: 'Locations',
+                        path: '/locations',
+                        icon: 'icon icon-paperclip text-primary'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
                         name: 'Times Tour',
                         path: '/time_tour',
                         icon: 'icon icon-clock text-success'
@@ -81,7 +90,23 @@
                     <router-view></router-view>
                 </fade-transition>
             </div>
-            <content-footer v-if="!$route.meta.hideFooter"></content-footer>
+            <footer class="footer px-4">
+                <div class="justify-content-center justify-content-lg-between">
+                    <div class="col-12">
+                        <div
+                            class="copyright text-center text-lg-left text-muted"
+                        >
+                            © {{ year }}
+                            <a
+                                href="https://www.creative-tim.com"
+                                class="font-weight-bold ml-1"
+                                target="_blank"
+                                >Made by MS</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </template>
@@ -105,16 +130,19 @@ function initScrollbar(className) {
 }
 
 import DashboardNavbar from "./DashboardNavbar.vue";
-import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import { FadeTransition } from "vue2-transitions";
 
 export default {
     components: {
         DashboardNavbar,
-        ContentFooter,
         DashboardContent,
         FadeTransition
+    },
+    data() {
+        return {
+            year: new Date().getFullYear()
+        };
     },
     methods: {
         initScrollbar() {

@@ -7,6 +7,7 @@ import country from "./modules/country";
 import timeTour from "./modules/time_tour";
 import vehicleTour from "./modules/vehicle_tour";
 import customerType from "./modules/customer_type";
+import location from "./modules/location";
 import display from "./modules/display";
 import authenticate from "./modules/authenticate";
 
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
         timeTour,
         vehicleTour,
         customerType,
+        location,
         display,
         authenticate
     }
