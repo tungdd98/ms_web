@@ -24,4 +24,15 @@ const IS_NATION = [
     }
 ];
 
-export { API_URL, NATIONS, PERMISSIONS, IS_NATION };
+const IS_START = [
+    {
+        value: 0,
+        label: "Không"
+    },
+    {
+        value: 1,
+        label: "Có"
+    }
+];
+
+export { API_URL, NATIONS, PERMISSIONS, IS_NATION, IS_START };

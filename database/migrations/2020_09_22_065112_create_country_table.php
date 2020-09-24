@@ -17,6 +17,7 @@ class CreateCountryTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->tinyInteger('is_nation')->default(0);
+            // 0: Trong nước - 1: Ngoài nước
         });
     }
 

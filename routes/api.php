@@ -51,5 +51,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('customer_type', 'CustomerTypeController@store');
         Route::delete('customer_type/{id}', 'CustomerTypeController@destroy');
         Route::post('customer_type/{id}', 'CustomerTypeController@update');
+
+        // Location
+        Route::get('locations', 'LocationController@index');
+        Route::post('locations', 'LocationController@store');
+        Route::delete('locations/{id}', 'LocationController@destroy');
+        Route::post('locations/{id}', 'LocationController@update');
     });
 });

@@ -29,6 +29,12 @@ const apisAuth = {
         delete: "auth/customer_type/:id",
         update: "auth/customer_type/:id"
     },
+    locations: {
+        get: "auth/locations",
+        create: "auth/locations",
+        delete: "auth/locations/:id",
+        update: "auth/locations/:id"
+    },
     auth: {
         login: "auth/login",
         logout: "auth/logout",

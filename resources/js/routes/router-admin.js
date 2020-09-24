@@ -8,6 +8,7 @@ import Country from "@/views/admin/pages/country/List.vue";
 import TimeTour from "@/views/admin/pages/time_tour/List.vue";
 import VehicleTour from "@/views/admin/pages/vehicle_tour/List.vue";
 import CustomerType from "@/views/admin/pages/customer_type/List.vue";
+import Location from "@/views/admin/pages/location/List.vue";
 import UserProfile from "@/views/admin/pages/user_profile/UserProfile.vue";
 import Login from "@/views/admin/pages/Login.vue";
 import Register from "@/views/admin/pages/Register.vue";
@@ -33,6 +34,11 @@ const routes = [
         path: "/countries",
         name: "countries",
         component: Country
+    },
+    {
+        path: "/locations",
+        name: "locations",
+        component: Location
     },
     {
         path: "/time_tour",

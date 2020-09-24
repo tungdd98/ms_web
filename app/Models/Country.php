@@ -12,6 +12,16 @@ class Country extends Model
     const PER_PAGE = 10;
 
     /**
+     * locations
+     *
+     * @return void
+     */
+    public function locations()
+    {
+        return $this->hasOne('App\Models\Location');
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
