@@ -23,6 +23,12 @@ const apisAuth = {
         delete: "auth/vehicle_tour/:id",
         update: "auth/vehicle_tour/:id"
     },
+    customerType: {
+        get: "auth/customer_type",
+        create: "auth/customer_type",
+        delete: "auth/customer_type/:id",
+        update: "auth/customer_type/:id"
+    },
     auth: {
         login: "auth/login",
         logout: "auth/logout",

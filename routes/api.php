@@ -45,5 +45,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('vehicle_tour', 'VehicleTourController@store');
         Route::delete('vehicle_tour/{id}', 'VehicleTourController@destroy');
         Route::post('vehicle_tour/{id}', 'VehicleTourController@update');
+
+        // Customer type
+        Route::get('customer_type', 'CustomerTypeController@index');
+        Route::post('customer_type', 'CustomerTypeController@store');
+        Route::delete('customer_type/{id}', 'CustomerTypeController@destroy');
+        Route::post('customer_type/{id}', 'CustomerTypeController@update');
     });
 });
