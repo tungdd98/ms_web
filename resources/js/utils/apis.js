@@ -35,6 +35,12 @@ const apisAuth = {
         delete: "auth/locations/:id",
         update: "auth/locations/:id"
     },
+    tours: {
+        get: "auth/tours",
+        create: "auth/tours",
+        delete: "auth/tours/:id",
+        update: "auth/tours/:id"
+    },
     auth: {
         login: "auth/login",
         logout: "auth/logout",

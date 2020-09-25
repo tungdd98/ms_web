@@ -12,6 +12,16 @@ class TimeTour extends Model
     const PER_PAGE = 10;
 
     /**
+     * tours
+     *
+     * @return void
+     */
+    public function tours()
+    {
+        return $this->hasOne('App\Models\Tour');
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
