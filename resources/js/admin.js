@@ -20,9 +20,10 @@ import cookie from "js-cookie";
 Vue.prototype.$cookie = cookie;
 
 // filters
-import { formatDate, formatTime } from "@/utils/filters";
+import { formatDate, formatTime, formatMoney } from "@/utils/filters";
 Vue.filter("formatDate", formatDate);
 Vue.filter("formatTime", formatTime);
+Vue.filter("formatMoney", formatMoney);
 
 new Vue({
     el: "#admin",

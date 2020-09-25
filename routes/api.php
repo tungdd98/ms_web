@@ -69,5 +69,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('departure_day', 'DepartureDayController@store');
         Route::delete('departure_day/{id}', 'DepartureDayController@destroy');
         Route::post('departure_day/{id}', 'DepartureDayController@update');
+
+        // Price tour
+        Route::get('price_tour', 'PriceTourController@index');
+        Route::post('price_tour', 'PriceTourController@store');
+        Route::delete('price_tour/{tour_id}/{customer_type_id}', 'PriceTourController@destroy');
+        Route::post('price_tour/{tour_id}/{customer_type_id}', 'PriceTourController@update');
     });
 });

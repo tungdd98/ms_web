@@ -7,9 +7,9 @@ const getters = {};
 const mutations = {};
 
 const actions = {
-    async getDepartureDay({ commit }, params) {
+    async getPriceTour({ commit }, params) {
         try {
-            const res = await this.$axios.get(apisAuth.departureDay.get, {
+            const res = await this.$axios.get(apisAuth.priceTour.get, {
                 params
             });
 
@@ -18,12 +18,9 @@ const actions = {
             return error;
         }
     },
-    async addDepartureDay({ commit }, data) {
+    async addPriceTour({ commit }, data) {
         try {
-            const res = await this.$axios.post(
-                apisAuth.departureDay.create,
-                data
-            );
+            const res = await this.$axios.post(apisAuth.priceTour.create, data);
 
             return {
                 success: res.data,
@@ -36,10 +33,12 @@ const actions = {
             };
         }
     },
-    async deleteDepartureDay({ commit }, id) {
+    async deletePriceTour({ commit }, { tour_id, customer_type_id }) {
         try {
             const res = await this.$axios.delete(
-                apisAuth.departureDay.delete.replace(/:id/, id)
+                apisAuth.priceTour.delete
+                    .replace(/:tour_id/, tour_id)
+                    .replace(/:customer_type_id/, customer_type_id)
             );
 
             return {
@@ -53,10 +52,12 @@ const actions = {
             };
         }
     },
-    async updateDepartureDay({ commit }, { id, data }) {
+    async updatePriceTour({ commit }, { tour_id, customer_type_id, data }) {
         try {
             const res = await this.$axios.post(
-                apisAuth.departureDay.update.replace(/:id/, id),
+                apisAuth.priceTour.update
+                    .replace(/:tour_id/, tour_id)
+                    .replace(/:customer_type_id/, customer_type_id),
                 data
             );
 

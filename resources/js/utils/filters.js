@@ -11,4 +11,13 @@ const formatTime = (value, format = "LT", type = "HH:mm") => {
         : moment(value, type).format(format);
 };
 
-export { formatDate, formatTime };
+const formatMoney = value => {
+    return typeof value !== "number"
+        ? value
+        : new Intl.NumberFormat("ja-JP", {
+              style: "currency",
+              currency: "VND"
+          }).format(value);
+};
+
+export { formatDate, formatTime, formatMoney };
