@@ -5,20 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\ApiResponse;
-use App\Services\CountryServiceInterface;
-use App\Models\Country;
+use App\Services\DepartureDayServiceInterface;
+use App\Models\DepartureDay;
 use Illuminate\Http\Request;
 
-class CountryController extends ApiController
+class DepartureDayController extends ApiController
 {
-    protected $countryService;
+    protected $departureDayService;
 
     public function __construct(
         Request $request,
         ApiResponse $response,
-        CountryServiceInterface $countryService
+        DepartureDayServiceInterface $departureDayService
     ) {
-        $this->countryService = $countryService;
+        $this->departureDayService = $departureDayService;
 
         parent::__construct($request, $response);
     }
@@ -29,7 +29,7 @@ class CountryController extends ApiController
      */
     public function index(Request $request)
     {
-        $data = $this->countryService->listCountry($request->all());
+        $data = $this->departureDayService->listDepartureDay($request->all());
 
         return $this->response->withData($data);
     }
@@ -43,22 +43,23 @@ class CountryController extends ApiController
     public function store(Request $request)
     {
         $dataRequest = $request->all();
-        $country = [
-            'title' => $dataRequest['title'],
-            'is_nation' => $dataRequest['is_nation']
+        $departureDay = [
+            'tour_id' => $dataRequest['tour_id'],
+            'start_day' => $dataRequest['start_day'],
+            'start_time' => $dataRequest['start_time'],
         ];
-        Country::create($country);
+        DepartureDay::create($departureDay);
 
-        return $this->response->withMessage("Add successful", $country, 201);
+        return $this->response->withMessage("Add successful", $departureDay, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\DepartureDay  $departureDay
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(DepartureDay $departureDay)
     {
         //
     }
@@ -67,29 +68,29 @@ class CountryController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\DepartureDay  $departureDay
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $dataRequest = $request->all();
-        $country = Country::findOrFail($id);
-        $country->update($dataRequest);
-        $country->save();
+        $departureDay = DepartureDay::findOrFail($id);
+        $departureDay->update($dataRequest);
+        $departureDay->save();
 
-        return $this->response->withMessage("Update successful", $country);
+        return $this->response->withMessage("Update successful", $departureDay);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\DepartureDay  $departureDay
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $country = Country::findOrFail($id);
-        $country->delete();
+        $departureDay = DepartureDay::findOrFail($id);
+        $departureDay->delete();
 
         return $this->response->withMessage("Delete successful");
     }

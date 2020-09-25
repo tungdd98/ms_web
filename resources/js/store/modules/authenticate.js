@@ -24,11 +24,12 @@ const mutations = {
 };
 
 const actions = {
-    async login({ commit }, { email, password }) {
+    async login({ commit }, { email, password, remember }) {
         try {
             const res = await this.$axios.post(apisAuth.auth.login, {
                 email,
-                password
+                password,
+                remember
             });
             commit("setAccessToken", res.access_token);
             commit("setUserInfo", res.user_info.original);

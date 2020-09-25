@@ -233,16 +233,16 @@ export default {
                 } = val;
                 this.form = {
                     title,
-                    description,
-                    content,
+                    description: description || "",
+                    content: content || "",
                     thumbnail: thumbnail || "",
                     departure_location_id: departure_location_id || "",
                     destination_location_id: destination_location_id || "",
                     time_id: time_id || "",
                     vehicle_id: vehicle_id || "",
                     place,
-                    schedule,
-                    albums
+                    schedule: schedule || "",
+                    albums: albums || ""
                 };
                 this.image = thumbnail
                     ? `images/upload/tours/${thumbnail}`

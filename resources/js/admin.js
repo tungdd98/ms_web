@@ -19,6 +19,11 @@ Vue.prototype.$axios = axios;
 import cookie from "js-cookie";
 Vue.prototype.$cookie = cookie;
 
+// filters
+import { formatDate, formatTime } from "@/utils/filters";
+Vue.filter("formatDate", formatDate);
+Vue.filter("formatTime", formatTime);
+
 new Vue({
     el: "#admin",
     router,
