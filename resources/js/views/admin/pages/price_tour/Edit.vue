@@ -56,22 +56,32 @@
                             </base-input>
                             <base-input
                                 alternative
-                                v-model.number="form.original_price"
                                 name="original price"
                                 class="mb-3"
                                 placeholder="Enter original price"
                                 label="Original price"
                             >
+                                <vue-numeric
+                                    currency="VNĐ"
+                                    separator="."
+                                    v-model.number="form.original_price"
+                                    class="form-control"
+                                ></vue-numeric>
                             </base-input>
                             <base-input
                                 alternative
-                                v-model.number="form.price"
                                 name="price"
                                 class="mb-3"
                                 placeholder="Enter price"
-                                rules="required"
                                 label="Price"
+                                rules="required"
                             >
+                                <vue-numeric
+                                    currency="VNĐ"
+                                    separator="."
+                                    v-model.number="form.price"
+                                    class="form-control"
+                                ></vue-numeric>
                             </base-input>
                             <div class="d-flex justify-content-end my-2">
                                 <base-button type="white" @click="onReset"
