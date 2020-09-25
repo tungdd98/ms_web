@@ -67,6 +67,15 @@
 
                 <sidebar-item
                     :link="{
+                        name: 'Tour',
+                        path: '/tours',
+                        icon: 'icon icon-share-2 text-success'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
                         name: 'User Profile',
                         path: '/user_profile',
                         icon: 'icon icon-user-check text-yellow'

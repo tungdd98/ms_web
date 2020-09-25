@@ -9,6 +9,16 @@ class VehicleTour extends Model
     protected $table = 'vehicle_tour';
     public $timestamps = false;
 
+    /**
+     * tours
+     *
+     * @return void
+     */
+    public function tours()
+    {
+        return $this->hasOne('App\Models\Tour');
+    }
+
     const PER_PAGE = 10;
 
     /**

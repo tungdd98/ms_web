@@ -81,7 +81,7 @@ export default {
             type: String,
             description: "Modal size",
             validator(value) {
-                let acceptedValues = ["", "sm", "lg", "xl"];
+                let acceptedValues = ["", "sm", "lg", "xl", "full"];
                 return acceptedValues.indexOf(value) !== -1;
             }
         },
@@ -131,5 +131,8 @@ export default {
 <style>
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
+}
+.modal-full {
+    max-width: 90% !important;
 }
 </style>

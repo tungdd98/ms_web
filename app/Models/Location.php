@@ -12,6 +12,16 @@ class Location extends Model
     const PER_PAGE = 10;
 
     /**
+     * tours
+     *
+     * @return void
+     */
+    public function tours()
+    {
+        return $this->hasOne('App\Models\Tour');
+    }
+
+    /**
      * countries 1 - 1
      *
      * @return void
@@ -39,7 +49,7 @@ class Location extends Model
      */
     public function getLocationResponse()
     {
-        $country_name = !empty($this->country_id) ? $this->countries->where('id', $this->country_id)->first()->title : null;
+        $countryName = !empty($this->country_id) ? $this->countries->where('id', $this->country_id)->first()->title : null;
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -47,7 +57,7 @@ class Location extends Model
             'description' => $this->description,
             'is_start' => $this->is_start,
             'country_id' => $this->country_id,
-            'country_name' => $country_name
+            'country_name' => $countryName
         ];
     }
 }

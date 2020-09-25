@@ -57,5 +57,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('locations', 'LocationController@store');
         Route::delete('locations/{id}', 'LocationController@destroy');
         Route::post('locations/{id}', 'LocationController@update');
+
+        // Tour
+        Route::get('tours', 'TourController@index');
+        Route::post('tours', 'TourController@store');
+        Route::delete('tours/{id}', 'TourController@destroy');
+        Route::post('tours/{id}', 'TourController@update');
     });
 });

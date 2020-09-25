@@ -42,6 +42,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\LocationServiceInterface::class,
             \App\Services\LocationService::class
         );
+
+        $this->app->singleton(
+            \App\Services\TourServiceInterface::class,
+            \App\Services\TourService::class
+        );
     }
 
     /**
