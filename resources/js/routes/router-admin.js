@@ -11,6 +11,7 @@ import CustomerType from "@/views/admin/pages/customer_type/List.vue";
 import Location from "@/views/admin/pages/location/List.vue";
 import Tour from "@/views/admin/pages/tour/List.vue";
 import DepartureDay from "@/views/admin/pages/departure_day/List.vue";
+import PriceTour from "@/views/admin/pages/price_tour/List.vue";
 import UserProfile from "@/views/admin/pages/user_profile/UserProfile.vue";
 import Login from "@/views/admin/pages/Login.vue";
 import Register from "@/views/admin/pages/Register.vue";
@@ -66,6 +67,11 @@ const routes = [
         path: "/departure_day",
         name: "departure_day",
         component: DepartureDay
+    },
+    {
+        path: "/price_tour",
+        name: "price_tour",
+        component: PriceTour
     },
     {
         path: "/user_profile",

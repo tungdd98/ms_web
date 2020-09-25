@@ -52,6 +52,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\DepartureDayServiceInterface::class,
             \App\Services\DepartureDayService::class
         );
+
+        $this->app->singleton(
+            \App\Services\PriceTourServiceInterface::class,
+            \App\Services\PriceTourService::class
+        );
     }
 
     /**

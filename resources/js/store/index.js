@@ -10,6 +10,7 @@ import customerType from "./modules/customer_type";
 import location from "./modules/location";
 import tour from "./modules/tour";
 import departureDay from "./modules/departure_day";
+import priceTour from "./modules/price_tour";
 import display from "./modules/display";
 import authenticate from "./modules/authenticate";
 
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
         location,
         tour,
         departureDay,
+        priceTour,
         display,
         authenticate
     }

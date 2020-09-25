@@ -85,6 +85,15 @@
 
                 <sidebar-item
                     :link="{
+                        name: 'Price Tour',
+                        path: '/price_tour',
+                        icon: 'icon icon-heart text-primary'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
                         name: 'User Profile',
                         path: '/user_profile',
                         icon: 'icon icon-user-check text-yellow'
