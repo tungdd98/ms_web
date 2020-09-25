@@ -17,6 +17,7 @@ import PaginationNav from "@/components/paginations/PaginationNav";
 import BaseThumbnail from "@/components/BaseThumbnail";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import VueSimpleAlert from "vue-simple-alert";
+import VueNumeric from "vue-numeric";
 import {
     Input,
     Tooltip,
@@ -54,6 +55,7 @@ const GlobalComponents = {
         Vue.use(TableColumn);
         Vue.use(Upload);
         Vue.use(VueSimpleAlert);
+        Vue.use(VueNumeric);
     }
 };
 
