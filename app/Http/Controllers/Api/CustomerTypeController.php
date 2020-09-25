@@ -35,16 +35,6 @@ class CustomerTypeController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,17 +58,6 @@ class CustomerTypeController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function show(CustomerType $customerType)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CustomerType  $customerType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CustomerType $customerType)
     {
         //
     }

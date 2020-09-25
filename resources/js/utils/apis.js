@@ -41,6 +41,12 @@ const apisAuth = {
         delete: "auth/tours/:id",
         update: "auth/tours/:id"
     },
+    departure_day: {
+        get: "auth/departure_day",
+        create: "auth/departure_day",
+        delete: "auth/departure_day/:id",
+        update: "auth/departure_day/:id"
+    },
     auth: {
         login: "auth/login",
         logout: "auth/logout",

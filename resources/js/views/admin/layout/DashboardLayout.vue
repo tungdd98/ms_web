@@ -76,6 +76,15 @@
 
                 <sidebar-item
                     :link="{
+                        name: 'Departure Day',
+                        path: '/departure_day',
+                        icon: 'icon icon-instagram text-danger'
+                    }"
+                >
+                </sidebar-item>
+
+                <sidebar-item
+                    :link="{
                         name: 'User Profile',
                         path: '/user_profile',
                         icon: 'icon icon-user-check text-yellow'

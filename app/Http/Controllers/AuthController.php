@@ -110,7 +110,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
-            'expires_in' => $remember ? $this->guard()->factory()->getTTL() * 60 * 24 * 7 : null,
+            'expires_in' => $remember == 1 ? $this->guard()->factory()->getTTL() * 60 * 24 * 7 : null,
             'user_info' => $this->me()
         ]);
     }
