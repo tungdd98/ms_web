@@ -1,5 +1,10 @@
 /node_modules
-/public
+/public/css
+/public/fonts
+/public/images
+/public/img
+/public/js
+/public/*.json
 /storage/*.key
 /vendor
 .env
