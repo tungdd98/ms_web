@@ -17,7 +17,7 @@
                 </svg>
             </div>
         </div>
-        <div class="mt--7 pb-5 container">
+        <div class="mt-n7 pb-5 container">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-7">
                     <div
@@ -30,13 +30,15 @@
                             <div class="text-center">
                                 <a href="#" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"
-                                        ><img src="img/icons/common/github.svg"
+                                        ><img
+                                            src="images/icons/common/github.svg"
                                     /></span>
                                     <span class="btn-inner--text">Github</span>
                                 </a>
                                 <a href="#" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"
-                                        ><img src="img/icons/common/google.svg"
+                                        ><img
+                                            src="images/icons/common/google.svg"
                                     /></span>
                                     <span class="btn-inner--text">Google</span>
                                 </a>

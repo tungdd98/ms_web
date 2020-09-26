@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt-n7">
             <div class="bg-white position-relative p-3 shadow rounded">
                 <h3 class="mb-0">List Customer Type</h3>
                 <edit

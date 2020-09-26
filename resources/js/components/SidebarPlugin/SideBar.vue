@@ -5,9 +5,9 @@
         <div class="container-fluid">
             <navbar-toggle-button @click.native="showSidebar">
             </navbar-toggle-button>
-            <a class="navbar-brand" href="http://localhost:8000/">
+            <a class="navbar-brand" :href="homeUrl">
                 <img
-                    src="img/brand/green.png"
+                    src="images/brand/green.png"
                     class="navbar-brand-img"
                     alt="..."
                 />
@@ -89,7 +89,7 @@ export default {
     props: {
         logo: {
             type: String,
-            default: "img/brand/green.png",
+            default: "images/brand/green.png",
             description: "Sidebar app logo"
         },
         autoClose: {
@@ -103,6 +103,11 @@ export default {
         ...mapState({
             userInfo: state => state.authenticate.userInfo
         })
+    },
+    data() {
+        return {
+            homeUrl: process.env.MIX_APP_URL
+        };
     },
     provide() {
         return {

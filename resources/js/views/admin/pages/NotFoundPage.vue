@@ -40,7 +40,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <img src="img/theme/landing-2.png" class="img-fluid" />
+                        <img
+                            src="images/theme/landing-2.png"
+                            class="img-fluid"
+                        />
                     </div>
                     <div class="col-md-6">
                         <div class="pr-md-5">
