@@ -1,9 +1,8 @@
 import axios from "axios";
 import store from "@/store";
-import { API_URL } from "./constants";
 
 const instance = axios.create({
-    baseURL: process.env.APP_URL ? process.env.APP_URL + "/api" : API_URL,
+    baseURL: process.env.MIX_API_URL,
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json; charset=utf-8"

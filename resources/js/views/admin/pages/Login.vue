@@ -1,7 +1,6 @@
 <template>
     <div>
-        <!-- Header -->
-        <div class="header bg-gradient-success py-7">
+        <div class="position-relative bg-gradient-success py-7">
             <div class="separator separator-bottom separator-skew zindex-100">
                 <svg
                     x="0"
@@ -18,16 +17,17 @@
                 </svg>
             </div>
         </div>
-        <!-- Page content -->
-        <b-container class="mt--8 pb-5">
-            <b-row class="justify-content-center">
-                <b-col lg="5" md="7">
-                    <b-card no-body class="bg-secondary border-0 mb-0">
-                        <b-card-header class="bg-transparent pb-5">
+        <div class="mt--7 pb-5 container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div
+                        class="bg-secondary shadow-sm position-relative mb-0 rounded py-3"
+                    >
+                        <div class="bg-transparent pb-5">
                             <div class="text-muted text-center mt-2 mb-3">
                                 <small>Sign in with</small>
                             </div>
-                            <div class="btn-wrapper text-center">
+                            <div class="text-center">
                                 <a href="#" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"
                                         ><img src="img/icons/common/github.svg"
@@ -41,8 +41,8 @@
                                     <span class="btn-inner--text">Google</span>
                                 </a>
                             </div>
-                        </b-card-header>
-                        <b-card-body class="px-lg-5 py-lg-5">
+                        </div>
+                        <div class="px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
                                 <small>Or sign in with credentials</small>
                             </div>
@@ -73,37 +73,36 @@
                                         v-model="form.password"
                                     >
                                     </base-input>
-
-                                    <b-form-checkbox v-model="form.remember"
-                                        >Remember me</b-form-checkbox
+                                    <base-checkbox v-model="form.remember"
+                                        >Remember me</base-checkbox
                                     >
-                                    <div class="text-center">
-                                        <base-button
-                                            type="primary"
-                                            native-type="submit"
-                                            class="my-4"
-                                            >Sign in</base-button
+                                    <div class="text-center my-4">
+                                        <button
+                                            class="btn btn-primary"
+                                            type="submit"
                                         >
+                                            Sign in
+                                        </button>
                                     </div>
                                 </b-form>
                             </validation-observer>
-                        </b-card-body>
-                    </b-card>
-                    <b-row class="mt-3">
-                        <b-col cols="6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
                             <router-link to="/dashboard" class="text-light"
                                 ><small>Forgot password?</small></router-link
                             >
-                        </b-col>
-                        <b-col cols="6" class="text-right">
+                        </div>
+                        <div class="col-6 text-right">
                             <router-link to="/register" class="text-light"
                                 ><small>Create new account</small></router-link
                             >
-                        </b-col>
-                    </b-row>
-                </b-col>
-            </b-row>
-        </b-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>

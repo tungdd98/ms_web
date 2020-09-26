@@ -20,7 +20,7 @@
                     </el-table-column>
                     <el-table-column label="Place" prop="is_nation">
                         <template v-slot="{ row }">
-                            <span class="font-weight-600 name mb-0 text-sm">
+                            <span>
                                 {{
                                     row.is_nation === 0
                                         ? "Trong nước"

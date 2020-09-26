@@ -1,5 +1,5 @@
 import Vue from "vue";
-import DashboardPlugin from "./plugins/dashboard-plugin";
+import DashboardPlugin from "./plugins/admin";
 import App from "./views/admin/App.vue";
 
 // router

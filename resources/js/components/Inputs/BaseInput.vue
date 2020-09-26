@@ -5,7 +5,7 @@
         v-bind="$attrs"
         v-slot="{ errors, valid, invalid, validated }"
     >
-        <b-form-group>
+        <div class="form-group">
             <slot name="label">
                 <label v-if="label" :class="labelClasses">
                     {{ label }}
@@ -77,7 +77,7 @@
                     {{ errors[0] }}
                 </div>
             </slot>
-        </b-form-group>
+        </div>
     </validation-provider>
 </template>
 <script>

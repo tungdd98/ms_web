@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <base-button type="outline-primary" @click="isVisible = true">
+            <button class="btn btn-outline-primary" @click="isVisible = true">
                 Add new
-            </base-button>
+            </button>
         </div>
         <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
             <h2 slot="header" class="modal-title">{{ title }}</h2>
@@ -99,15 +99,12 @@
                                 :image="thumbnail"
                             ></base-upload-avatar>
                             <div class="d-flex justify-content-end my-2">
-                                <base-button type="white" @click="onReset"
-                                    >Close
-                                </base-button>
-                                <base-button
-                                    type="primary"
-                                    native-type="submit"
-                                >
+                                <button class="btn btn-white" @click="onReset">
+                                    Close
+                                </button>
+                                <button class="btn btn-primary" type="submit">
                                     Save
-                                </base-button>
+                                </button>
                             </div>
                         </b-form>
                     </validation-observer>

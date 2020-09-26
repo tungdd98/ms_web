@@ -24,10 +24,7 @@
                                     :thumbnail="row.avatar"
                                 ></base-thumbnail>
                                 <b-media-body>
-                                    <span
-                                        class="font-weight-600 name mb-0 text-sm"
-                                        >{{ row.name }}</span
-                                    >
+                                    <span>{{ row.name }}</span>
                                 </b-media-body>
                             </b-media>
                         </template>
@@ -40,7 +37,7 @@
                         width="120"
                     >
                         <template v-slot="{ row }">
-                            <span class="font-weight-600 name mb-0 text-sm">
+                            <span>
                                 {{ row.permission === 0 ? "Member" : "Admin" }}
                             </span>
                         </template>

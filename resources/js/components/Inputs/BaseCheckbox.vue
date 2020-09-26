@@ -30,24 +30,19 @@ export default {
     },
     props: {
         checked: {
-            type: [Array, Boolean],
-            description: "Whether checkbox is checked"
+            type: [Array, Boolean]
         },
         disabled: {
-            type: Boolean,
-            description: "Whether checkbox is disabled"
+            type: Boolean
         },
         inline: {
-            type: Boolean,
-            description: "Whether checkbox is inline"
+            type: Boolean
         },
         inputClasses: {
-            type: [String, Object, Array],
-            description: "Checkbox input classes"
+            type: [String, Object, Array]
         },
         type: {
-            type: String,
-            description: "Checkbox type (e.g info, danger etc)"
+            type: String
         }
     },
     data() {

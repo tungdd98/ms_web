@@ -1,17 +1,17 @@
 <template>
     <div>
-        <b-container fluid class="mt--5" v-if="userInfo">
-            <b-row>
-                <b-col xl="4" class="order-xl-2 mb-5">
+        <div class="mt--5 container-fluid" v-if="userInfo">
+            <div class="row">
+                <div class="order-xl-2 mb-5 col-xl-4">
                     <user-card :user-info="userInfo"></user-card>
-                </b-col>
-                <b-col xl="8" class="order-xl-1">
+                </div>
+                <div class="order-xl-1 col-xl-8">
                     <edit-profile-form
                         :user-info="userInfo"
                     ></edit-profile-form>
-                </b-col>
-            </b-row>
-        </b-container>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>

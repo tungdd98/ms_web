@@ -5,21 +5,13 @@
         :class="{ 'navbar-dark': type === 'default' }"
     >
         <span
-            aria-current="page"
             class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block active router-link-active"
         >
             {{ $route.name }}
         </span>
-        <!-- Navbar links -->
         <b-navbar-nav class="align-items-center ml-md-auto">
-            <!-- This item dont have <b-nav-item> because item have data-action/data-target on tag <a>, wich we cant add -->
             <li class="nav-item d-sm-none">
-                <a
-                    class="nav-link"
-                    href="#"
-                    data-action="search-show"
-                    data-target="#navbar-search-main"
-                >
+                <a class="nav-link" href="#">
                     <i class="icon icon-search"></i>
                 </a>
             </li>
@@ -31,22 +23,24 @@
                     'navbar-search-dark': type === 'default',
                     'navbar-search-light': type === 'light'
                 }"
-                id="navbar-search-main"
             >
-                <b-form-group class="mb-0">
-                    <b-input-group
-                        class="input-group-alternative input-group-merge"
+                <div class="mb-0 form-group">
+                    <div
+                        class="input-group input-group-alternative input-group-merge"
                     >
-                        <b-form-input placeholder="Search" type="text">
-                        </b-form-input>
+                        <input
+                            placeholder="Search"
+                            type="text"
+                            class="form-control"
+                        />
 
                         <div class="input-group-append">
                             <span class="input-group-text"
                                 ><i class="icon icon-search"></i
                             ></span>
                         </div>
-                    </b-input-group>
-                </b-form-group>
+                    </div>
+                </div>
             </b-form>
             <base-dropdown
                 menu-on-right
@@ -78,10 +72,6 @@
                     <b-dropdown-header class="noti-title">
                         <h6 class="text-overflow m-0">Welcome!</h6>
                     </b-dropdown-header>
-                    <b-dropdown-item href="#!">
-                        <i class="icon icon-user-check"></i>
-                        <span>My profile</span>
-                    </b-dropdown-item>
                     <div class="dropdown-divider"></div>
                     <b-dropdown-item @click="onLogout">
                         <i class="icon icon-log-out"></i>
@@ -94,28 +84,17 @@
 </template>
 <script>
 import { CollapseTransition } from "vue2-transitions";
-import { BaseNav, Modal } from "@/components";
 import { mapActions, mapState } from "vuex";
 
 export default {
     components: {
-        CollapseTransition,
-        BaseNav,
-        Modal
+        CollapseTransition
     },
     props: {
         type: {
             type: String,
             default: "default"
         }
-    },
-    data() {
-        return {
-            activeNotifications: false,
-            showMenu: false,
-            searchModalVisible: false,
-            searchQuery: ""
-        };
     },
     computed: {
         ...mapState({
@@ -132,12 +111,6 @@ export default {
         }),
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
-        },
-        toggleNotificationDropDown() {
-            this.activeNotifications = !this.activeNotifications;
-        },
-        closeDropDown() {
-            this.activeNotifications = false;
         },
         async onLogout() {
             const response = await this.logout();

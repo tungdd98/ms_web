@@ -1,17 +1,12 @@
 <template>
-    <card>
-        <b-row align-v="center" slot="header">
-            <b-col cols="12">
-                <h3 class="mb-0">Edit profile</h3>
-            </b-col>
-        </b-row>
-
+    <div class="position-relative shadow-sm border rounded bg-white p-3">
         <b-form @submit.prevent="updateProfile">
-            <h6 class="heading-small text-muted mb-4">User information</h6>
-
+            <h6 class="font-12 text-uppercase text-muted mb-4">
+                User information
+            </h6>
             <div class="pl-lg-4">
-                <b-row>
-                    <b-col lg="6">
+                <div class="row">
+                    <div class="col-lg-6">
                         <base-input
                             type="text"
                             label="Name"
@@ -19,19 +14,19 @@
                             v-model="user.name"
                         >
                         </base-input>
-                    </b-col>
-                    <b-col lg="6">
+                    </div>
+                    <div class="col-lg-6">
                         <base-input
                             type="email"
-                            label="Email address"
+                            label="Email email"
                             placeholder="Enter your email"
                             v-model="user.email"
                         >
                         </base-input>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col lg="6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
                         <base-input
                             type="text"
                             label="Phone"
@@ -39,8 +34,8 @@
                             v-model="user.phone"
                         >
                         </base-input>
-                    </b-col>
-                    <b-col lg="6">
+                    </div>
+                    <div class="col-lg-6">
                         <base-input label="Nation">
                             <select class="form-control" v-model="user.nation">
                                 <option value>-- Select --</option>
@@ -52,27 +47,28 @@
                                 >
                             </select>
                         </base-input>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col lg="6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
                         <base-upload-avatar
                             label="Avatar"
                             @onUpload="onUpload"
                             :image="thumbnail"
                         ></base-upload-avatar>
-                    </b-col>
-                </b-row>
+                    </div>
+                </div>
             </div>
 
             <hr class="my-4" />
-            <!-- Description -->
-            <h6 class="heading-small text-muted mb-4">Address</h6>
+            <h6 class="font-12 text-uppercase text-muted mb-4">
+                Address
+            </h6>
             <div class="pl-lg-4">
-                <b-form-group
+                <div
                     label="Address detail"
                     label-class="form-control-label"
-                    class="mb-0"
+                    class="mb-0 form-group"
                     label-for="about-form-textaria"
                 >
                     <textarea
@@ -80,15 +76,15 @@
                         rows="3"
                         v-model="user.address"
                     ></textarea>
-                </b-form-group>
+                </div>
             </div>
             <div class="d-flex justify-content-end mt-4">
-                <base-button type="primary" native-type="submit">
+                <button class="btn btn-primary" type="submit">
                     Save change
-                </base-button>
+                </button>
             </div>
         </b-form>
-    </card>
+    </div>
 </template>
 <script>
 import { NATIONS } from "@/utils/constants";

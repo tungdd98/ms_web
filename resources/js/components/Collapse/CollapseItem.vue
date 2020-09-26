@@ -1,6 +1,6 @@
 <template>
-    <b-card no-body>
-        <b-card-header role="tab" class="card-header" :aria-expanded="active">
+    <div>
+        <div role="tab" :aria-expanded="active">
             <a
                 data-toggle="collapse"
                 data-parent="#accordion"
@@ -11,7 +11,7 @@
                 <slot name="title"> {{ title }} </slot>
                 <i class="tim-icons icon-minimal-down"></i>
             </a>
-        </b-card-header>
+        </div>
         <collapse-transition :duration="animationDuration">
             <div
                 v-show="active"
@@ -23,7 +23,7 @@
                 <div class="card-body"><slot></slot></div>
             </div>
         </collapse-transition>
-    </b-card>
+    </div>
 </template>
 <script>
 import { CollapseTransition } from "vue2-transitions";
@@ -89,4 +89,3 @@ export default {
     }
 };
 </script>
-<style></style>

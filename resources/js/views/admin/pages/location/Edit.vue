@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <base-button type="outline-primary" @click="isVisible = true">
+            <button class="btn btn-outline-primary" @click="isVisible = true">
                 Add new
-            </base-button>
+            </button>
         </div>
         <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
             <h2 slot="header" class="modal-title">{{ title }}</h2>
@@ -49,7 +49,7 @@
                                 >
                                     <option
                                         :value="item.value"
-                                        v-for="item in IS_START"
+                                        v-for="item in STARTS_STATUS"
                                         :key="item.value"
                                         >{{ item.label }}</option
                                     >
@@ -68,15 +68,12 @@
                                 :image="image"
                             ></base-upload-avatar>
                             <div class="d-flex justify-content-end my-2">
-                                <base-button type="white" @click="onReset"
-                                    >Close
-                                </base-button>
-                                <base-button
-                                    type="primary"
-                                    native-type="submit"
-                                >
+                                <button class="btn btn-white" @click="onReset">
+                                    Close
+                                </button>
+                                <button class="btn btn-primary" type="submit">
                                     Save
-                                </base-button>
+                                </button>
                             </div>
                         </b-form>
                     </validation-observer>
@@ -88,7 +85,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import { IS_START } from "@/utils/constants";
+import { STARTS_STATUS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object },
@@ -96,7 +93,7 @@ export default {
     },
     data() {
         return {
-            IS_START,
+            STARTS_STATUS,
             title: "Add new location",
             isVisible: false,
             form: {

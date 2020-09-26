@@ -26,64 +26,98 @@ const routes = [
     {
         path: "/dashboard",
         name: "dashboard",
-        component: Dashboard
+        component: Dashboard,
+        meta: {
+            title: "Dashboard"
+        }
     },
     {
         path: "/users",
         name: "users",
-        component: User
+        component: User,
+        meta: {
+            title: "Users"
+        }
     },
     {
         path: "/countries",
         name: "countries",
-        component: Country
+        component: Country,
+        meta: {
+            title: "Countries"
+        }
     },
     {
         path: "/locations",
         name: "locations",
-        component: Location
+        component: Location,
+        meta: {
+            title: "Locations"
+        }
     },
     {
         path: "/time_tour",
         name: "time_tour",
-        component: TimeTour
+        component: TimeTour,
+        meta: {
+            title: "Time tour"
+        }
     },
     {
         path: "/vehicle_tour",
         name: "vehicle_tour",
-        component: VehicleTour
+        component: VehicleTour,
+        meta: {
+            title: "Vehicle tour"
+        }
     },
     {
         path: "/customer_type",
         name: "customer_type",
-        component: CustomerType
+        component: CustomerType,
+        meta: {
+            title: "Customer type"
+        }
     },
     {
         path: "/tours",
         name: "tours",
-        component: Tour
+        component: Tour,
+        meta: {
+            title: "Tours"
+        }
     },
     {
         path: "/departure_day",
         name: "departure_day",
-        component: DepartureDay
+        component: DepartureDay,
+        meta: {
+            title: "Departure day"
+        }
     },
     {
         path: "/price_tour",
         name: "price_tour",
-        component: PriceTour
+        component: PriceTour,
+        meta: {
+            title: "Price tour"
+        }
     },
     {
         path: "/user_profile",
         name: "user_profile",
-        component: UserProfile
+        component: UserProfile,
+        meta: {
+            title: "User profile"
+        }
     },
     {
         path: "/login",
         name: "login",
         component: Login,
         meta: {
-            layout: "AuthLayout"
+            layout: "AuthLayout",
+            title: "Login"
         }
     },
     {
@@ -91,14 +125,16 @@ const routes = [
         name: "register",
         component: Register,
         meta: {
-            layout: "AuthLayout"
+            layout: "AuthLayout",
+            title: "Register"
         }
     },
     {
         path: "*",
         component: NotFound,
         meta: {
-            layout: "Content"
+            layout: "Content",
+            title: "Not found"
         }
     }
 ];
