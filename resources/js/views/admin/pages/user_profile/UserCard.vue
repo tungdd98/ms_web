@@ -1,40 +1,38 @@
 <template>
-    <b-card no-body class="card-profile" alt="Image placeholder" img-top>
-        <b-row class="justify-content-center">
-            <b-col lg="3" class="order-lg-2">
-                <div class="card-profile-image">
-                    <b-img
-                        :src="
-                            userInfo.avatar
-                                ? `images/upload/users/${userInfo.avatar}`
-                                : noimage
-                        "
-                        rounded="circle"
-                    />
-                </div>
-            </b-col>
-        </b-row>
+    <div class="position-relative bg-white shadow-sm border rounded px-3">
+        <div class="card-profile-image">
+            <img
+                :src="
+                    userInfo.avatar
+                        ? `images/upload/users/${userInfo.avatar}`
+                        : noimage
+                "
+                class="rounded-circle"
+            />
+        </div>
 
-        <b-card-body class="pt-0 mt-9">
+        <div class="pt-0 mt-9">
             <div class="text-center">
                 <h5 class="h3">
                     {{ userInfo.name }}
                 </h5>
-                <div class="h5 font-weight-300">
+                <div class="h5">
                     <i class="icon icon-phone mr-2"></i> {{ userInfo.phone }}
                 </div>
                 <div class="h5 mt-2">
                     <i class="icon icon-paperclip"></i>
                     {{ userInfo.email }}
                 </div>
-                <div><i class="icon icon-key"></i> {{ userInfo.nation }}</div>
+                <div class="h5 mt-2">
+                    <i class="icon icon-key"></i> {{ userInfo.nation }}
+                </div>
                 <hr class="my-4" />
-                <p>
+                <p class="font-14">
                     {{ userInfo.address }}
                 </p>
             </div>
-        </b-card-body>
-    </b-card>
+        </div>
+    </div>
 </template>
 <script>
 import noimage from "~/noimages.png";

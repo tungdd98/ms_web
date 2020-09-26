@@ -13,7 +13,7 @@ const PERMISSIONS = [
     }
 ];
 
-const IS_NATION = [
+const NATIONS_STATUS = [
     {
         value: 0,
         label: "Trong nước"
@@ -24,7 +24,7 @@ const IS_NATION = [
     }
 ];
 
-const IS_START = [
+const STARTS_STATUS = [
     {
         value: 0,
         label: "Không"
@@ -35,4 +35,4 @@ const IS_START = [
     }
 ];
 
-export { API_URL, NATIONS, PERMISSIONS, IS_NATION, IS_START };
+export { API_URL, NATIONS, PERMISSIONS, NATIONS_STATUS, STARTS_STATUS };

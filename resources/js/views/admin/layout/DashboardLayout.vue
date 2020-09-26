@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div>
         <side-bar>
             <template slot="links">
                 <sidebar-item
@@ -103,11 +103,13 @@
             </template>
         </side-bar>
         <div class="main-content d-flex flex-column min-vh-100">
-            <base-header class="pb-6 pt-5 pt-md-8 bg-gradient-success">
-                <dashboard-navbar
-                    :type="$route.meta.navbarType"
-                ></dashboard-navbar>
-            </base-header>
+            <div
+                class="position-relative pb-6 pt-5 pt-md-8 bg-gradient-success"
+            >
+                <div class="container-fluid">
+                    <dashboard-navbar></dashboard-navbar>
+                </div>
+            </div>
             <div @click="$sidebar.displaySidebar(false)" class="flex-grow-1">
                 <fade-transition
                     :duration="200"
@@ -117,70 +119,33 @@
                     <router-view></router-view>
                 </fade-transition>
             </div>
-            <footer class="footer px-4">
-                <div class="justify-content-center justify-content-lg-between">
-                    <div class="col-12">
-                        <div
-                            class="copyright text-center text-lg-left text-muted"
-                        >
-                            © {{ year }}
-                            <a
-                                href="https://www.creative-tim.com"
-                                class="font-weight-bold ml-1"
-                                target="_blank"
-                                >Made by MS</a
-                            >
-                        </div>
-                    </div>
+            <footer class="p-4 font-14">
+                <div class="text-center text-lg-left text-muted">
+                    © {{ year }}
+                    <a
+                        href="https://www.facebook.com/tunggdd/"
+                        class="font-weight-bold ml-1"
+                        target="_blank"
+                        >Made by MS</a
+                    >
                 </div>
             </footer>
         </div>
     </div>
 </template>
 <script>
-import PerfectScrollbar from "perfect-scrollbar";
-import "perfect-scrollbar/css/perfect-scrollbar.css";
-
-function hasElement(className) {
-    return document.getElementsByClassName(className).length > 0;
-}
-
-function initScrollbar(className) {
-    if (hasElement(className)) {
-        new PerfectScrollbar(`.${className}`);
-    } else {
-        // try to init it later in case this component is loaded async
-        setTimeout(() => {
-            initScrollbar(className);
-        }, 100);
-    }
-}
-
 import DashboardNavbar from "./DashboardNavbar.vue";
-import DashboardContent from "./Content.vue";
 import { FadeTransition } from "vue2-transitions";
 
 export default {
     components: {
         DashboardNavbar,
-        DashboardContent,
         FadeTransition
     },
     data() {
         return {
             year: new Date().getFullYear()
         };
-    },
-    methods: {
-        initScrollbar() {
-            let isWindows = navigator.platform.startsWith("Win");
-            if (isWindows) {
-                initScrollbar("sidenav");
-            }
-        }
-    },
-    mounted() {
-        this.initScrollbar();
     }
 };
 </script>

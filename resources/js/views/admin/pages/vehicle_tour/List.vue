@@ -2,7 +2,7 @@
     <div>
         <div class="container-fluid mt--7">
             <div class="bg-white position-relative p-3 shadow rounded">
-                <h3 class="mb-0">List Vehicle tour</h3>
+                <h3 class="mb-0">List Vehicle Tour</h3>
                 <edit
                     @onSubmit="onSubmit"
                     :item="currentItem"

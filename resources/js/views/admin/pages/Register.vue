@@ -1,7 +1,6 @@
 <template>
     <div>
-        <!-- Header -->
-        <div class="header bg-gradient-success py-7">
+        <div class="position-relative bg-gradient-success py-7">
             <div class="separator separator-bottom separator-skew zindex-100">
                 <svg
                     x="0"
@@ -18,13 +17,13 @@
                 </svg>
             </div>
         </div>
-        <!-- Page content -->
-        <b-container class="mt--8 pb-5">
-            <!-- Table -->
-            <b-row class="justify-content-center">
-                <b-col lg="6" md="8">
-                    <b-card no-body class="bg-secondary border-0">
-                        <b-card-header class="bg-transparent pb-5">
+        <div class="mt--7 pb-5 container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div
+                        class="bg-secondary shadow-sm position-relative mb-0 rounded py-3"
+                    >
+                        <div class="bg-transparent pb-5">
                             <div class="text-muted text-center mt-2 mb-4">
                                 <small>Sign up with</small>
                             </div>
@@ -45,8 +44,8 @@
                                     <span class="btn-inner--text">Google</span>
                                 </a>
                             </div>
-                        </b-card-header>
-                        <b-card-body class="px-lg-5 py-lg-5">
+                        </div>
+                        <div class="px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
                                 <small>Or sign up with credentials</small>
                             </div>
@@ -88,32 +87,29 @@
                                         v-model="form.password"
                                     >
                                     </base-input>
-                                    <div class="text-center">
-                                        <b-button
+                                    <div class="text-center mt-4">
+                                        <button
+                                            class="btn btn-primary"
                                             type="submit"
-                                            variant="primary"
-                                            class="mt-4"
                                         >
                                             Create account
-                                        </b-button>
+                                        </button>
                                     </div>
                                 </b-form>
                             </validation-observer>
-                        </b-card-body>
-                        <b-card-footer>
-                            <div class="text-muted text-center mt-2 mb-4">
-                                <small
-                                    >If you have a account,
-                                    <router-link to="/login"
-                                        >sign in</router-link
-                                    ></small
-                                >
-                            </div>
-                        </b-card-footer>
-                    </b-card>
-                </b-col>
-            </b-row>
-        </b-container>
+                        </div>
+                    </div>
+                    <div class="text-muted text-center mt-2 mb-4">
+                        <small
+                            >If you have a account,
+                            <router-link to="/login"
+                                >sign in</router-link
+                            ></small
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>

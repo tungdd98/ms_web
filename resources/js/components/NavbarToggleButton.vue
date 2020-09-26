@@ -1,13 +1,5 @@
 <template>
-    <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        :data-target="target"
-        :aria-controls="target"
-        :aria-expanded="toggled"
-        aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
         <slot>
             <span></span>
@@ -29,4 +21,3 @@ export default {
     }
 };
 </script>
-<style></style>

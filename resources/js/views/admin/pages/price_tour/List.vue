@@ -32,7 +32,7 @@
                     </el-table-column>
                     <el-table-column label="Price" prop="price">
                         <template v-slot="{ row }">
-                            <span class="font-weight-600">{{
+                            <span class="font-weight-bold">{{
                                 row.price | formatMoney
                             }}</span>
                         </template>

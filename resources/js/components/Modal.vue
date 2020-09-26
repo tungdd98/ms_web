@@ -128,7 +128,7 @@ export default {
     }
 };
 </script>
-<style>
+<style lang="scss">
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
 }

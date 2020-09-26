@@ -1,10 +1,8 @@
 <template>
     <nav
         class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
-        id="sidenav-main"
     >
         <div class="container-fluid">
-            <!--Toggler-->
             <navbar-toggle-button @click.native="showSidebar">
             </navbar-toggle-button>
             <a class="navbar-brand" href="http://localhost:8000/">
@@ -43,10 +41,6 @@
                         <b-dropdown-header class="noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </b-dropdown-header>
-                        <b-dropdown-item href="#!">
-                            <i class="icon icon-user-check"></i>
-                            <span>My profile</span>
-                        </b-dropdown-item>
                         <div class="dropdown-divider"></div>
                         <b-dropdown-item @click="onLogout">
                             <i class="icon icon-log-out"></i>

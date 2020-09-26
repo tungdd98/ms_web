@@ -1,8 +1,8 @@
 <template>
     <div>
-        <b-container fluid class="mt--7">
-            <b-row class="mb-4">
-                <b-col xl="3" md="6" class="mb-2">
+        <div class="container-fluid mt--7">
+            <div class="row mb-4">
+                <div class="mb-2 col-xl-3 col-md-6">
                     <stats-card
                         title="Total traffic"
                         type="gradient-red"
@@ -15,8 +15,8 @@
                             <span class="text-nowrap">Since last month</span>
                         </template>
                     </stats-card>
-                </b-col>
-                <b-col xl="3" md="6" class="mb-2">
+                </div>
+                <div class="mb-2 col-xl-3 col-md-6">
                     <stats-card
                         title="Total traffic"
                         type="gradient-orange"
@@ -29,8 +29,8 @@
                             <span class="text-nowrap">Since last month</span>
                         </template>
                     </stats-card>
-                </b-col>
-                <b-col xl="3" md="6" class="mb-2">
+                </div>
+                <div class="mb-2 col-xl-3 col-md-6">
                     <stats-card
                         title="Sales"
                         type="gradient-green"
@@ -43,8 +43,8 @@
                             <span class="text-nowrap">Since last month</span>
                         </template>
                     </stats-card>
-                </b-col>
-                <b-col xl="3" md="6" class="mb-2">
+                </div>
+                <div class="mb-2 col-xl-3 col-md-6">
                     <stats-card
                         title="Performance"
                         type="gradient-info"
@@ -57,19 +57,19 @@
                             <span class="text-nowrap">Since last month</span>
                         </template>
                     </stats-card>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col xl="8" class="mb-5 mb-xl-0">
-                    <card type="default" header-classes="bg-transparent">
-                        <b-row align-v="center" slot="header">
-                            <b-col>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 mb-5 mb-xl-0">
+                    <div class="bg-default p-4 shadow-sm rounded">
+                        <div class="row justify-content-center">
+                            <div class="col">
                                 <h6 class="text-light text-uppercase ls-1 mb-1">
                                     Overview
                                 </h6>
                                 <h5 class="h3 text-white mb-0">Sales value</h5>
-                            </b-col>
-                            <b-col>
+                            </div>
+                            <div class="col">
                                 <b-nav class="nav-pills justify-content-end">
                                     <b-nav-item
                                         class="mr-2 mr-md-0"
@@ -93,8 +93,8 @@
                                         <span class="d-md-none">W</span>
                                     </b-nav-item>
                                 </b-nav>
-                            </b-col>
-                        </b-row>
+                            </div>
+                        </div>
                         <line-chart
                             :height="350"
                             ref="bigChart"
@@ -102,19 +102,15 @@
                             :extra-options="bigLineChart.extraOptions"
                         >
                         </line-chart>
-                    </card>
-                </b-col>
+                    </div>
+                </div>
 
-                <b-col xl="4" class="mb-5 mb-xl-0">
-                    <card header-classes="bg-transparent">
-                        <b-row align-v="center" slot="header">
-                            <b-col>
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">
-                                    Performance
-                                </h6>
-                                <h5 class="h3 mb-0">Total orders</h5>
-                            </b-col>
-                        </b-row>
+                <div class="mb-5 mb-xl-0 col-xl-4">
+                    <div class="bg-white shadow-sm rounded p-4">
+                        <h6 class="text-uppercase text-muted ls-1 mb-1">
+                            Performance
+                        </h6>
+                        <h5 class="h3 mb-0">Total orders</h5>
 
                         <bar-chart
                             :height="350"
@@ -122,46 +118,21 @@
                             :chart-data="redBarChart.chartData"
                         >
                         </bar-chart>
-                    </card>
-                </b-col>
-            </b-row>
-            <!-- End charts-->
-
-            <!--Tables-->
-            <b-row class="mt-5">
-                <b-col xl="8" class="mb-5 mb-xl-0">
-                    <page-visits-table></page-visits-table>
-                </b-col>
-                <b-col xl="4" class="mb-5 mb-xl-0">
-                    <social-traffic-table></social-traffic-table>
-                </b-col>
-            </b-row>
-            <!--End tables-->
-        </b-container>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
-// Charts
 import * as chartConfigs from "@/components/charts/config";
 import LineChart from "@/components/charts/LineChart";
 import BarChart from "@/components/charts/BarChart";
 
-// Components
-import BaseProgress from "@/components/BaseProgress";
-import StatsCard from "@/components/cards/StatsCard";
-
-// Tables
-import SocialTrafficTable from "./SocialTrafficTable";
-import PageVisitsTable from "./PageVisitsTable";
-
 export default {
     components: {
         LineChart,
-        BarChart,
-        BaseProgress,
-        StatsCard,
-        PageVisitsTable,
-        SocialTrafficTable
+        BarChart
     },
     data() {
         return {
@@ -225,9 +196,3 @@ export default {
     }
 };
 </script>
-<style>
-.el-table .cell {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-</style>

@@ -27,10 +27,7 @@
                                     :thumbnail="row.thumbnail"
                                 ></base-thumbnail>
                                 <b-media-body>
-                                    <span
-                                        class="font-weight-600 name mb-0 text-sm"
-                                        >{{ row.title }}</span
-                                    >
+                                    <span>{{ row.title }}</span>
                                 </b-media-body>
                             </b-media>
                         </template>
