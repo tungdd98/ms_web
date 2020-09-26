@@ -1,10 +1,3 @@
-//
-// Vertical navbar
-//
-
-// Vertical
-//
-// Creates a vertically aligned version of the navbar
 .navbar-vertical {
     box-shadow: $navbar-vertical-box-shadow;
 
@@ -13,14 +6,10 @@
         border-style: solid;
     }
 
-    // Navbar light
-
     .navbar-light {
         background-color: $navbar-light-bg;
         border-color: $navbar-light-border-color;
     }
-
-    // Navbar brand
 
     .navbar-brand {
         margin-right: 0;
@@ -31,8 +20,6 @@
         max-width: 100%;
         max-height: 2rem;
     }
-
-    // Navbar collapse
 
     @include media-breakpoint-up(md) {
         .navbar-collapse {
@@ -49,13 +36,9 @@
         }
     }
 
-    // Navbar navigaton
-
     .navbar-nav {
         margin-left: -$navbar-padding-x;
         margin-right: -$navbar-padding-x;
-
-        // Navbar link
 
         .nav-link {
             padding-left: $navbar-padding-x;
@@ -75,15 +58,11 @@
                 }
             }
 
-            // Icon
-
             > i {
                 min-width: $navbar-icon-min-width;
                 font-size: 1.4rem;
                 line-height: ($font-size-base * $line-height-base);
             }
-
-            // Dropdown
 
             .dropdown-menu {
                 border: none;
@@ -95,7 +74,6 @@
         }
     }
 
-    // Navbar navigation
     .navbar-nav .nav-link {
         display: flex;
         align-items: center;
@@ -114,7 +92,7 @@
             margin-left: auto;
             color: $text-muted;
             transition: $transition-base;
-        } // Expanded
+        }
         &[aria-expanded="true"] {
             &:after {
                 transform: rotate(90deg);
@@ -122,17 +100,14 @@
         }
     }
 
-    // Second level
     .navbar-nav .nav .nav-link {
         padding-left: $navbar-padding-x + $navbar-icon-min-width;
     }
 
-    // Third level
     .navbar-nav .nav .nav .nav-link {
         padding-left: $navbar-padding-x * 1.5 + $navbar-icon-min-width;
     }
 
-    // Navbar heading
     .navbar-heading {
         padding-top: $nav-link-padding-y;
         padding-bottom: $nav-link-padding-y;
@@ -141,7 +116,6 @@
         letter-spacing: 0.04em;
     }
 
-    // Expanded navbar specific styles
     &.navbar-expand {
         @each $breakpoint, $dimension in $grid-breakpoints {
             &-#{$breakpoint} {
@@ -163,7 +137,7 @@
                         align-items: stretch;
                         min-height: 100%;
                         padding-left: 0;
-                        padding-right: 0; // Target IE 10 & 11
+                        padding-right: 0;
                         @media all and (-ms-high-contrast: none),
                             (-ms-high-contrast: active) {
                             min-height: none;
@@ -171,19 +145,16 @@
                         }
                     }
 
-                    // Fixes the vertical navbar to the left
                     &.fixed-left {
                         left: 0;
                         border-width: 0 1px 0 0;
                     }
 
-                    // Fixed the vertical navbar to the right
                     &.fixed-right {
                         right: 0;
                         border-width: 0 0 0 1px;
                     }
 
-                    // Navbar collapse
                     .navbar-collapse {
                         flex: 1;
                         display: flex;
@@ -199,7 +170,6 @@
                         }
                     }
 
-                    // Navbar navigation
                     .navbar-nav {
                         flex-direction: column;
                         margin-left: -$navbar-vertical-padding-x;
@@ -222,19 +192,16 @@
                         }
                     }
 
-                    // Second level
                     .navbar-nav .nav .nav-link {
                         padding-left: $navbar-vertical-padding-x +
                             $navbar-icon-min-width;
                     }
 
-                    // Third level
                     .navbar-nav .nav .nav .nav-link {
                         padding-left: $navbar-vertical-padding-x * 1.5 +
                             $navbar-icon-min-width;
                     }
 
-                    // Navbar brand
                     .navbar-brand {
                         display: block;
                         text-align: center;
@@ -246,7 +213,6 @@
                         max-height: 2.5rem;
                     }
 
-                    // Navbar user
                     .navbar-user {
                         margin-left: -$navbar-vertical-padding-x;
                         margin-right: -$navbar-vertical-padding-x;
@@ -256,7 +222,6 @@
                         padding-right: $navbar-vertical-padding-x;
                         border-top: 1px solid $border-color;
 
-                        // Dropup menu
                         .dropup .dropdown-menu {
                             left: 50%;
                             transform: translateX(-50%);

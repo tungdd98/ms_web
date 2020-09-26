@@ -1,17 +1,10 @@
-//
-// Nav pills
-//
-
-
-// General styles
-
 .nav-pills {
     .nav-item:not(:last-child) {
         padding-right: $nav-pills-space-x;
     }
 
     .nav-link {
-    	padding: $nav-pills-padding-y $nav-pills-padding-x;
+        padding: $nav-pills-padding-y $nav-pills-padding-x;
         color: $nav-pills-link-color;
         font-weight: 500;
         font-size: $font-size-sm;
@@ -20,7 +13,7 @@
         transition: $transition-base;
 
         &:hover {
-        	color: $nav-pills-link-hover-color;
+            color: $nav-pills-link-hover-color;
         }
     }
 
@@ -45,7 +38,6 @@
     }
 }
 
-
 // Rounded circle nav pills
 
 .nav-pills-circle {
@@ -59,7 +51,8 @@
     }
 
     .nav-link-icon {
-        i, svg {
+        i,
+        svg {
             font-size: 1rem;
         }
     }

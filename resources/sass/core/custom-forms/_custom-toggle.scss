@@ -1,7 +1,3 @@
-//
-// Custom toggle
-//
-
 .custom-toggle {
     position: relative;
     display: inline-block;
@@ -12,8 +8,9 @@
         display: none;
 
         &:checked {
-             + .custom-toggle-slider {
-                border: $custom-control-indicator-border-width solid $custom-control-indicator-checked-border-color;
+            + .custom-toggle-slider {
+                border: $custom-control-indicator-border-width solid
+                    $custom-control-indicator-checked-border-color;
 
                 &:before {
                     background: $custom-toggle-checked-bg;
@@ -24,15 +21,20 @@
 
         &:disabled {
             + .custom-toggle-slider {
-                border: $custom-control-indicator-border-width solid $custom-control-indicator-disabled-bg;
+                border: $custom-control-indicator-border-width solid
+                    $custom-control-indicator-disabled-bg;
             }
 
             &:checked {
                 + .custom-toggle-slider {
-                    border: $custom-control-indicator-border-width solid $custom-control-indicator-disabled-bg;
+                    border: $custom-control-indicator-border-width solid
+                        $custom-control-indicator-disabled-bg;
 
                     &:before {
-                        background-color: lighten($custom-control-indicator-checked-bg, 10%);
+                        background-color: lighten(
+                            $custom-control-indicator-checked-bg,
+                            10%
+                        );
                     }
                 }
             }
@@ -50,7 +52,6 @@
     border: $custom-control-indicator-border-width solid $input-border-color;
     border-radius: 34px !important;
     background-color: transparent;
-
 
     &:before {
         position: absolute;

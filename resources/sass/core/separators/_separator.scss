@@ -1,9 +1,3 @@
-//
-// Separator
-// add svg on top or bottom of a section for a more stylish visual
-//
-
-
 .separator {
     position: absolute;
     top: auto;
@@ -42,8 +36,6 @@
 .separator-inverse {
     transform: rotate(180deg);
 }
-
-// Styles
 
 .separator-skew {
     height: 60px;
