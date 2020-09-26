@@ -15,7 +15,7 @@
                     :link="{
                         name: 'Users',
                         path: '/users',
-                        icon: 'icon icon-users text-red'
+                        icon: 'icon icon-users text-danger'
                     }"
                 >
                 </sidebar-item>
@@ -96,7 +96,7 @@
                     :link="{
                         name: 'User Profile',
                         path: '/user_profile',
-                        icon: 'icon icon-user-check text-yellow'
+                        icon: 'icon icon-user-check text-warning'
                     }"
                 >
                 </sidebar-item>
