@@ -1,5 +1,5 @@
 <template>
-    <div class="position-relative bg-white shadow-sm border rounded px-3">
+    <div class="position-relative bg-white shadow-sm border rounded p-3">
         <div class="card-profile-image">
             <img
                 :src="
@@ -11,26 +11,24 @@
             />
         </div>
 
-        <div class="pt-0 mt-9">
-            <div class="text-center">
-                <h5 class="h3">
-                    {{ userInfo.name }}
-                </h5>
-                <div class="h5">
-                    <i class="icon icon-phone mr-2"></i> {{ userInfo.phone }}
-                </div>
-                <div class="h5 mt-2">
-                    <i class="icon icon-paperclip"></i>
-                    {{ userInfo.email }}
-                </div>
-                <div class="h5 mt-2">
-                    <i class="icon icon-key"></i> {{ userInfo.nation }}
-                </div>
-                <hr class="my-4" />
-                <p class="font-14">
-                    {{ userInfo.address }}
-                </p>
+        <div class="text-center mt-3">
+            <h5 class="h3">
+                {{ userInfo.name }}
+            </h5>
+            <div class="h5">
+                <i class="icon icon-phone mr-2"></i> {{ userInfo.phone }}
             </div>
+            <div class="h5 mt-2">
+                <i class="icon icon-paperclip"></i>
+                {{ userInfo.email }}
+            </div>
+            <div class="h5 mt-2">
+                <i class="icon icon-key"></i> {{ userInfo.nation }}
+            </div>
+            <hr class="my-4" />
+            <p class="font-14">
+                {{ userInfo.address }}
+            </p>
         </div>
     </div>
 </template>
@@ -47,3 +45,14 @@ export default {
     }
 };
 </script>
+<style lang="scss" scoped>
+.card-profile-image {
+    text-align: center;
+    img {
+        min-width: 180px;
+        max-width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+}
+</style>

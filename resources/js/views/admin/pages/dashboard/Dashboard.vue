@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt-n7">
             <div class="row mb-4">
                 <div class="mb-2 col-xl-3 col-md-6">
                     <stats-card
