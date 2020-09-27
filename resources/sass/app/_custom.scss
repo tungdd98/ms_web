@@ -1,16 +1,100 @@
+$fontSizes: (12, 14, 16, 18, 20, 22);
+@each $fs in $fontSizes {
+    .font-#{$fs} {
+        font-size: #{$fs / 16}rem !important;
+    }
+}
 body {
     font-size: 14px;
 }
-.app-logo {
-    max-width: 222px;
-    min-width: 222px;
-    @include media-breakpoint-down(lg) {
-        max-width: 150px;
-        min-width: 150px;
-    }
+ul {
+    @extend .list-unstyled;
+    margin: 0;
 }
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.ms-backdrop {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 98;
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+.ms-title {
+    display: inline-block;
+    text-transform: uppercase;
+    color: $primary;
+    font-weight: $font-weight-bold;
+    border-bottom: 1px solid $warning;
+}
+.ms-carousel {
+    .VueCarousel {
+        .VueCarousel-navigation-next,
+        .VueCarousel-navigation-prev {
+            transform: translate(0, -50%) !important;
+        }
+        .VueCarousel-navigation-button {
+            margin: 10px;
+            padding: 0 !important;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+            background-color: $white;
+            z-index: 90;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+.ms-slide {
+    position: relative;
+    &-item {
+        padding-top: 40%;
+    }
+}
+.ms-subtitle {
+    margin: 28px 0 21px 0;
+    padding-left: 10px;
+    border-left: 3px solid $warning;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.ms-footer-links {
+    a {
+        display: inline-block;
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 20px;
+        color: #fff;
+        &::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background-color: #0087ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            left: 5px;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
