@@ -52,6 +52,7 @@ $yellow: #ffd600 !default;
 $green: #2dce89 !default;
 $teal: #11cdef !default;
 $cyan: #2bffc6 !default;
+$mid-blue: #0f62ac;
 
 $colors: () !default;
 $colors: map-merge(
@@ -109,7 +110,8 @@ $theme-colors: map-merge(
         "white": $white,
         "neutral": $white,
         "dark": $dark,
-        "darker": $darker
+        "darker": $darker,
+        "mid-blue": $mid-blue
     ),
     $theme-colors
 );
@@ -352,7 +354,7 @@ $btn-line-height-lg: $input-btn-line-height-lg !default;
 
 $btn-border-width: $input-btn-border-width !default;
 
-$btn-font-weight: 600 !default;
+$btn-font-weight: 500 !default;
 
 $btn-text-transform: none !default;
 

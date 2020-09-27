@@ -20,8 +20,8 @@ export default {
         },
         title() {
             return this.$route.meta.title
-                ? `Hanoitourist - ${this.$route.meta.title}`
-                : "Hanoitourist";
+                ? `Admin Hanoitourist - ${this.$route.meta.title}`
+                : "Admin Hanoitourist";
         }
     },
     watch: {
