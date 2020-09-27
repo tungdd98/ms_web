@@ -1,0 +1,16 @@
+body {
+    font-size: 14px;
+}
+.app-logo {
+    max-width: 222px;
+    min-width: 222px;
+    @include media-breakpoint-down(lg) {
+        max-width: 150px;
+        min-width: 150px;
+    }
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
