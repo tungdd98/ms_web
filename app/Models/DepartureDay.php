@@ -27,7 +27,7 @@ class DepartureDay extends Model
      *
      * @return void
      */
-    public function tours()
+    public function tour()
     {
         return $this->belongsTo('App\Models\Tour', 'tour_id', 'id');
     }
@@ -37,13 +37,12 @@ class DepartureDay extends Model
      */
     public function getDepartureDayResponse()
     {
-        $tourName = !empty($this->tour_id) ? $this->tours->where('id', $this->tour_id)->first()->title : null;
         return [
             'id' => $this->id,
             'start_day' => $this->start_day,
             'start_time' => $this->start_time,
             'tour_id' => $this->tour_id,
-            'tour_name' => $tourName
+            'tour_name' => $this->tour->title ?? null,
         ];
     }
 }

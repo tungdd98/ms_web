@@ -11,17 +11,17 @@ class UserService implements UserServiceInterface
      */
     public function listUser($dataRequest)
     {
-        $users = User::orderBy("created_at", 'desc');
-        $usersPaginate = $users->paginate(User::PER_PAGE);
+        $users = User::orderByDesc("created_at")
+            ->paginate(User::PER_PAGE);
 
         return [
-            'users' => $usersPaginate->map(function ($user) {
+            'users' => $users->map(function ($user) {
                 return $user->getUserResponse();
             }),
-            'per_page' => $usersPaginate->perPage(),
-            'total' => $usersPaginate->total(),
-            'current_page' => $usersPaginate->currentPage(),
-            'last_page' => $usersPaginate->lastPage(),
+            'per_page' => $users->perPage(),
+            'total' => $users->total(),
+            'current_page' => $users->currentPage(),
+            'last_page' => $users->lastPage(),
         ];
     }
 }

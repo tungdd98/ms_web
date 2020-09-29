@@ -11,17 +11,17 @@ class TimeTourService implements TimeTourServiceInterface
      */
     public function listTimeTour($dataRequest)
     {
-        $timeTour = TimeTour::orderBy("id", 'desc');
-        $timeTourPaginate = $timeTour->paginate(TimeTour::PER_PAGE);
+        $timeTour = TimeTour::orderByDesc("id")
+            ->paginate(TimeTour::PER_PAGE);
 
         return [
-            'time_tour' => $timeTourPaginate->map(function ($item) {
+            'time_tour' => $timeTour->map(function ($item) {
                 return $item->getTimeTourResponse();
             }),
-            'per_page' => $timeTourPaginate->perPage(),
-            'total' => $timeTourPaginate->total(),
-            'current_page' => $timeTourPaginate->currentPage(),
-            'last_page' => $timeTourPaginate->lastPage(),
+            'per_page' => $timeTour->perPage(),
+            'total' => $timeTour->total(),
+            'current_page' => $timeTour->currentPage(),
+            'last_page' => $timeTour->lastPage(),
         ];
     }
 }

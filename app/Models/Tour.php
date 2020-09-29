@@ -9,23 +9,24 @@ class Tour extends Model
     protected $table = 'tours';
 
     const PER_PAGE = 10;
+    const LIMIT = 10;
 
     /**
      * locationsDeparture - điểm đi
      *
      * @return void
      */
-    public function locationsDeparture()
+    public function locationDeparture()
     {
         return $this->belongsTo('App\Models\Location', 'departure_location_id', 'id');
     }
 
     /**
-     * locationsDestination - điểm đến
+     * locationDestination
      *
      * @return void
      */
-    public function locationsDestination()
+    public function locationDestination()
     {
         return $this->belongsTo('App\Models\Location', 'destination_location_id', 'id');
     }
@@ -51,6 +52,26 @@ class Tour extends Model
     }
 
     /**
+     * priceTour
+     *
+     * @return void
+     */
+    public function priceTour()
+    {
+        return $this->hasMany('App\Models\PriceTour', 'tour_id', 'id');
+    }
+
+    /**
+     * departureDay
+     *
+     * @return void
+     */
+    public function departureDay()
+    {
+        return $this->hasMany('App\Models\DepartureDay', 'tour_id', 'id');
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -66,7 +87,7 @@ class Tour extends Model
         'vehicle_id',
         'place',
         'schedule',
-        'albums'
+        'albums',
     ];
 
     /**
@@ -74,10 +95,6 @@ class Tour extends Model
      */
     public function getTourResponse()
     {
-        $departureLocationName = !empty($this->departure_location_id) ? $this->locationsDeparture->where('id', $this->departure_location_id)->first()->title : null;
-        $destinationLocationName = !empty($this->destination_location_id) ? $this->locationsDeparture->where('id', $this->destination_location_id)->first()->title : null;
-        $timeTourName = !empty($this->time_id) ? $this->timeTour->where('id', $this->time_id)->first()->title : null;
-        $vehicleTourName = !empty($this->vehicle_id) ? $this->vehicleTour->where('id', $this->vehicle_id)->first()->title : null;
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -91,10 +108,12 @@ class Tour extends Model
             'place' => $this->place,
             'schedule' => $this->schedule,
             'albums' => $this->albums,
-            'departure_location_name' => $departureLocationName,
-            'destination_location_name' => $destinationLocationName,
-            'time_name' => $timeTourName,
-            'vehicle_name' => $vehicleTourName,
+            'departure_location_name' => $this->locationDeparture->title ?? null,
+            'destination_location_name' => $this->locationDestination->title ?? null,
+            'time_name' => $this->timeTour->title ?? null,
+            'vehicle_name' => $this->vehicleTour->title ?? null,
+            'price_tour' => $this->priceTour,
+            'departure_day' => $this->departureDay
         ];
     }
 }

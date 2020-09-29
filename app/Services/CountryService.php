@@ -7,21 +7,21 @@ use App\Models\Country;
 class CountryService implements CountryServiceInterface
 {
     /**
-     * Get list user
+     * Get list country
      */
     public function listCountry($dataRequest)
     {
-        $countries = Country::orderBy("id", 'desc');
-        $countriesPaginate = $countries->paginate(Country::PER_PAGE);
+        $countries = Country::orderByDesc('id')
+            ->paginate(Country::PER_PAGE);
 
         return [
-            'countries' => $countriesPaginate->map(function ($country) {
+            'countries' => $countries->map(function ($country) {
                 return $country->getCountryResponse();
             }),
-            'per_page' => $countriesPaginate->perPage(),
-            'total' => $countriesPaginate->total(),
-            'current_page' => $countriesPaginate->currentPage(),
-            'last_page' => $countriesPaginate->lastPage(),
+            'per_page' => $countries->perPage(),
+            'total' => $countries->total(),
+            'current_page' => $countries->currentPage(),
+            'last_page' => $countries->lastPage(),
         ];
     }
 }

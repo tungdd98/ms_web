@@ -16,7 +16,7 @@ class Country extends Model
      *
      * @return void
      */
-    public function locations()
+    public function location()
     {
         return $this->hasOne('App\Models\Location');
     }
