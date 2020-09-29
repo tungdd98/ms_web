@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Admin
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
@@ -76,4 +77,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::delete('price_tour/{tour_id}/{customer_type_id}', 'PriceTourController@destroy');
         Route::post('price_tour/{tour_id}/{customer_type_id}', 'PriceTourController@update');
     });
+});
+
+// Client
+Route::group(['namespace' => 'Api'], function () {
+    Route::get('get-tours-home-page', 'TourController@getToursHomePage');
 });

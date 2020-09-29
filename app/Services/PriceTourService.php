@@ -7,21 +7,22 @@ use App\Models\PriceTour;
 class PriceTourService implements PriceTourServiceInterface
 {
     /**
-     * Get list user
+     * Get list price tour
      */
     public function listPriceTour($dataRequest)
     {
-        $priceTour = PriceTour::orderBy("tour_id", 'desc');
-        $priceTourPaginate = $priceTour->paginate(PriceTour::PER_PAGE);
+        $priceTour = PriceTour::with('tour', 'customerType')
+            ->orderByDesc('tour_id')
+            ->paginate(PriceTour::PER_PAGE);
 
         return [
-            'price_tour' => $priceTourPaginate->map(function ($priceTour) {
-                return $priceTour->getPriceTourResponse();
+            'price_tour' => $priceTour->map(function ($price) {
+                return $price->getPriceTourResponse();
             }),
-            'per_page' => $priceTourPaginate->perPage(),
-            'total' => $priceTourPaginate->total(),
-            'current_page' => $priceTourPaginate->currentPage(),
-            'last_page' => $priceTourPaginate->lastPage(),
+            'per_page' => $priceTour->perPage(),
+            'total' => $priceTour->total(),
+            'current_page' => $priceTour->currentPage(),
+            'last_page' => $priceTour->lastPage(),
         ];
     }
 }

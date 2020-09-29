@@ -28,7 +28,7 @@ export default {
     },
     props: {
         items: { type: Array, default: [] },
-        keyItem: { type: [String, Number] },
+        keyItem: { type: [String, Number], default: "id" },
         perPageCustom: { type: Array }
     }
 };

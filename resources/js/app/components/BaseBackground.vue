@@ -1,7 +1,7 @@
 <template>
     <div
         class="ms-bg-cover"
-        :style="`background-image: url(${src || noimage})`"
+        :style="`background-image: url(${path}${src || noimage})`"
     >
         <slot></slot>
     </div>
@@ -12,7 +12,8 @@ import noimage from "~/noimages.png";
 export default {
     name: "base-background",
     props: {
-        src: { type: String, default: "" }
+        src: { type: String, default: "" },
+        path: { type: String, default: "" }
     },
     data() {
         return {

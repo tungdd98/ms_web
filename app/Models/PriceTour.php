@@ -19,7 +19,7 @@ class PriceTour extends Model
      *
      * @return void
      */
-    public function tours()
+    public function tour()
     {
         return $this->belongsTo('App\Models\Tour', 'tour_id', 'id');
     }
@@ -29,7 +29,7 @@ class PriceTour extends Model
      *
      * @return void
      */
-    public function customer_type()
+    public function customerType()
     {
         return $this->belongsTo('App\Models\CustomerType', 'customer_type_id', 'id');
     }
@@ -51,15 +51,13 @@ class PriceTour extends Model
      */
     public function getPriceTourResponse()
     {
-        $tourName = !empty($this->tour_id) ? $this->tours->where('id', $this->tour_id)->first()->title : null;
-        $customerName = !empty($this->customer_type_id) ? $this->customer_type->where('id', $this->customer_type_id)->first()->title : null;
         return [
             'original_price' => $this->original_price,
             'price' => $this->price,
             'customer_type_id' => $this->customer_type_id,
             'tour_id' => $this->tour_id,
-            'tour_name' => $tourName,
-            'customer_name' => $customerName
+            'tour_name' => $this->tour->title ?? null,
+            'customer_name' => $this->customerType->title ?? null
         ];
     }
 

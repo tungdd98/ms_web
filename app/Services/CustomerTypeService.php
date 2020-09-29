@@ -14,17 +14,17 @@ class CustomerTypeService implements CustomerTypeServiceInterface
      */
     public function listCustomerType($dataRequest)
     {
-        $customerType = CustomerType::orderBy("id", 'desc');
-        $customerTypePaginate = $customerType->paginate(CustomerType::PER_PAGE);
+        $customerType = CustomerType::orderByDesc("id")
+            ->paginate(CustomerType::PER_PAGE);
 
         return [
-            'customer_type' => $customerTypePaginate->map(function ($item) {
+            'customer_type' => $customerType->map(function ($item) {
                 return $item->getCustomerTypeResponse();
             }),
-            'per_page' => $customerTypePaginate->perPage(),
-            'total' => $customerTypePaginate->total(),
-            'current_page' => $customerTypePaginate->currentPage(),
-            'last_page' => $customerTypePaginate->lastPage(),
+            'per_page' => $customerType->perPage(),
+            'total' => $customerType->total(),
+            'current_page' => $customerType->currentPage(),
+            'last_page' => $customerType->lastPage(),
         ];
     }
 }

@@ -1,4 +1,4 @@
-$fontSizes: (12, 14, 16, 18, 20, 22);
+$fontSizes: (12, 13, 14, 16, 18, 20, 22);
 @each $fs in $fontSizes {
     .font-#{$fs} {
         font-size: #{$fs / 16}rem !important;
@@ -15,6 +15,16 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.text-shadow {
+    text-shadow: 1px 1px #585858, -1px -1px #585858, 1px -1px #666,
+        -1px 1px #585858;
 }
 .cursor-pointer {
     cursor: pointer;
@@ -69,7 +79,6 @@ ul {
     }
 }
 .ms-subtitle {
-    margin: 28px 0 21px 0;
     padding-left: 10px;
     border-left: 3px solid $warning;
     text-transform: uppercase;
@@ -96,5 +105,55 @@ ul {
         &:hover {
             text-decoration: underline;
         }
+    }
+}
+.ms-tour {
+    transition: all 0.3s ease;
+    &__image {
+        position: relative;
+        padding-top: 80%;
+        overflow: hidden;
+        height: 0;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 7;
+        }
+        > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content {
+        position: relative;
+        z-index: 9;
+    }
+    &__sale {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 60px;
+        height: 64px;
+        padding-top: 5px;
+        background: url("images/assets/group.png") no-repeat;
+        background-size: cover;
+        @extend .flex-center;
+        justify-content: flex-start;
+        flex-direction: column;
+        color: #fff;
+        font-weight: $font-weight-bold;
+        z-index: 10;
+    }
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 12px;
     }
 }

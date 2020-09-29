@@ -127,4 +127,17 @@ class TourController extends ApiController
 
         return $this->response->withMessage("Delete successful");
     }
+
+    /**
+     * getHotToursHomePage
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function getToursHomePage(Request $request)
+    {
+        $data = $this->tourService->listTourHomePage($request->all());
+
+        return $this->response->withData($data);
+    }
 }

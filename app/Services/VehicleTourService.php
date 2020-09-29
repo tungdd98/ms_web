@@ -14,17 +14,17 @@ class VehicleTourService implements VehicleTourServiceInterface
      */
     public function listVehicleTour($dataRequest)
     {
-        $vehicleTour = VehicleTour::orderBy("id", 'desc');
-        $vehicleTourTourPaginate = $vehicleTour->paginate(VehicleTour::PER_PAGE);
+        $vehicleTour = VehicleTour::orderByDesc("id")
+            ->paginate(VehicleTour::PER_PAGE);
 
         return [
-            'vehicle_tour' => $vehicleTourTourPaginate->map(function ($item) {
+            'vehicle_tour' => $vehicleTour->map(function ($item) {
                 return $item->getVehicleTourResponse();
             }),
-            'per_page' => $vehicleTourTourPaginate->perPage(),
-            'total' => $vehicleTourTourPaginate->total(),
-            'current_page' => $vehicleTourTourPaginate->currentPage(),
-            'last_page' => $vehicleTourTourPaginate->lastPage(),
+            'per_page' => $vehicleTour->perPage(),
+            'total' => $vehicleTour->total(),
+            'current_page' => $vehicleTour->currentPage(),
+            'last_page' => $vehicleTour->lastPage(),
         ];
     }
 }

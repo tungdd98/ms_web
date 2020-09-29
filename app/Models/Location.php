@@ -16,7 +16,7 @@ class Location extends Model
      *
      * @return void
      */
-    public function tours()
+    public function tour()
     {
         return $this->hasOne('App\Models\Tour');
     }
@@ -26,7 +26,7 @@ class Location extends Model
      *
      * @return void
      */
-    public function countries()
+    public function country()
     {
         return $this->belongsTo('App\Models\Country', 'country_id', 'id');
     }
@@ -49,7 +49,6 @@ class Location extends Model
      */
     public function getLocationResponse()
     {
-        $countryName = !empty($this->country_id) ? $this->countries->where('id', $this->country_id)->first()->title : null;
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -57,7 +56,7 @@ class Location extends Model
             'description' => $this->description,
             'is_start' => $this->is_start,
             'country_id' => $this->country_id,
-            'country_name' => $countryName
+            'country_name' => $this->country->title
         ];
     }
 }

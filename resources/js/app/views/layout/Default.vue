@@ -54,9 +54,6 @@ export default {
         };
     },
     methods: {
-        toggleNav(value) {
-            this.isShowNav = value;
-        },
         closeNav() {
             this.isShowNav = false;
         }

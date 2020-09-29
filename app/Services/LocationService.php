@@ -7,21 +7,22 @@ use App\Models\Location;
 class LocationService implements LocationServiceInterface
 {
     /**
-     * Get list user
+     * Get list location
      */
     public function listLocation($dataRequest)
     {
-        $locations = Location::orderBy("id", 'desc');
-        $locationsPaginate = $locations->paginate(Location::PER_PAGE);
+        $locations = Location::with('country')
+            ->orderByDesc('id')
+            ->paginate(Location::PER_PAGE);
 
         return [
-            'locations' => $locationsPaginate->map(function ($country) {
-                return $country->getLocationResponse();
+            'locations' => $locations->map(function ($location) {
+                return $location->getLocationResponse();
             }),
-            'per_page' => $locationsPaginate->perPage(),
-            'total' => $locationsPaginate->total(),
-            'current_page' => $locationsPaginate->currentPage(),
-            'last_page' => $locationsPaginate->lastPage(),
+            'per_page' => $locations->perPage(),
+            'total' => $locations->total(),
+            'current_page' => $locations->currentPage(),
+            'last_page' => $locations->lastPage(),
         ];
     }
 }

@@ -16,7 +16,7 @@ class TimeTour extends Model
      *
      * @return void
      */
-    public function tours()
+    public function tour()
     {
         return $this->hasOne('App\Models\Tour');
     }

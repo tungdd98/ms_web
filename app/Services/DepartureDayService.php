@@ -11,17 +11,18 @@ class DepartureDayService implements DepartureDayServiceInterface
      */
     public function listDepartureDay($dataRequest)
     {
-        $departureDay = DepartureDay::orderBy("tour_id", 'desc');
-        $departureDayPaginate = $departureDay->paginate(DepartureDay::PER_PAGE);
+        $departureDay = DepartureDay::with('tour')
+            ->orderByDesc('id')
+            ->paginate(DepartureDay::PER_PAGE);
 
         return [
-            'departure_day' => $departureDayPaginate->map(function ($country) {
-                return $country->getDepartureDayResponse();
+            'departure_day' => $departureDay->map(function ($departure) {
+                return $departure->getDepartureDayResponse();
             }),
-            'per_page' => $departureDayPaginate->perPage(),
-            'total' => $departureDayPaginate->total(),
-            'current_page' => $departureDayPaginate->currentPage(),
-            'last_page' => $departureDayPaginate->lastPage(),
+            'per_page' => $departureDay->perPage(),
+            'total' => $departureDay->total(),
+            'current_page' => $departureDay->currentPage(),
+            'last_page' => $departureDay->lastPage(),
         ];
     }
 }
