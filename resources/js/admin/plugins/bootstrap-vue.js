@@ -1,20 +1,17 @@
 import {
     ModalPlugin,
-    IconsPlugin,
     NavbarPlugin,
     DropdownPlugin,
     CollapsePlugin,
     PaginationPlugin,
     PaginationNavPlugin,
     NavPlugin,
-    FormPlugin,
-    MediaPlugin
+    FormPlugin
 } from "bootstrap-vue";
 
 export default {
     install(Vue) {
         Vue.use(ModalPlugin);
-        Vue.use(IconsPlugin);
         Vue.use(NavbarPlugin);
         Vue.use(DropdownPlugin);
         Vue.use(CollapsePlugin);
@@ -22,6 +19,5 @@ export default {
         Vue.use(PaginationNavPlugin);
         Vue.use(NavPlugin);
         Vue.use(FormPlugin);
-        Vue.use(MediaPlugin);
     }
 };

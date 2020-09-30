@@ -9,10 +9,11 @@ import BaseNav from "@/admin/components/navbar/BaseNav";
 import Pagination from "@/admin/components/paginations/Pagination";
 import PaginationNav from "@/admin/components/paginations/PaginationNav";
 import BaseThumbnail from "@/admin/components/BaseThumbnail";
+import BaseTable from "@/admin/components/BaseTable";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import VueSimpleAlert from "vue-simple-alert";
 import VueNumeric from "vue-numeric";
-import { Table, TableColumn, Upload, Loading } from "element-ui";
+import { Upload } from "element-ui";
 
 const GlobalComponents = {
     install(Vue) {
@@ -27,12 +28,10 @@ const GlobalComponents = {
         Vue.component(Pagination.name, Pagination);
         Vue.component(PaginationNav.name, PaginationNav);
         Vue.component(BaseThumbnail.name, BaseThumbnail);
+        Vue.component(BaseTable.name, BaseTable);
         Vue.component("validation-provider", ValidationProvider);
         Vue.component("validation-observer", ValidationObserver);
-        Vue.use(Table);
-        Vue.use(TableColumn);
         Vue.use(Upload);
-        Vue.use(Loading.directive);
         Vue.use(VueSimpleAlert);
         Vue.use(VueNumeric);
     }

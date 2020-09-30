@@ -9,50 +9,19 @@
                     :tours="tours"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="departureDay"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="departureDay"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Tour" prop="tour_name">
-                    </el-table-column>
-                    <el-table-column label="Start day" prop="start_day">
-                        <template v-slot="{ row }">
-                            <span>{{ row.start_day | formatDate }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Start time" prop="start_time">
-                        <template v-slot="{ row }">
-                            <span>{{ row.start_time | formatTime }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                    <template v-slot:start_day="{ row }">
+                        <span>{{ row.start_day | formatDate }}</span>
+                    </template>
+                    <template v-slot:start_time="{ row }">
+                        <span>{{ row.start_day | formatTime }}</span>
+                    </template>
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
                     <pagination
                         :total="totalRecord"
@@ -79,7 +48,21 @@ export default {
             totalRecord: 0,
             config: {
                 page: 1
-            }
+            },
+            fields: [
+                {
+                    label: "Tour name",
+                    key: "tour_name"
+                },
+                {
+                    label: "Start day",
+                    key: "start_day"
+                },
+                {
+                    label: "Start time",
+                    key: "start_time"
+                }
+            ]
         };
     },
     computed: {
@@ -128,7 +111,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                this.fetchData(this.config);
             }
         },
         async onDelete(id) {
@@ -139,12 +122,16 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    this.fetchData(this.config);
                 }
             }
         },
         async onChangePage(page) {
-            await this.fetchData({ page });
+            this.config.page = page;
+            await this.fetchData({
+                ...this.config,
+                page
+            });
         },
         setCurrentItem(value) {
             this.currentItem = value;

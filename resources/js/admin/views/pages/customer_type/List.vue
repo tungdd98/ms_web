@@ -8,40 +8,13 @@
                     :item="currentItem"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="customerType"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="customerType"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Title" prop="title">
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
                     <pagination
                         :total="totalRecord"
@@ -67,7 +40,13 @@ export default {
             totalRecord: 0,
             config: {
                 page: 1
-            }
+            },
+            fields: [
+                {
+                    label: "Title",
+                    key: "title"
+                }
+            ]
         };
     },
     computed: {
@@ -108,7 +87,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                this.fetchData(this.config);
             }
         },
         async onDelete(id) {
@@ -119,12 +98,16 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    this.fetchData(this.config);
                 }
             }
         },
         async onChangePage(page) {
-            await this.fetchData({ page });
+            this.config.page = page;
+            await this.fetchData({
+                ...this.config,
+                page
+            });
         },
         setCurrentItem(value) {
             this.currentItem = value;

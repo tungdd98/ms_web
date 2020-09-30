@@ -10,57 +10,21 @@
                     :customer-type="customerType"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="priceTour"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="priceTour"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Tour name" prop="tour_name">
-                    </el-table-column>
-                    <el-table-column label="Customer name" prop="customer_name">
-                    </el-table-column>
-                    <el-table-column
-                        label="Original price"
-                        prop="original_price"
-                    >
-                        <template v-slot="{ row }">
-                            <span>{{ row.original_price | formatMoney }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Price" prop="price">
-                        <template v-slot="{ row }">
-                            <span class="font-weight-bold">{{
-                                row.price | formatMoney
-                            }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                    <template v-slot:original_price="{ row }">
+                        <span>{{ row.original_price | formatMoney }}</span>
+                    </template>
+                    <template v-slot:price="{ row }">
+                        <span class="font-weight-bold">{{
+                            row.price | formatMoney
+                        }}</span>
+                    </template>
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
                     <pagination
                         :total="totalRecord"
@@ -82,13 +46,31 @@ export default {
     data() {
         return {
             priceTour: null,
-            tours: [],
-            customerType: [],
+            tours: null,
+            customerType: null,
             currentItem: null,
             totalRecord: 0,
             config: {
                 page: 1
-            }
+            },
+            fields: [
+                {
+                    label: "Tour name",
+                    key: "tour_name"
+                },
+                {
+                    label: "Customer name",
+                    key: "customer_name"
+                },
+                {
+                    label: "Original price",
+                    key: "original_price"
+                },
+                {
+                    label: "Price",
+                    key: "price"
+                }
+            ]
         };
     },
     computed: {
@@ -150,7 +132,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                this.fetchData(this.config);
             }
         },
         async onDelete(item) {
@@ -165,12 +147,16 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    this.fetchData(this.config);
                 }
             }
         },
         async onChangePage(page) {
-            await this.fetchData({ page });
+            this.config.page = page;
+            await this.fetchData({
+                ...this.config,
+                page
+            });
         },
         setCurrentItem(value) {
             this.currentItem = value;

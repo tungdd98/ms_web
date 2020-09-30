@@ -55,19 +55,18 @@
                     @click.prevent
                     slot="title-container"
                 >
-                    <b-media no-body class="align-items-center" v-if="userInfo">
+                    <div class="media align-items-center">
                         <base-thumbnail
                             path="users"
                             :thumbnail="userInfo.avatar"
                         ></base-thumbnail>
-                        <b-media-body class="ml-2 d-none d-lg-block">
+                        <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{
                                 userInfo.name
                             }}</span>
-                        </b-media-body>
-                    </b-media>
+                        </div>
+                    </div>
                 </a>
-
                 <template>
                     <b-dropdown-header class="noti-title">
                         <h6 class="text-overflow m-0">Welcome!</h6>
