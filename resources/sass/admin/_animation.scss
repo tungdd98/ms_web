@@ -22,10 +22,11 @@ $scaleSize: 0.8;
         transform: rotate(1turn);
     }
 }
-.el-loading-spinner .path {
-    stroke: #66615b !important;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
 }
-
-.el-loading-mask {
-    background: hsla(0, 0%, 100%, 0.9) !important;
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }

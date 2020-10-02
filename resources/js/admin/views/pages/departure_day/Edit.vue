@@ -13,11 +13,7 @@
                         ref="observer"
                         v-slot="{ handleSubmit }"
                     >
-                        <b-form
-                            role="form"
-                            ref="form"
-                            @submit.stop.prevent="handleSubmit(onSubmit)"
-                        >
+                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
                             <base-input
                                 label="Tour"
                                 name="tour"
@@ -64,7 +60,7 @@
                                     Save
                                 </button>
                             </div>
-                        </b-form>
+                        </form>
                     </validation-observer>
                 </template>
             </div>

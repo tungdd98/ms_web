@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./views/App.vue";
-import "./polyfills";
+import "@/polyfills";
 
 // plugins
 import Plugins from "./plugins";

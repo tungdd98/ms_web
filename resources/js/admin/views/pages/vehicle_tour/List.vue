@@ -16,11 +16,7 @@
                 >
                 </base-table>
                 <div class="py-4 d-flex justify-content-end">
-                    <pagination
-                        :total="totalRecord"
-                        v-model="config.page"
-                        @change="onChangePage"
-                    ></pagination>
+                    <base-pagination :page-count="pageCount"></base-pagination>
                 </div>
             </div>
         </div>
@@ -37,10 +33,7 @@ export default {
         return {
             vehicleTour: null,
             currentItem: null,
-            totalRecord: 0,
-            config: {
-                page: 1
-            },
+            pageCount: 0,
             fields: [
                 {
                     label: "Title",
@@ -51,12 +44,15 @@ export default {
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable,
-            userInfo: state => state.authenticate.userInfo
+            loading: state => state.display.isLoadingTable
         })
     },
     async created() {
-        await this.fetchData(this.config);
+        await this.fetchData(this.$route.query);
+    },
+    async beforeRouteUpdate(to, from, next) {
+        await this.fetchData(to.query);
+        next();
     },
     methods: {
         ...mapActions({
@@ -70,7 +66,7 @@ export default {
 
             if (data) {
                 this.vehicleTour = data.vehicle_tour || [];
-                this.totalRecord = data.total;
+                this.pageCount = data.last_page;
             }
         },
         async onSubmit(data) {
@@ -87,7 +83,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData(this.config);
+                await this.fetchData(this.$route.query);
             }
         },
         async onDelete(id) {
@@ -98,16 +94,9 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData(this.config);
+                    await this.fetchData(this.$route.query);
                 }
             }
-        },
-        async onChangePage(page) {
-            this.config.page = page;
-            await this.fetchData({
-                ...this.config,
-                page
-            });
         },
         setCurrentItem(value) {
             this.currentItem = value;

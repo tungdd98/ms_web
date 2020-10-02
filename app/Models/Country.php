@@ -9,7 +9,7 @@ class Country extends Model
     protected $table = 'countries';
     public $timestamps = false;
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
 
     /**
      * locations

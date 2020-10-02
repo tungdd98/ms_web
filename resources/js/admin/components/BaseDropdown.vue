@@ -1,78 +1,48 @@
 <template>
     <component
         :is="tag"
-        :class="[{ show: isOpen }, `drop${direction}`]"
-        @click="toggleDropDown"
-        v-click-outside="closeDropDown"
+        :class="[`drop${direction}`, { show: isOpen }]"
+        @click="toggleDropdown"
+        v-click-outside="closeDropdown"
     >
-        <slot name="title-container" :is-open="isOpen">
-            <component
-                :is="titleTag"
-                class="btn-rotate"
-                :class="[{ 'dropdown-toggle': hasToggle }, titleClasses]"
-                :aria-expanded="isOpen"
-                data-toggle="dropdown"
+        <slot name="title-container" :is-open="isOpen"> </slot>
+        <transition name="fade" mode="out-in">
+            <ul
+                :class="[
+                    'dropdown-menu',
+                    { 'dropdown-menu-right': menuOnRight },
+                    menuClass
+                ]"
+                v-if="isOpen"
             >
-                <slot name="title" :is-open="isOpen">
-                    <i :class="icon"></i> {{ title }}
-                </slot>
-            </component>
-        </slot>
-        <ul
-            class="dropdown-menu"
-            :class="[
-                { show: isOpen },
-                { 'dropdown-menu-right': menuOnRight },
-                menuClasses
-            ]"
-        >
-            <slot></slot>
-        </ul>
+                <slot></slot>
+            </ul>
+        </transition>
     </component>
 </template>
+
 <script>
 export default {
     name: "base-dropdown",
     props: {
         tag: {
             type: String,
-            default: "div",
-            description: "Dropdown html tag (e.g div, ul etc)"
-        },
-        titleTag: {
-            type: String,
-            default: "button",
-            description: "Dropdown title (toggle) html tag"
-        },
-        title: {
-            type: String,
-            description: "Dropdown title"
+            default: "div"
         },
         direction: {
             type: String,
-            default: "down", // up | down
-            description: "Dropdown menu direction (up|down)"
-        },
-        icon: {
-            type: String,
-            description: "Dropdown icon"
-        },
-        titleClasses: {
-            type: [String, Object, Array],
-            description: "Title css classes"
-        },
-        menuClasses: {
-            type: [String, Object],
-            description: "Menu css classes"
+            default: "down",
+            validator(value) {
+                const accessValues = ["up", "down"];
+                return accessValues.includes(value);
+            }
         },
         menuOnRight: {
             type: Boolean,
-            description: "Whether menu should appear on the right"
+            default: false
         },
-        hasToggle: {
-            type: Boolean,
-            description: "Whether dropdown has arrow icon shown",
-            default: true
+        menuClass: {
+            type: [String, Object]
         }
     },
     data() {
@@ -81,11 +51,11 @@ export default {
         };
     },
     methods: {
-        toggleDropDown() {
+        toggleDropdown() {
             this.isOpen = !this.isOpen;
             this.$emit("change", this.isOpen);
         },
-        closeDropDown() {
+        closeDropdown() {
             this.isOpen = false;
             this.$emit("change", false);
         }

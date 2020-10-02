@@ -55,10 +55,7 @@
                                 v-slot="{ handleSubmit }"
                                 ref="formValidator"
                             >
-                                <b-form
-                                    role="form"
-                                    @submit.prevent="handleSubmit(onSubmit)"
-                                >
+                                <form @submit.prevent="handleSubmit(onSubmit)">
                                     <base-input
                                         alternative
                                         class="mb-3"
@@ -97,7 +94,7 @@
                                             Create account
                                         </button>
                                     </div>
-                                </b-form>
+                                </form>
                             </validation-observer>
                         </div>
                     </div>

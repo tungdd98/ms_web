@@ -12,7 +12,7 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = 'users';
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
 
 
     /**

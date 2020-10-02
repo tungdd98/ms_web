@@ -1,6 +1,6 @@
 <template>
     <div class="position-relative shadow-sm border rounded bg-white p-3">
-        <b-form @submit.prevent="updateProfile">
+        <form @submit.prevent="updateProfile">
             <h6 class="font-12 text-uppercase text-muted mb-4">
                 User information
             </h6>
@@ -18,7 +18,7 @@
                     <div class="col-lg-6">
                         <base-input
                             type="email"
-                            label="Email email"
+                            label="Email"
                             placeholder="Enter your email"
                             v-model="user.email"
                         >
@@ -83,7 +83,7 @@
                     Save change
                 </button>
             </div>
-        </b-form>
+        </form>
     </div>
 </template>
 <script>

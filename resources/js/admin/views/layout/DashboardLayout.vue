@@ -1,116 +1,145 @@
 <template>
     <div>
-        <side-bar>
+        <base-sidebar :class="{ active: isShowNav }" v-click-outside="closeNav">
             <template slot="links">
-                <sidebar-item
+                <base-sidebar-item
                     :link="{
-                        name: 'Dashboard',
-                        path: '/dashboard',
+                        title: 'Dashboard',
+                        to: '/dashboard',
                         icon: 'icon icon-home text-primary'
                     }"
                 >
-                </sidebar-item>
-
-                <sidebar-item
+                </base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Users',
-                        path: '/users',
+                        title: 'Users',
+                        to: '/users',
                         icon: 'icon icon-users text-danger'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Countries',
-                        path: '/countries',
+                        title: 'Countries',
+                        to: '/countries',
                         icon: 'icon icon-key text-info'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Locations',
-                        path: '/locations',
+                        title: 'Locations',
+                        to: '/locations',
                         icon: 'icon icon-paperclip text-primary'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Times Tour',
-                        path: '/time_tour',
+                        title: 'Times Tour',
+                        to: '/time_tour',
                         icon: 'icon icon-clock text-success'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Vehicle Tour',
-                        path: '/vehicle_tour',
+                        title: 'Vehicle Tour',
+                        to: '/vehicle_tour',
                         icon: 'icon icon-star text-danger'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Customer Type',
-                        path: '/customer_type',
+                        title: 'Customer Type',
+                        to: '/customer_type',
                         icon: 'icon icon-tool text-success'
                     }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
+                ></base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Tour',
-                        path: '/tours',
-                        icon: 'icon icon-share-2 text-success'
+                        title: 'Tours',
+                        icon: 'icon icon-image text-success'
                     }"
                 >
-                </sidebar-item>
-
-                <sidebar-item
+                    <template>
+                        <base-sidebar-item
+                            link-class="pl-5"
+                            :link="{
+                                title: 'List tour',
+                                to: '/tours',
+                                icon: 'icon icon-share-2 text-success'
+                            }"
+                        >
+                        </base-sidebar-item>
+                        <base-sidebar-item
+                            link-class="pl-5"
+                            :link="{
+                                title: 'Departure Day',
+                                to: '/departure_day',
+                                icon: 'icon icon-instagram text-danger'
+                            }"
+                        >
+                        </base-sidebar-item>
+                        <base-sidebar-item
+                            link-class="pl-5"
+                            :link="{
+                                title: 'Price Tour',
+                                to: '/price_tour',
+                                icon: 'icon icon-heart text-primary'
+                            }"
+                        ></base-sidebar-item>
+                    </template>
+                </base-sidebar-item>
+                <base-sidebar-item
                     :link="{
-                        name: 'Departure Day',
-                        path: '/departure_day',
-                        icon: 'icon icon-instagram text-danger'
-                    }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
-                    :link="{
-                        name: 'Price Tour',
-                        path: '/price_tour',
-                        icon: 'icon icon-heart text-primary'
-                    }"
-                >
-                </sidebar-item>
-
-                <sidebar-item
-                    :link="{
-                        name: 'User Profile',
-                        path: '/user_profile',
+                        title: 'User Profile',
+                        to: '/user_profile',
                         icon: 'icon icon-user-check text-warning'
                     }"
-                >
-                </sidebar-item>
+                ></base-sidebar-item>
             </template>
-        </side-bar>
-        <div class="main-content d-flex flex-column min-vh-100">
-            <div
-                class="position-relative pb-6 pt-5 pt-md-8 bg-gradient-success"
-            >
+        </base-sidebar>
+        <div class="ms-content d-flex flex-column min-vh-100">
+            <div class="position-relative pb-8 bg-gradient-success">
                 <div class="container-fluid">
-                    <dashboard-navbar></dashboard-navbar>
+                    <div
+                        class="flex-center justify-content-between justify-content-lg-end py-3"
+                    >
+                        <div
+                            class="cursor-pointer d-lg-none d-block"
+                            @click.stop="isShowNav = true"
+                        >
+                            <i class="icon icon-menu text-white font-22"></i>
+                        </div>
+                        <base-dropdown menu-on-right>
+                            <template v-slot:title-container @click.prevent>
+                                <div class="media align-items-center">
+                                    <base-thumbnail
+                                        path="users"
+                                        :thumbnail="userInfo.avatar"
+                                    ></base-thumbnail>
+                                    <div class="media-body">
+                                        <span
+                                            class="text-white font-weight-bold"
+                                            >{{ userInfo.name }}</span
+                                        >
+                                    </div>
+                                </div>
+                            </template>
+                            <template>
+                                <li class="dropdown-item">
+                                    <h5 class="text-overflow m-0">
+                                        Welcome!
+                                    </h5>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li class="dropdown-item" @click="onLogout">
+                                    <i class="icon icon-log-out"></i>
+                                    <span>Logout</span>
+                                </li>
+                            </template>
+                        </base-dropdown>
+                    </div>
                 </div>
             </div>
-            <div @click="$sidebar.displaySidebar(false)" class="flex-grow-1">
+            <div class="flex-grow-1">
                 <fade-transition
                     :duration="200"
                     origin="center top"
@@ -131,21 +160,55 @@
                 </div>
             </footer>
         </div>
+        <div :class="['ms-backdrop', { active: isShowNav }]"></div>
     </div>
 </template>
 <script>
-import DashboardNavbar from "./DashboardNavbar.vue";
+import BaseSidebar from "@/admin/components/sidebar/BaseSidebar";
+import BaseSidebarItem from "@/admin/components/sidebar/BaseSidebarItem";
+import BaseDropdown from "@/admin/components/BaseDropdown";
 import { FadeTransition } from "vue2-transitions";
+import { mapState, mapActions } from "vuex";
 
 export default {
     components: {
-        DashboardNavbar,
-        FadeTransition
+        FadeTransition,
+        BaseSidebar,
+        BaseSidebarItem,
+        BaseDropdown
+    },
+    computed: {
+        ...mapState({
+            userInfo: state => state.authenticate.userInfo
+        })
     },
     data() {
         return {
-            year: new Date().getFullYear()
+            year: new Date().getFullYear(),
+            isShowNav: false
         };
+    },
+    watch: {
+        $route(to, from, next) {
+            this.closeNav();
+        }
+    },
+    methods: {
+        ...mapActions({
+            logout: "authenticate/logout"
+        }),
+        closeNav() {
+            this.isShowNav = false;
+        },
+        async onLogout() {
+            const response = await this.logout();
+
+            if (response.success) {
+                this.$cookie.remove("ms_web");
+                this.$cookie.remove("user_ms_web");
+                this.$router.push("/login");
+            }
+        }
     }
 };
 </script>
