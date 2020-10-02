@@ -1,11 +1,10 @@
 // Polyfills for IE 11
-import "@/admin/polyfills";
+import "@/polyfills";
 
 // Global components
-import GlobalComponents from "./components";
-import GlobalDirectives from "./directives";
-import GlobalMixins from "./mixins";
-import SideBar from "@/admin/components/SidebarPlugin";
+import GlobalComponents from "../components";
+import GlobalDirectives from "../directives";
+import GlobalMixins from "../mixins";
 
 // Element ui
 import lang from "element-ui/lib/locale/lang/en";
@@ -13,7 +12,7 @@ import locale from "element-ui/lib/locale";
 locale.use(lang);
 
 // Bootstrap vue
-import BootstrapVuePlugin from "./bootstrap-vue";
+import { ModalPlugin } from "bootstrap-vue";
 
 // Vee validate
 import { configure } from "vee-validate";
@@ -32,8 +31,7 @@ export default {
     install(Vue) {
         Vue.use(GlobalComponents);
         Vue.use(GlobalDirectives);
-        Vue.use(SideBar);
-        Vue.use(BootstrapVuePlugin);
+        Vue.use(ModalPlugin);
         Vue.use(GlobalMixins);
         configure({
             classes: {

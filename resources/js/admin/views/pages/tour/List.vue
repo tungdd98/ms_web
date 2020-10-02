@@ -11,71 +11,26 @@
                     :vehicle-tour="vehicleTour"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="tours"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="tours"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Title" prop="title" width="250">
-                        <template v-slot="{ row }">
-                            <b-media no-body class="align-items-center">
-                                <base-thumbnail
-                                    path="tours"
-                                    :thumbnail="row.thumbnail"
-                                ></base-thumbnail>
-                                <b-media-body>
-                                    <span>{{ row.title }}</span>
-                                </b-media-body>
-                            </b-media>
-                        </template>
-                    </el-table-column>
-                    <el-table-column
-                        label="Departure"
-                        prop="departure_location_name"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        label="Destination"
-                        prop="destination_location_name"
-                    >
-                    </el-table-column>
-                    <el-table-column label="Time name" prop="time_name">
-                    </el-table-column>
-                    <el-table-column label="Vehicle name" prop="vehicle_name">
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
+                    <template v-slot:title="{ row }">
+                        <div class="media align-items-center">
+                            <base-thumbnail
+                                path="tours"
+                                :thumbnail="row.thumbnail"
+                            ></base-thumbnail>
+                            <div class="media-body">
+                                <span>{{ row.title }}</span>
                             </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                        </div>
+                    </template>
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
-                    <pagination
-                        :total="totalRecord"
-                        v-model="config.page"
-                        @change="onChangePage"
-                    ></pagination>
+                    <base-pagination :page-count="pageCount"></base-pagination>
                 </div>
             </div>
         </div>
@@ -91,29 +46,51 @@ export default {
     data() {
         return {
             tours: null,
-            locations: [],
-            timesTour: [],
-            vehicleTour: [],
+            locations: null,
+            timesTour: null,
+            vehicleTour: null,
             currentItem: null,
-            totalRecord: 0,
-            config: {
-                page: 1
-            }
+            pageCount: 0,
+            fields: [
+                {
+                    label: "Title",
+                    key: "title"
+                },
+                {
+                    label: "Departure",
+                    key: "departure_location_name"
+                },
+                {
+                    label: "Destination",
+                    key: "destination_location_name"
+                },
+                {
+                    label: "Time",
+                    key: "time_name"
+                },
+                {
+                    label: "Vehicle",
+                    key: "vehicle_name"
+                }
+            ]
         };
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable,
-            userInfo: state => state.authenticate.userInfo
+            loading: state => state.display.isLoadingTable
         })
     },
     async created() {
         await Promise.all([
-            this.fetchData(this.config),
+            this.fetchData(this.$route.query),
             this.fetchLocations(),
             this.fetchTimesTour(),
             this.fetchVehicleTour()
         ]);
+    },
+    async beforeRouteUpdate(to, from, next) {
+        await this.fetchData(to.query);
+        next();
     },
     methods: {
         ...mapActions({
@@ -130,7 +107,7 @@ export default {
 
             if (data) {
                 this.tours = data.tours || [];
-                this.totalRecord = data.total;
+                this.pageCount = data.last_page;
             }
         },
         async fetchLocations() {
@@ -168,7 +145,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                await this.fetchData(this.$route.query);
             }
         },
         async onDelete(id) {
@@ -179,12 +156,9 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    await this.fetchData(this.$route.query);
                 }
             }
-        },
-        async onChangePage(page) {
-            await this.fetchData({ page });
         },
         setCurrentItem(value) {
             this.currentItem = value;

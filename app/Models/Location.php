@@ -9,7 +9,7 @@ class Location extends Model
     protected $table = 'locations';
     public $timestamps = false;
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
 
     /**
      * tours

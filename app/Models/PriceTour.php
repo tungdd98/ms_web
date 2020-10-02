@@ -12,7 +12,7 @@ class PriceTour extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
 
     /**
      * tours

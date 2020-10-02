@@ -13,7 +13,7 @@
                         ref="observer"
                         v-slot="{ handleSubmit }"
                     >
-                        <b-form
+                        <form
                             role="form"
                             ref="form"
                             @submit.stop.prevent="handleSubmit(onSubmit)"
@@ -36,7 +36,7 @@
                                     Save
                                 </button>
                             </div>
-                        </b-form>
+                        </form>
                     </validation-observer>
                 </template>
             </div>

@@ -1,5 +1,5 @@
-import notify from "@/admin/mixins/notify";
-import confirm from "@/admin/mixins/confirm";
+import notify from "./notify";
+import confirm from "./confirm";
 
 const GlobalMixins = {
     install(Vue) {

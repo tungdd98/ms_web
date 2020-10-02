@@ -9,56 +9,21 @@
                     :tours="tours"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="departureDay"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="departureDay"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Tour" prop="tour_name">
-                    </el-table-column>
-                    <el-table-column label="Start day" prop="start_day">
-                        <template v-slot="{ row }">
-                            <span>{{ row.start_day | formatDate }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Start time" prop="start_time">
-                        <template v-slot="{ row }">
-                            <span>{{ row.start_time | formatTime }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                    <template v-slot:start_day="{ row }">
+                        <span>{{ row.start_day | formatDate }}</span>
+                    </template>
+                    <template v-slot:start_time="{ row }">
+                        <span>{{ row.start_day | formatTime }}</span>
+                    </template>
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
-                    <pagination
-                        :total="totalRecord"
-                        v-model="config.page"
-                        @change="onChangePage"
-                    ></pagination>
+                    <base-pagination :page-count="pageCount"></base-pagination>
                 </div>
             </div>
         </div>
@@ -74,22 +39,39 @@ export default {
     data() {
         return {
             departureDay: null,
-            tours: [],
+            tours: null,
             currentItem: null,
-            totalRecord: 0,
-            config: {
-                page: 1
-            }
+            pageCount: 0,
+            fields: [
+                {
+                    label: "Tour name",
+                    key: "tour_name"
+                },
+                {
+                    label: "Start day",
+                    key: "start_day"
+                },
+                {
+                    label: "Start time",
+                    key: "start_time"
+                }
+            ]
         };
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable,
-            userInfo: state => state.authenticate.userInfo
+            loading: state => state.display.isLoadingTable
         })
     },
     async created() {
-        await Promise.all([this.fetchData(this.config), this.fetchTours()]);
+        await Promise.all([
+            this.fetchData(this.$route.query),
+            this.fetchTours()
+        ]);
+    },
+    async beforeRouteUpdate(to, from, next) {
+        await this.fetchData(to.query);
+        next();
     },
     methods: {
         ...mapActions({
@@ -104,7 +86,7 @@ export default {
 
             if (data) {
                 this.departureDay = data.departure_day || [];
-                this.totalRecord = data.total;
+                this.pageCount = data.last_page;
             }
         },
         async fetchTours() {
@@ -128,7 +110,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                await this.fetchData(this.$route.query);
             }
         },
         async onDelete(id) {
@@ -139,12 +121,9 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    await this.fetchData(this.$route.query);
                 }
             }
-        },
-        async onChangePage(page) {
-            await this.fetchData({ page });
         },
         setCurrentItem(value) {
             this.currentItem = value;

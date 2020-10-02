@@ -9,7 +9,7 @@ class DepartureDay extends Model
     protected $table = 'departure_day';
     public $timestamps = false;
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
 
     /**
      * The attributes that are mass assignable.

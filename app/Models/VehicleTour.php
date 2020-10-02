@@ -8,6 +8,7 @@ class VehicleTour extends Model
 {
     protected $table = 'vehicle_tour';
     public $timestamps = false;
+    const PER_PAGE = 5;
 
     /**
      * tours
@@ -18,8 +19,6 @@ class VehicleTour extends Model
     {
         return $this->hasOne('App\Models\Tour');
     }
-
-    const PER_PAGE = 10;
 
     /**
      * The attributes that are mass assignable.

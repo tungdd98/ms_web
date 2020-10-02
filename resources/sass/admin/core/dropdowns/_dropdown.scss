@@ -7,7 +7,7 @@
 
 .dropdown-menu {
     min-width: 12rem;
-
+    display: block;
     .dropdown-item {
         padding: 0.5rem 1rem;
         font-size: $font-size-sm;
@@ -48,19 +48,4 @@
             }
         }
     }
-}
-
-.dropdown-menu-sm {
-    min-width: 100px;
-    border: $border-radius-lg;
-}
-
-.dropdown-menu-lg {
-    min-width: 260px;
-    border-radius: $border-radius-lg;
-}
-
-.dropdown-menu-xl {
-    min-width: 450px;
-    border-radius: $border-radius-lg;
 }

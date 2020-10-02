@@ -1,4 +1,4 @@
-import clickOutside from "@/admin/directives/click-ouside.js";
+import clickOutside from "./click-ouside.js";
 
 const GlobalDirectives = {
     install(Vue) {

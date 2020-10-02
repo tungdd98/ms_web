@@ -165,11 +165,7 @@ router.beforeEach((to, from, next) => {
                 query: { redirect: to.fullPath }
             });
         } else {
-            if (userInfo && userInfo.permission === 1) {
-                next();
-            } else {
-                window.location.href = "http://localhost:8000";
-            }
+            next();
         }
     } else {
         if (accessToken) {

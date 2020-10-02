@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Tour;
+use Carbon\Carbon;
 
 class TourService implements TourServiceInterface
 {
@@ -36,6 +37,14 @@ class TourService implements TourServiceInterface
     {
         $tours = Tour::with('locationDeparture', 'locationDestination', 'timeTour', 'vehicleTour', 'priceTour')
             ->select('tours.*');
+
+        // $tours = Tour::with(['locationDeparture' => function ($query) {
+        //     $query->where();
+        // }])
+
+        // $tours->whereHas('timeTour', function ($query) {
+        //     $query->where('startday' , '>=' , Carbon::now());
+        // });
 
         if (isset($dataRequest['type'])) {
             $tours->join('locations', 'tours.destination_location_id', '=', 'locations.id')

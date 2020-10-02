@@ -8,57 +8,24 @@
                     :item="currentItem"
                     @change="setCurrentItem"
                 ></edit>
-                <el-table
-                    class="table-responsive table w-100"
-                    header-row-class-name="thead-light"
-                    :data="countries"
-                    v-loading="loading"
-                    element-loading-text="Loading..."
-                    element-loading-spinner="icon icon-settings circular"
+                <base-table
+                    :items="countries"
+                    :fields="fields"
+                    @delete="onDelete"
+                    @show="setCurrentItem"
                 >
-                    <el-table-column label="Country" prop="title">
-                    </el-table-column>
-                    <el-table-column label="Place" prop="is_nation">
-                        <template v-slot="{ row }">
-                            <span>
-                                {{
-                                    row.is_nation === 0
-                                        ? "Trong nước"
-                                        : "Ngoài nước"
-                                }}
-                            </span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="Actions" width="120">
-                        <template v-slot="{ row }">
-                            <div class="d-flex font-20">
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="setCurrentItem(row)"
-                                >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
-                                </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="onDelete(row.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+                    <template v-slot:is_nation="{ row }">
+                        <span>
+                            {{
+                                row.is_nation === 0
+                                    ? "Trong nước"
+                                    : "Ngoài nước"
+                            }}
+                        </span>
+                    </template>
+                </base-table>
                 <div class="py-4 d-flex justify-content-end">
-                    <pagination
-                        :total="totalRecord"
-                        v-model="config.page"
-                        @change="onChangePage"
-                    ></pagination>
+                    <base-pagination :page-count="pageCount"></base-pagination>
                 </div>
             </div>
         </div>
@@ -75,20 +42,30 @@ export default {
         return {
             countries: null,
             currentItem: null,
-            totalRecord: 0,
-            config: {
-                page: 1
-            }
+            pageCount: 0,
+            fields: [
+                {
+                    label: "Country",
+                    key: "title"
+                },
+                {
+                    label: "Place",
+                    key: "is_nation"
+                }
+            ]
         };
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable,
-            userInfo: state => state.authenticate.userInfo
+            loading: state => state.display.isLoadingTable
         })
     },
     async created() {
-        await this.fetchData(this.config);
+        await this.fetchData(this.$route.query);
+    },
+    async beforeRouteUpdate(to, from, next) {
+        await this.fetchData(to.query);
+        next();
     },
     methods: {
         ...mapActions({
@@ -102,7 +79,7 @@ export default {
 
             if (data) {
                 this.countries = data.countries || [];
-                this.totalRecord = data.total;
+                this.pageCount = data.last_page;
             }
         },
         async onSubmit(data) {
@@ -119,7 +96,7 @@ export default {
 
             if (res.success) {
                 this.notify(res.message);
-                this.fetchData();
+                await this.fetchData(this.$route.query);
             }
         },
         async onDelete(id) {
@@ -130,12 +107,9 @@ export default {
 
                 if (res.success) {
                     this.notify(res.message);
-                    this.fetchData();
+                    await this.fetchData(this.$route.query);
                 }
             }
-        },
-        async onChangePage(page) {
-            await this.fetchData({ page });
         },
         setCurrentItem(value) {
             this.currentItem = value;

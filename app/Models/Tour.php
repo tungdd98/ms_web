@@ -8,7 +8,7 @@ class Tour extends Model
 {
     protected $table = 'tours';
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
     const LIMIT = 10;
 
     /**
