@@ -14,33 +14,24 @@
                 <validation-observer ref="observer" v-slot="{ handleSubmit }">
                     <form @submit.stop.prevent="handleSubmit(onSubmit)">
                         <base-input label="Tour" name="tour" rules="required">
-                            <select class="form-control" v-model="form.tour_id">
-                                <option value="">-- Select --</option>
-                                <option
-                                    :value="tour.id"
-                                    v-for="tour in tours"
-                                    :key="tour.id"
-                                    >{{ tour.title }}</option
-                                >
-                            </select>
+                            <base-select
+                                v-model="form.tour_id"
+                                :options="tours"
+                                default="-- Select tour --"
+                            >
+                            </base-select>
                         </base-input>
                         <base-input
                             label="Customer type"
                             name="customer type"
                             rules="required"
                         >
-                            <select
-                                class="form-control"
+                            <base-select
                                 v-model="form.customer_type_id"
+                                :options="customerType"
+                                default="-- Select customer type --"
                             >
-                                <option value="">-- Select --</option>
-                                <option
-                                    :value="customer.id"
-                                    v-for="customer in customerType"
-                                    :key="customer.id"
-                                    >{{ customer.title }}</option
-                                >
-                            </select>
+                            </base-select>
                         </base-input>
                         <base-input
                             alternative

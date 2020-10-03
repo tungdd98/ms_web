@@ -24,17 +24,13 @@
                         >
                         </base-input>
                         <base-input label="Place">
-                            <select
-                                class="form-control"
+                            <base-select
                                 v-model="form.is_nation"
+                                :options="NATIONS_STATUS"
+                                option-label="label"
+                                option-value="value"
                             >
-                                <option
-                                    :value="place.value"
-                                    v-for="place in NATIONS_STATUS"
-                                    :key="place.value"
-                                    >{{ place.label }}</option
-                                >
-                            </select>
+                            </base-select>
                         </base-input>
                         <div class="d-flex justify-content-end my-2">
                             <button

@@ -43,28 +43,22 @@
                         >
                         </base-input>
                         <base-input label="Nation">
-                            <select class="form-control" v-model="form.nation">
-                                <option value>-- Select --</option>
-                                <option
-                                    :value="nation"
-                                    v-for="(nation, index) in NATIONS"
-                                    :key="index"
-                                    >{{ nation }}</option
-                                >
-                            </select>
+                            <base-select
+                                v-model="form.nation"
+                                :options="NATIONS"
+                                option-label="label"
+                                option-value="label"
+                            >
+                            </base-select>
                         </base-input>
                         <base-input label="Permission">
-                            <select
-                                class="form-control"
+                            <base-select
                                 v-model="form.permission"
+                                :options="PERMISSIONS"
+                                option-label="label"
+                                option-value="value"
                             >
-                                <option
-                                    :value="permission.value"
-                                    v-for="permission in PERMISSIONS"
-                                    :key="permission.value"
-                                    >{{ permission.label }}</option
-                                >
-                            </select>
+                            </base-select>
                         </base-input>
                         <base-input
                             label="Password"

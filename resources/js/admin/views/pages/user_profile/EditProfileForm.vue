@@ -37,15 +37,13 @@
                     </div>
                     <div class="col-lg-6">
                         <base-input label="Nation">
-                            <select class="form-control" v-model="user.nation">
-                                <option value>-- Select --</option>
-                                <option
-                                    :value="nation"
-                                    v-for="(nation, index) in NATIONS"
-                                    :key="index"
-                                    >{{ nation }}</option
-                                >
-                            </select>
+                            <base-select
+                                v-model="user.nation"
+                                :options="NATIONS"
+                                option-label="label"
+                                option-value="value"
+                            >
+                            </base-select>
                         </base-input>
                     </div>
                 </div>
