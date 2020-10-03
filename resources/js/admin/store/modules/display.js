@@ -1,5 +1,3 @@
-import apis from "@/admin/utils/apis";
-
 const state = {
     isLoadingTable: false
 };

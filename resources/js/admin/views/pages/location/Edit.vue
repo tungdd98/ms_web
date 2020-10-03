@@ -1,87 +1,88 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <button class="btn btn-outline-primary" @click="isVisible = true">
+            <button
+                class="btn btn-outline-primary"
+                @click.stop="isVisible = true"
+            >
                 Add new
             </button>
         </div>
-        <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
+        <base-modal v-model="isVisible" hide-footer size="xl">
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <div class="p-4">
-                <template>
-                    <validation-observer
-                        ref="observer"
-                        v-slot="{ handleSubmit }"
-                    >
-                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
-                            <base-input
-                                alternative
-                                v-model="form.title"
-                                name="title"
-                                class="mb-3"
-                                placeholder="Enter title"
-                                rules="required"
-                                label="Title"
+            <template>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.stop.prevent="handleSubmit(onSubmit)">
+                        <base-input
+                            alternative
+                            v-model="form.title"
+                            name="title"
+                            class="mb-3"
+                            placeholder="Enter title"
+                            rules="required"
+                            label="Title"
+                        >
+                        </base-input>
+                        <base-input label="Country">
+                            <select
+                                class="form-control"
+                                v-model="form.country_id"
                             >
-                            </base-input>
-                            <base-input label="Country">
-                                <select
-                                    class="form-control"
-                                    v-model="form.country_id"
+                                <option value="">-- Select --</option>
+                                <option
+                                    :value="country.id"
+                                    v-for="country in countries"
+                                    :key="country.id"
+                                    >{{ country.title }}</option
                                 >
-                                    <option value="">-- Select --</option>
-                                    <option
-                                        :value="country.id"
-                                        v-for="country in countries"
-                                        :key="country.id"
-                                        >{{ country.title }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input label="Is start">
-                                <select
-                                    class="form-control"
-                                    v-model="form.is_start"
+                            </select>
+                        </base-input>
+                        <base-input label="Is start">
+                            <select
+                                class="form-control"
+                                v-model="form.is_start"
+                            >
+                                <option
+                                    :value="item.value"
+                                    v-for="item in STARTS_STATUS"
+                                    :key="item.value"
+                                    >{{ item.label }}</option
                                 >
-                                    <option
-                                        :value="item.value"
-                                        v-for="item in STARTS_STATUS"
-                                        :key="item.value"
-                                        >{{ item.label }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input label="Description">
-                                <textarea
-                                    class="form-control"
-                                    rows="3"
-                                    v-model="form.description"
-                                ></textarea>
-                            </base-input>
-                            <base-upload-avatar
-                                label="Thumbnail"
-                                @onUpload="onUpload"
-                                :image="image"
-                            ></base-upload-avatar>
-                            <div class="d-flex justify-content-end my-2">
-                                <button class="btn btn-white" @click="onReset">
-                                    Close
-                                </button>
-                                <button class="btn btn-primary" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </validation-observer>
-                </template>
-            </div>
-        </modal>
+                            </select>
+                        </base-input>
+                        <base-input label="Description">
+                            <textarea
+                                class="form-control"
+                                rows="3"
+                                v-model="form.description"
+                            ></textarea>
+                        </base-input>
+                        <base-upload-avatar
+                            label="Thumbnail"
+                            @onUpload="onUpload"
+                            :image="image"
+                        ></base-upload-avatar>
+                        <div class="d-flex justify-content-end my-2">
+                            <button
+                                class="btn btn-white"
+                                @click.prevent="onReset"
+                            >
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </validation-observer>
+            </template>
+        </base-modal>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { STARTS_STATUS } from "@/admin/utils/constants";
+import { STARTS_STATUS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object },

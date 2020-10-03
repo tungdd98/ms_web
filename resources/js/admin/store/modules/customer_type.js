@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getCustomerType({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.customerType.get, {
+            const res = await this.$axios.get(apis.auth.customerType.get, {
                 params
             });
 
@@ -20,7 +20,10 @@ const actions = {
     },
     async addCustomerType({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.customerType.create, data);
+            const res = await this.$axios.post(
+                apis.auth.customerType.create,
+                data
+            );
 
             return {
                 success: res.data,
@@ -36,7 +39,7 @@ const actions = {
     async deleteCustomerType({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.customerType.delete.replace(/:id/, id)
+                apis.auth.customerType.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +56,7 @@ const actions = {
     async updateCustomerType({ commit }, { id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.customerType.update.replace(/:id/, id),
+                apis.auth.customerType.update.replace(/:id/, id),
                 data
             );
 

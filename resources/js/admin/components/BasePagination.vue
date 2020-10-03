@@ -40,7 +40,7 @@ export default {
                 params,
                 query: {
                     ...query,
-                    page
+                    page: page === 1 ? undefined : page
                 }
             });
         }

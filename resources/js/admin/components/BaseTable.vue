@@ -9,44 +9,48 @@
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
-            <tbody v-if="items && items.length">
-                <tr v-for="(item, index) in items" :key="index">
-                    <td v-for="field in fields" :key="field.key">
-                        <slot :name="field.key" :row="item">
-                            {{ item[field.key] }}
-                        </slot>
-                    </td>
-                    <td style="width: 200px">
-                        <slot name="actions" :row="item">
-                            <div class="d-flex font-20 justify-content-center">
+            <template v-if="items">
+                <tbody v-if="items.length">
+                    <tr v-for="(item, index) in items" :key="index">
+                        <td v-for="field in fields" :key="field.key">
+                            <slot :name="field.key" :row="item">
+                                {{ item[field.key] }}
+                            </slot>
+                        </td>
+                        <td style="width: 200px">
+                            <slot name="actions" :row="item">
                                 <div
-                                    class="cursor-pointer px-1"
-                                    @click="$emit('show', item)"
+                                    class="d-flex font-20 justify-content-center"
                                 >
-                                    <span
-                                        class="icon icon-edit text-success"
-                                    ></span>
+                                    <div
+                                        class="cursor-pointer px-1"
+                                        @click.stop="$emit('show', item)"
+                                    >
+                                        <span
+                                            class="icon icon-edit text-success"
+                                        ></span>
+                                    </div>
+                                    <div
+                                        class="cursor-pointer px-1"
+                                        @click="$emit('delete', item.id)"
+                                    >
+                                        <span
+                                            class="icon icon-trash-2 text-danger"
+                                        ></span>
+                                    </div>
                                 </div>
-                                <div
-                                    class="cursor-pointer px-1"
-                                    @click="$emit('delete', item.id)"
-                                >
-                                    <span
-                                        class="icon icon-trash-2 text-danger"
-                                    ></span>
-                                </div>
-                            </div>
-                        </slot>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody v-else>
-                <tr class="no-effect">
-                    <td :colspan="fields.length + 1" class="text-center">
-                        No data
-                    </td>
-                </tr>
-            </tbody>
+                            </slot>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody v-else>
+                    <tr class="no-effect">
+                        <td :colspan="fields.length + 1" class="text-center">
+                            No data
+                        </td>
+                    </tr>
+                </tbody>
+            </template>
         </table>
         <base-loading></base-loading>
     </div>

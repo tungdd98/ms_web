@@ -1,29 +1,23 @@
 import Vue from "vue";
-import DashboardPlugin from "./plugins";
+import Plugins from "./plugins";
 import App from "./views/App.vue";
 
 // router
 import router from "./router";
 
-// plugin
-Vue.use(DashboardPlugin);
+// plugins
+Vue.use(Plugins);
 
 // store
 import store from "./store";
 
 // axios
-import axios from "./utils/axios";
+import axios from "./plugins/axios";
 Vue.prototype.$axios = axios;
 
 // cookie
 import cookie from "js-cookie";
 Vue.prototype.$cookie = cookie;
-
-// filters
-import { formatDate, formatTime, formatMoney } from "./utils/filters";
-Vue.filter("formatDate", formatDate);
-Vue.filter("formatTime", formatTime);
-Vue.filter("formatMoney", formatMoney);
 
 new Vue({
     el: "#admin",

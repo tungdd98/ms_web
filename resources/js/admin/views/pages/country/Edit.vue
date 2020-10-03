@@ -1,61 +1,62 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <button class="btn btn-outline-primary" @click="isVisible = true">
+            <button
+                class="btn btn-outline-primary"
+                @click.stop="isVisible = true"
+            >
                 Add new
             </button>
         </div>
-        <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
+        <base-modal v-model="isVisible" hide-footer size="xl">
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <div class="p-4">
-                <template>
-                    <validation-observer
-                        ref="observer"
-                        v-slot="{ handleSubmit }"
-                    >
-                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
-                            <base-input
-                                alternative
-                                v-model="form.title"
-                                name="title"
-                                class="mb-3"
-                                placeholder="Enter title"
-                                rules="required"
-                                label="Title"
+            <template>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.stop.prevent="handleSubmit(onSubmit)">
+                        <base-input
+                            alternative
+                            v-model="form.title"
+                            name="title"
+                            class="mb-3"
+                            placeholder="Enter title"
+                            rules="required"
+                            label="Title"
+                        >
+                        </base-input>
+                        <base-input label="Place">
+                            <select
+                                class="form-control"
+                                v-model="form.is_nation"
                             >
-                            </base-input>
-                            <base-input label="Place">
-                                <select
-                                    class="form-control"
-                                    v-model="form.is_nation"
+                                <option
+                                    :value="place.value"
+                                    v-for="place in NATIONS_STATUS"
+                                    :key="place.value"
+                                    >{{ place.label }}</option
                                 >
-                                    <option
-                                        :value="place.value"
-                                        v-for="place in NATIONS_STATUS"
-                                        :key="place.value"
-                                        >{{ place.label }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <div class="d-flex justify-content-end my-2">
-                                <button class="btn btn-white" @click="onReset">
-                                    Close
-                                </button>
-                                <button class="btn btn-primary" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </validation-observer>
-                </template>
-            </div>
-        </modal>
+                            </select>
+                        </base-input>
+                        <div class="d-flex justify-content-end my-2">
+                            <button
+                                class="btn btn-white"
+                                @click.prevent="onReset"
+                            >
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </validation-observer>
+            </template>
+        </base-modal>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { NATIONS_STATUS } from "@/admin/utils/constants";
+import { NATIONS_STATUS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object }

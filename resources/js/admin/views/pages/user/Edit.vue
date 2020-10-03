@@ -1,118 +1,116 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <button class="btn btn-outline-primary" @click="isVisible = true">
+            <button
+                class="btn btn-outline-primary"
+                @click.stop="isVisible = true"
+            >
                 Add new
             </button>
         </div>
-        <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
+        <base-modal v-model="isVisible" hide-footer size="xl">
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <div class="p-4">
-                <template>
-                    <validation-observer
-                        ref="observer"
-                        v-slot="{ handleSubmit }"
-                    >
-                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
-                            <base-input
-                                alternative
-                                v-model="form.name"
-                                name="name"
-                                class="mb-3"
-                                placeholder="Enter name"
-                                rules="required"
-                                label="Name"
-                            >
-                            </base-input>
-                            <base-input
-                                alternative
-                                v-model="form.email"
-                                name="email"
-                                class="mb-3"
-                                placeholder="Enter email"
-                                rules="required|email"
-                                label="Email"
-                            >
-                            </base-input>
-                            <base-input
-                                alternative
-                                v-model="form.phone"
-                                name="phone"
-                                class="mb-3"
-                                placeholder="Enter phone"
-                                label="Phone"
-                            >
-                            </base-input>
-                            <base-input label="Nation">
-                                <select
-                                    class="form-control"
-                                    v-model="form.nation"
+            <template>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.stop.prevent="handleSubmit(onSubmit)">
+                        <base-input
+                            alternative
+                            v-model="form.name"
+                            name="name"
+                            class="mb-3"
+                            placeholder="Enter name"
+                            rules="required"
+                            label="Name"
+                        >
+                        </base-input>
+                        <base-input
+                            alternative
+                            v-model="form.email"
+                            name="email"
+                            class="mb-3"
+                            placeholder="Enter email"
+                            rules="required|email"
+                            label="Email"
+                        >
+                        </base-input>
+                        <base-input
+                            alternative
+                            v-model="form.phone"
+                            name="phone"
+                            class="mb-3"
+                            placeholder="Enter phone"
+                            label="Phone"
+                        >
+                        </base-input>
+                        <base-input label="Nation">
+                            <select class="form-control" v-model="form.nation">
+                                <option value>-- Select --</option>
+                                <option
+                                    :value="nation"
+                                    v-for="(nation, index) in NATIONS"
+                                    :key="index"
+                                    >{{ nation }}</option
                                 >
-                                    <option value>-- Select --</option>
-                                    <option
-                                        :value="nation"
-                                        v-for="(nation, index) in NATIONS"
-                                        :key="index"
-                                        >{{ nation }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input label="Permission">
-                                <select
-                                    class="form-control"
-                                    v-model="form.permission"
-                                >
-                                    <option
-                                        :value="permission.value"
-                                        v-for="permission in PERMISSIONS"
-                                        :key="permission.value"
-                                        >{{ permission.label }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input
-                                label="Password"
-                                alternative
-                                class="mb-3"
-                                placeholder="Password"
-                                type="password"
-                                name="Password"
-                                :rules="{ required: true, min: 6 }"
-                                :disabled="item ? true : false"
-                                v-model="form.password"
+                            </select>
+                        </base-input>
+                        <base-input label="Permission">
+                            <select
+                                class="form-control"
+                                v-model="form.permission"
                             >
-                            </base-input>
-                            <base-input label="Address">
-                                <textarea
-                                    class="form-control"
-                                    rows="3"
-                                    v-model="form.address"
-                                ></textarea>
-                            </base-input>
-                            <base-upload-avatar
-                                label="Avatar"
-                                @onUpload="onUpload"
-                                :image="thumbnail"
-                            ></base-upload-avatar>
-                            <div class="d-flex justify-content-end my-2">
-                                <button class="btn btn-white" @click="onReset">
-                                    Close
-                                </button>
-                                <button class="btn btn-primary" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </validation-observer>
-                </template>
-            </div>
-        </modal>
+                                <option
+                                    :value="permission.value"
+                                    v-for="permission in PERMISSIONS"
+                                    :key="permission.value"
+                                    >{{ permission.label }}</option
+                                >
+                            </select>
+                        </base-input>
+                        <base-input
+                            label="Password"
+                            alternative
+                            class="mb-3"
+                            placeholder="Password"
+                            type="password"
+                            name="Password"
+                            :rules="{ required: true, min: 6 }"
+                            :disabled="item ? true : false"
+                            v-model="form.password"
+                        >
+                        </base-input>
+                        <base-input label="Address">
+                            <textarea
+                                class="form-control"
+                                rows="3"
+                                v-model="form.address"
+                            ></textarea>
+                        </base-input>
+                        <base-upload-avatar
+                            label="Avatar"
+                            @onUpload="onUpload"
+                            :image="thumbnail"
+                        ></base-upload-avatar>
+                        <div class="d-flex justify-content-end my-2">
+                            <button
+                                class="btn btn-white"
+                                @click.prevent="onReset"
+                            >
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </validation-observer>
+            </template>
+        </base-modal>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { NATIONS, PERMISSIONS } from "@/admin/utils/constants";
+import { NATIONS, PERMISSIONS } from "@/utils/constants";
 export default {
     props: {
         item: { type: Object }

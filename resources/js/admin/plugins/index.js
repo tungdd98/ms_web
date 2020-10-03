@@ -1,20 +1,24 @@
-// Polyfills for IE 11
-import "@/polyfills";
+// polyfills for IE 11
+import "@/utils/polyfills";
 
-// Global components
+// directives
+import clickOutside from "@/utils/click-ouside";
+
+// mixins
+import { confirm, notify } from "@/utils/vue-simple-alert";
+
+// components
 import GlobalComponents from "../components";
-import GlobalDirectives from "../directives";
-import GlobalMixins from "../mixins";
 
-// Element ui
+// filters
+import { formatDate, formatTime, formatMoney } from "@/utils/filters";
+
+// element ui
 import lang from "element-ui/lib/locale/lang/en";
 import locale from "element-ui/lib/locale";
 locale.use(lang);
 
-// Bootstrap vue
-import { ModalPlugin } from "bootstrap-vue";
-
-// Vee validate
+// vee validate
 import { configure } from "vee-validate";
 import { extend } from "vee-validate";
 import * as rules from "vee-validate/dist/rules";
@@ -30,9 +34,16 @@ Object.keys(rules).forEach(rule => {
 export default {
     install(Vue) {
         Vue.use(GlobalComponents);
-        Vue.use(GlobalDirectives);
-        Vue.use(ModalPlugin);
-        Vue.use(GlobalMixins);
+        Vue.directive("click-outside", clickOutside);
+        Vue.mixin({
+            methods: {
+                notify,
+                confirm
+            }
+        });
+        Vue.filter("formatDate", formatDate);
+        Vue.filter("formatTime", formatTime);
+        Vue.filter("formatMoney", formatMoney);
         configure({
             classes: {
                 valid: "is-valid",

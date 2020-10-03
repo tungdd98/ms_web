@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getPriceTour({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.priceTour.get, {
+            const res = await this.$axios.get(apis.auth.priceTour.get, {
                 params
             });
 
@@ -20,7 +20,10 @@ const actions = {
     },
     async addPriceTour({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.priceTour.create, data);
+            const res = await this.$axios.post(
+                apis.auth.priceTour.create,
+                data
+            );
 
             return {
                 success: res.data,
@@ -36,7 +39,7 @@ const actions = {
     async deletePriceTour({ commit }, { tour_id, customer_type_id }) {
         try {
             const res = await this.$axios.delete(
-                apis.priceTour.delete
+                apis.auth.priceTour.delete
                     .replace(/:tour_id/, tour_id)
                     .replace(/:customer_type_id/, customer_type_id)
             );
@@ -55,7 +58,7 @@ const actions = {
     async updatePriceTour({ commit }, { tour_id, customer_type_id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.priceTour.update
+                apis.auth.priceTour.update
                     .replace(/:tour_id/, tour_id)
                     .replace(/:customer_type_id/, customer_type_id),
                 data

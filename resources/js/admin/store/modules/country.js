@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getCountries({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.countries.get, {
+            const res = await this.$axios.get(apis.auth.countries.get, {
                 params
             });
 
@@ -20,7 +20,10 @@ const actions = {
     },
     async addCountry({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.countries.create, data);
+            const res = await this.$axios.post(
+                apis.auth.countries.create,
+                data
+            );
 
             return {
                 success: res.data,
@@ -36,7 +39,7 @@ const actions = {
     async deleteCountry({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.countries.delete.replace(/:id/, id)
+                apis.auth.countries.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +56,7 @@ const actions = {
     async updateCountry({ commit }, { id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.countries.update.replace(/:id/, id),
+                apis.auth.countries.update.replace(/:id/, id),
                 data
             );
 

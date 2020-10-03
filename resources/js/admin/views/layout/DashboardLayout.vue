@@ -110,7 +110,10 @@
                         </div>
                         <base-dropdown menu-on-right>
                             <template v-slot:title-container @click.prevent>
-                                <div class="media align-items-center">
+                                <div
+                                    class="media align-items-center"
+                                    v-if="userInfo"
+                                >
                                     <base-thumbnail
                                         path="users"
                                         :thumbnail="userInfo.avatar"
