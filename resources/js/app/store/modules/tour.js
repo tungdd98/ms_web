@@ -1,4 +1,4 @@
-import apis from "@/app/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 

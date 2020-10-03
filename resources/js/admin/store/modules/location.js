@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getLocations({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.locations.get, {
+            const res = await this.$axios.get(apis.auth.locations.get, {
                 params
             });
 
@@ -20,7 +20,10 @@ const actions = {
     },
     async addLocation({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.locations.create, data);
+            const res = await this.$axios.post(
+                apis.auth.locations.create,
+                data
+            );
 
             return {
                 success: res.data,
@@ -36,7 +39,7 @@ const actions = {
     async deleteLocation({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.locations.delete.replace(/:id/, id)
+                apis.auth.locations.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +56,7 @@ const actions = {
     async updateLocation({ commit }, { id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.locations.update.replace(/:id/, id),
+                apis.auth.locations.update.replace(/:id/, id),
                 data
             );
 

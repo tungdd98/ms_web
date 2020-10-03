@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {
     accessToken: null,
@@ -26,7 +26,7 @@ const mutations = {
 const actions = {
     async login({ commit }, { email, password, remember }) {
         try {
-            const res = await this.$axios.post(apis.auth.login, {
+            const res = await this.$axios.post(apis.login, {
                 email,
                 password,
                 remember
@@ -48,7 +48,7 @@ const actions = {
     },
     async logout({ commit }) {
         try {
-            await this.$axios.post(apis.auth.logout);
+            await this.$axios.post(apis.logout);
             commit("setAccessToken", null);
             commit("setUserInfo", null);
 
@@ -64,7 +64,7 @@ const actions = {
     },
     async register({ commit }, { name, email, password }) {
         try {
-            const res = await this.$axios.post(apis.auth.register, {
+            const res = await this.$axios.post(apis.register, {
                 name,
                 email,
                 password

@@ -1,70 +1,64 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <button class="btn btn-outline-primary" @click="isVisible = true">
+            <button
+                class="btn btn-outline-primary"
+                @click.stop="isVisible = true"
+            >
                 Add new
             </button>
         </div>
-        <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
+        <base-modal v-model="isVisible" hide-footer size="xl">
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <div class="p-4">
-                <template>
-                    <validation-observer
-                        ref="observer"
-                        v-slot="{ handleSubmit }"
-                    >
-                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
-                            <base-input
-                                label="Tour"
-                                name="tour"
-                                rules="required"
-                            >
-                                <select
-                                    class="form-control"
-                                    v-model="form.tour_id"
+            <template>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.stop.prevent="handleSubmit(onSubmit)">
+                        <base-input label="Tour" name="tour" rules="required">
+                            <select class="form-control" v-model="form.tour_id">
+                                <option value="">-- Select --</option>
+                                <option
+                                    :value="tour.id"
+                                    v-for="tour in tours"
+                                    :key="tour.id"
+                                    >{{ tour.title }}</option
                                 >
-                                    <option value="">-- Select --</option>
-                                    <option
-                                        :value="tour.id"
-                                        v-for="tour in tours"
-                                        :key="tour.id"
-                                        >{{ tour.title }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input
-                                alternative
-                                v-model="form.start_day"
-                                name="start day"
-                                class="mb-3"
-                                rules="required"
-                                label="Start day"
-                                type="date"
+                            </select>
+                        </base-input>
+                        <base-input
+                            alternative
+                            v-model="form.start_day"
+                            name="start day"
+                            class="mb-3"
+                            rules="required"
+                            label="Start day"
+                            type="date"
+                        >
+                        </base-input>
+                        <base-input
+                            alternative
+                            v-model="form.start_time"
+                            name="start time"
+                            class="mb-3"
+                            rules="required"
+                            label="Start time"
+                            type="time"
+                        >
+                        </base-input>
+                        <div class="d-flex justify-content-end my-2">
+                            <button
+                                class="btn btn-white"
+                                @click.prevent="onReset"
                             >
-                            </base-input>
-                            <base-input
-                                alternative
-                                v-model="form.start_time"
-                                name="start time"
-                                class="mb-3"
-                                rules="required"
-                                label="Start time"
-                                type="time"
-                            >
-                            </base-input>
-                            <div class="d-flex justify-content-end my-2">
-                                <button class="btn btn-white" @click="onReset">
-                                    Close
-                                </button>
-                                <button class="btn btn-primary" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </validation-observer>
-                </template>
-            </div>
-        </modal>
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </validation-observer>
+            </template>
+        </base-modal>
     </div>
 </template>
 

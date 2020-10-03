@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "@/app/utils/axios";
+import axios from "@/app/plugins/axios";
 import cookie from "js-cookie";
 import tour from "./modules/tour";
 

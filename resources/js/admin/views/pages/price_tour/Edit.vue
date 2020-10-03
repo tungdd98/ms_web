@@ -1,97 +1,91 @@
 <template>
     <div>
         <div class="d-flex justify-content-end p-2 align-items-center">
-            <button class="btn btn-outline-primary" @click="isVisible = true">
+            <button
+                class="btn btn-outline-primary"
+                @click.stop="isVisible = true"
+            >
                 Add new
             </button>
         </div>
-        <modal :show.sync="isVisible" size="xl" body-classes="p-0" hide-footer>
+        <base-modal v-model="isVisible" hide-footer size="xl">
             <h2 slot="header" class="modal-title">{{ title }}</h2>
-            <div class="p-4">
-                <template>
-                    <validation-observer
-                        ref="observer"
-                        v-slot="{ handleSubmit }"
-                    >
-                        <form @submit.stop.prevent="handleSubmit(onSubmit)">
-                            <base-input
-                                label="Tour"
-                                name="tour"
-                                rules="required"
-                            >
-                                <select
-                                    class="form-control"
-                                    v-model="form.tour_id"
+            <template>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.stop.prevent="handleSubmit(onSubmit)">
+                        <base-input label="Tour" name="tour" rules="required">
+                            <select class="form-control" v-model="form.tour_id">
+                                <option value="">-- Select --</option>
+                                <option
+                                    :value="tour.id"
+                                    v-for="tour in tours"
+                                    :key="tour.id"
+                                    >{{ tour.title }}</option
                                 >
-                                    <option value="">-- Select --</option>
-                                    <option
-                                        :value="tour.id"
-                                        v-for="tour in tours"
-                                        :key="tour.id"
-                                        >{{ tour.title }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input
-                                label="Customer type"
-                                name="customer type"
-                                rules="required"
+                            </select>
+                        </base-input>
+                        <base-input
+                            label="Customer type"
+                            name="customer type"
+                            rules="required"
+                        >
+                            <select
+                                class="form-control"
+                                v-model="form.customer_type_id"
                             >
-                                <select
-                                    class="form-control"
-                                    v-model="form.customer_type_id"
+                                <option value="">-- Select --</option>
+                                <option
+                                    :value="customer.id"
+                                    v-for="customer in customerType"
+                                    :key="customer.id"
+                                    >{{ customer.title }}</option
                                 >
-                                    <option value="">-- Select --</option>
-                                    <option
-                                        :value="customer.id"
-                                        v-for="customer in customerType"
-                                        :key="customer.id"
-                                        >{{ customer.title }}</option
-                                    >
-                                </select>
-                            </base-input>
-                            <base-input
-                                alternative
-                                name="original price"
-                                class="mb-3"
-                                placeholder="Enter original price"
-                                label="Original price"
+                            </select>
+                        </base-input>
+                        <base-input
+                            alternative
+                            name="original price"
+                            class="mb-3"
+                            placeholder="Enter original price"
+                            label="Original price"
+                        >
+                            <vue-numeric
+                                currency="VNĐ"
+                                separator="."
+                                v-model.number="form.original_price"
+                                class="form-control"
+                            ></vue-numeric>
+                        </base-input>
+                        <base-input
+                            alternative
+                            name="price"
+                            class="mb-3"
+                            placeholder="Enter price"
+                            label="Price"
+                            rules="required"
+                        >
+                            <vue-numeric
+                                currency="VNĐ"
+                                separator="."
+                                v-model.number="form.price"
+                                class="form-control"
+                            ></vue-numeric>
+                        </base-input>
+                        <div class="d-flex justify-content-end my-2">
+                            <button
+                                class="btn btn-white"
+                                @click.prevent="onReset"
                             >
-                                <vue-numeric
-                                    currency="VNĐ"
-                                    separator="."
-                                    v-model.number="form.original_price"
-                                    class="form-control"
-                                ></vue-numeric>
-                            </base-input>
-                            <base-input
-                                alternative
-                                name="price"
-                                class="mb-3"
-                                placeholder="Enter price"
-                                label="Price"
-                                rules="required"
-                            >
-                                <vue-numeric
-                                    currency="VNĐ"
-                                    separator="."
-                                    v-model.number="form.price"
-                                    class="form-control"
-                                ></vue-numeric>
-                            </base-input>
-                            <div class="d-flex justify-content-end my-2">
-                                <button class="btn btn-white" @click="onReset">
-                                    Close
-                                </button>
-                                <button class="btn btn-primary" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    </validation-observer>
-                </template>
-            </div>
-        </modal>
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </validation-observer>
+            </template>
+        </base-modal>
     </div>
 </template>
 

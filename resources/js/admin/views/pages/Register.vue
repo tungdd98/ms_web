@@ -28,22 +28,23 @@
                                 <small>Sign up with</small>
                             </div>
                             <div class="text-center">
-                                <a
-                                    href="#"
-                                    class="btn btn-neutral btn-icon mr-4"
-                                >
-                                    <span class="btn-inner--icon"
-                                        ><img
+                                <a href="#" class="btn btn-white">
+                                    <div class="flex-center">
+                                        <img
                                             src="images/icons/common/github.svg"
-                                    /></span>
-                                    <span class="btn-inner--text">Github</span>
+                                            width="20"
+                                        />
+                                        <span class="pl-1">Github</span>
+                                    </div>
                                 </a>
-                                <a href="#" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"
-                                        ><img
+                                <a href="#" class="btn btn-white">
+                                    <div class="flex-center">
+                                        <img
                                             src="images/icons/common/google.svg"
-                                    /></span>
-                                    <span class="btn-inner--text">Google</span>
+                                            width="20"
+                                        />
+                                        <span class="pl-1">Google</span>
+                                    </div>
                                 </a>
                             </div>
                         </div>

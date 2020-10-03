@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getDepartureDay({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.departureDay.get, {
+            const res = await this.$axios.get(apis.auth.departureDay.get, {
                 params
             });
 
@@ -20,7 +20,10 @@ const actions = {
     },
     async addDepartureDay({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.departureDay.create, data);
+            const res = await this.$axios.post(
+                apis.auth.departureDay.create,
+                data
+            );
 
             return {
                 success: res.data,
@@ -36,7 +39,7 @@ const actions = {
     async deleteDepartureDay({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.departureDay.delete.replace(/:id/, id)
+                apis.auth.departureDay.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +56,7 @@ const actions = {
     async updateDepartureDay({ commit }, { id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.departureDay.update.replace(/:id/, id),
+                apis.auth.departureDay.update.replace(/:id/, id),
                 data
             );
 

@@ -87,7 +87,7 @@
     </div>
 </template>
 <script>
-import { NATIONS } from "@/admin/utils/constants";
+import { NATIONS } from "@/utils/constants";
 import { mapActions, mapMutations } from "vuex";
 export default {
     props: {

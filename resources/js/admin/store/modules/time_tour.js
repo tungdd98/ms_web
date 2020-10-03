@@ -1,4 +1,4 @@
-import apis from "@/admin/utils/apis";
+import apis from "@/utils/apis";
 
 const state = {};
 
@@ -9,7 +9,7 @@ const mutations = {};
 const actions = {
     async getTimesTour({ commit }, params) {
         try {
-            const res = await this.$axios.get(apis.timeTour.get, {
+            const res = await this.$axios.get(apis.auth.timeTour.get, {
                 params
             });
 
@@ -20,7 +20,7 @@ const actions = {
     },
     async addTimeTour({ commit }, data) {
         try {
-            const res = await this.$axios.post(apis.timeTour.create, data);
+            const res = await this.$axios.post(apis.auth.timeTour.create, data);
 
             return {
                 success: res.data,
@@ -36,7 +36,7 @@ const actions = {
     async deleteTimeTour({ commit }, id) {
         try {
             const res = await this.$axios.delete(
-                apis.timeTour.delete.replace(/:id/, id)
+                apis.auth.timeTour.delete.replace(/:id/, id)
             );
 
             return {
@@ -53,7 +53,7 @@ const actions = {
     async updateTimeTour({ commit }, { id, data }) {
         try {
             const res = await this.$axios.post(
-                apis.timeTour.update.replace(/:id/, id),
+                apis.auth.timeTour.update.replace(/:id/, id),
                 data
             );
 
