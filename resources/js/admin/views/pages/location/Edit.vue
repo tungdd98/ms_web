@@ -23,32 +23,26 @@
                             label="Title"
                         >
                         </base-input>
-                        <base-input label="Country">
-                            <select
-                                class="form-control"
+                        <base-input
+                            label="Country"
+                            rules="required"
+                            name="country"
+                        >
+                            <base-select
                                 v-model="form.country_id"
+                                :options="countries"
+                                default="-- Select country --"
                             >
-                                <option value="">-- Select --</option>
-                                <option
-                                    :value="country.id"
-                                    v-for="country in countries"
-                                    :key="country.id"
-                                    >{{ country.title }}</option
-                                >
-                            </select>
+                            </base-select>
                         </base-input>
                         <base-input label="Is start">
-                            <select
-                                class="form-control"
+                            <base-select
                                 v-model="form.is_start"
+                                :options="STARTS_STATUS"
+                                option-label="label"
+                                option-value="value"
                             >
-                                <option
-                                    :value="item.value"
-                                    v-for="item in STARTS_STATUS"
-                                    :key="item.value"
-                                    >{{ item.label }}</option
-                                >
-                            </select>
+                            </base-select>
                         </base-input>
                         <base-input label="Description">
                             <textarea

@@ -100,10 +100,10 @@
             <div class="position-relative pb-8 bg-gradient-success">
                 <div class="container-fluid">
                     <div
-                        class="flex-center justify-content-between justify-content-lg-end py-3"
+                        class="flex-center justify-content-between justify-content-xl-end py-3"
                     >
                         <div
-                            class="cursor-pointer d-lg-none d-block"
+                            class="cursor-pointer d-xl-none d-block"
                             @click.stop="isShowNav = true"
                         >
                             <i class="icon icon-menu text-white font-22"></i>

@@ -68,72 +68,48 @@
                                     rules="required"
                                     name="departure"
                                 >
-                                    <select
-                                        class="form-control"
+                                    <base-select
                                         v-model="form.departure_location_id"
+                                        :options="departureLocations"
+                                        default="-- Select departure location --"
                                     >
-                                        <option value="">-- Select --</option>
-                                        <option
-                                            :value="location.id"
-                                            v-for="location in departureLocations"
-                                            :key="location.id"
-                                            >{{ location.title }}</option
-                                        >
-                                    </select>
+                                    </base-select>
                                 </base-input>
                                 <base-input
                                     label="Destination"
                                     rules="required"
                                     name="destination"
                                 >
-                                    <select
-                                        class="form-control"
+                                    <base-select
                                         v-model="form.destination_location_id"
+                                        :options="destinationLocations"
+                                        default="-- Select destination location --"
                                     >
-                                        <option value="">-- Select --</option>
-                                        <option
-                                            :value="location.id"
-                                            v-for="location in destinationLocations"
-                                            :key="location.id"
-                                            >{{ location.title }}</option
-                                        >
-                                    </select>
+                                    </base-select>
                                 </base-input>
                                 <base-input
                                     label="Time tour"
                                     rules="required"
                                     name="time tour"
                                 >
-                                    <select
-                                        class="form-control"
+                                    <base-select
                                         v-model="form.time_id"
+                                        :options="timesTour"
+                                        default="-- Select time tour --"
                                     >
-                                        <option value="">-- Select --</option>
-                                        <option
-                                            :value="item.id"
-                                            v-for="item in timesTour"
-                                            :key="item.id"
-                                            >{{ item.title }}</option
-                                        >
-                                    </select>
+                                    </base-select>
                                 </base-input>
                                 <base-input
                                     label="Vehicle tour"
                                     rules="required"
                                     name="vehicle tour"
                                 >
-                                    <select
-                                        class="form-control"
+                                    <base-select
                                         v-model="form.vehicle_id"
+                                        :options="vehicleTour"
+                                        default="-- Select vehicle tour --"
                                     >
-                                        <option value="">-- Select --</option>
-                                        <option
-                                            :value="item.id"
-                                            v-for="item in vehicleTour"
-                                            :key="item.id"
-                                            >{{ item.title }}</option
-                                        >
-                                    </select>
+                                    </base-select>
                                 </base-input>
                             </div>
                         </div>
