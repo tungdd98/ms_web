@@ -89,23 +89,17 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-outline-primary" @click="openModal">
-            Open modal
-        </button>
-        <base-modal v-model="isShowModal"></base-modal>
     </div>
 </template>
 <script>
 import * as chartConfigs from "@/admin/components/charts/config";
 import LineChart from "@/admin/components/charts/LineChart";
 import BarChart from "@/admin/components/charts/BarChart";
-import BaseModal from "@/admin/components/BaseModal";
 
 export default {
     components: {
         LineChart,
-        BarChart,
-        BaseModal
+        BarChart
     },
     data() {
         return {
@@ -146,8 +140,7 @@ export default {
                     ]
                 },
                 extraOptions: chartConfigs.blueChartOptions
-            },
-            isShowModal: false
+            }
         };
     },
     methods: {
@@ -163,9 +156,6 @@ export default {
             };
             this.bigLineChart.chartData = chartData;
             this.bigLineChart.activeIndex = index;
-        },
-        openModal() {
-            this.isShowModal = !this.isShowModal;
         }
     },
     mounted() {
