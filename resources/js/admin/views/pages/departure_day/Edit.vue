@@ -14,25 +14,25 @@
                 <validation-observer ref="observer" v-slot="{ handleSubmit }">
                     <form @submit.stop.prevent="handleSubmit(onSubmit)">
                         <base-input label="Tour" name="tour" rules="required">
-                            <select class="form-control" v-model="form.tour_id">
-                                <option value="">-- Select --</option>
-                                <option
-                                    :value="tour.id"
-                                    v-for="tour in tours"
-                                    :key="tour.id"
-                                    >{{ tour.title }}</option
-                                >
-                            </select>
+                            <base-select
+                                default="-- Select tour --"
+                                v-model="form.tour_id"
+                                :options="tours"
+                            >
+                            </base-select>
                         </base-input>
                         <base-input
                             alternative
-                            v-model="form.start_day"
                             name="start day"
                             class="mb-3"
                             rules="required"
                             label="Start day"
                             type="date"
                         >
+                            <base-datepicker
+                                v-model="form.start_day"
+                                placeholder="Select start day"
+                            ></base-datepicker>
                         </base-input>
                         <base-input
                             alternative
@@ -84,7 +84,7 @@ export default {
         item(val) {
             if (val) {
                 this.isVisible = true;
-                const { start_day, start_time } = val;
+                const { start_day, start_time, tour_id } = val;
                 this.form = {
                     start_day,
                     start_time,

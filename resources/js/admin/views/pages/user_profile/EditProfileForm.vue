@@ -41,7 +41,7 @@
                                 v-model="user.nation"
                                 :options="NATIONS"
                                 option-label="label"
-                                option-value="value"
+                                option-value="label"
                             >
                             </base-select>
                         </base-input>
