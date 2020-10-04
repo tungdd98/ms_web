@@ -60,108 +60,70 @@
                 </div>
                 <div class="row text-white">
                     <div class="col-12 col-sm-6">
-                        <div class="my-2">
-                            <img
-                                src="images/assets/icon12.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i class="icon icon-map-pin mr-1 text-warning"></i>
                             <span
                                 >Trụ sở chính: 18 Lý Thường Kiệt, Ph.Phan Chu
                                 Trinh, Q.Hoàn Kiếm, Hà Nội</span
                             >
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/icon12.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i class="icon icon-map-pin mr-1 text-warning"></i>
                             <span
                                 >Chi nhánh: Hanoitourist Ba Đình, 134 Nguyễn
                                 Thái Học, Q.Ba Đình, Hà Nội</span
                             >
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/icon13.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i class="icon icon-map-pin mr-1 text-warning"></i>
                             <span>Website: http://www.hanoitourist.vn</span>
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/icon14.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i class="icon icon-mail mr-1 text-warning"></i>
                             <span>Email: sales@hanoitourist.vn</span>
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/icon15.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span>Hotline:0965934518</span>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <div class="my-2">
-                            <img
-                                src="images/assets/phone.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span>Phòng khách lẻ: 19004518 (Ext: 218)</span>
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/phone.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span>Phòng khách Đoàn: 19004518 (Ext: 258)</span>
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/phone.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span
                                 >Phòng Du Lịch Nội Địa: 19004518 (Ext:
                                 102)</span
                             >
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/phone.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span
                                 >VP Hanoitourist Ba Đình: 19004518 (Ext:
                                 508)</span
                             >
                         </div>
-                        <div class="my-2">
-                            <img
-                                src="images/assets/phone.png"
-                                alt=""
-                                width="16"
-                                class="mr-1"
-                            />
+                        <div class="my-2 d-flex align-items-center">
+                            <i
+                                class="icon icon-phone-call mr-1 text-warning"
+                            ></i>
                             <span
                                 >Giấy phép KDLHQT: 01-442/2019/TCDL-GP
                                 LHQT</span

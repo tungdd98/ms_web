@@ -34,19 +34,11 @@
                 >
                     <div class="font-13">
                         <div class="mb-1 d-flex align-items-center">
-                            <img
-                                src="images/assets/traveler.png"
-                                height="14"
-                                class="mr-1"
-                            />
+                            <i class="icon icon-truck mr-1 text-primary"></i>
                             <span>{{ item.vehicle_name }}</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <img
-                                src="images/assets/date.png"
-                                height="14"
-                                class="mr-1"
-                            />
+                            <i class="icon icon-calendar mr-1 text-primary"></i>
                             <span>{{ timeList }}</span>
                         </div>
                     </div>
