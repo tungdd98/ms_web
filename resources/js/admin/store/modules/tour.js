@@ -67,6 +67,15 @@ const actions = {
                 error
             };
         }
+    },
+    async getAllTour({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.auth.tours.getAll);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 

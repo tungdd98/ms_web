@@ -93,4 +93,16 @@ class CountryController extends ApiController
 
         return $this->response->withMessage("Delete successful");
     }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->countryService->getAllCountry();
+
+        return $this->response->withData($data);
+    }
 }

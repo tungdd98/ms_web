@@ -35,16 +35,6 @@ class VehicleTourController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,28 +49,6 @@ class VehicleTourController extends ApiController
         VehicleTour::create($vehicleTour);
 
         return $this->response->withMessage("Add successful", $vehicleTour, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\VehicleTour  $vehicleTour
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VehicleTour $vehicleTour)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\VehicleTour  $vehicleTour
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VehicleTour $vehicleTour)
-    {
-        //
     }
 
     /**
@@ -112,5 +80,17 @@ class VehicleTourController extends ApiController
         $vehicleTour->delete();
 
         return $this->response->withMessage("Delete successful");
+    }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->vehicleTourService->getAllVehicleTour();
+
+        return $this->response->withData($data);
     }
 }

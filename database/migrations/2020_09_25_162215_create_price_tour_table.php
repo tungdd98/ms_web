@@ -17,9 +17,9 @@ class CreatePriceTourTable extends Migration
             $table->double('original_price')->default(0);
             $table->double('price')->default(0);
             $table->bigInteger('customer_type_id')->unsigned()->nullable();
-            $table->foreign('customer_type_id')->references('id')->on('customer_type');
+            $table->foreign('customer_type_id')->references('id')->on('customer_type')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('tour_id')->unsigned()->nullable();
-            $table->foreign('tour_id')->references('id')->on('tours');
+            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['customer_type_id', 'tour_id']);
         });
     }

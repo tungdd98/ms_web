@@ -70,6 +70,15 @@ const actions = {
                 error
             };
         }
+    },
+    async getAllCountry({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.auth.countries.getAll);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 

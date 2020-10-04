@@ -79,7 +79,7 @@ export default {
             addDepartureDay: "departureDay/addDepartureDay",
             deleteDepartureDay: "departureDay/deleteDepartureDay",
             updateDepartureDay: "departureDay/updateDepartureDay",
-            getTours: "tour/getTours"
+            getAllTour: "tour/getAllTour"
         }),
         async fetchData(query) {
             const data = await this.getDepartureDay(query);
@@ -90,7 +90,7 @@ export default {
             }
         },
         async fetchTours() {
-            const data = await this.getTours();
+            const data = await this.getAllTour();
 
             if (data) {
                 this.tours = data.tours || [];

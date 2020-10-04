@@ -27,4 +27,20 @@ class CustomerTypeService implements CustomerTypeServiceInterface
             'last_page' => $customerType->lastPage(),
         ];
     }
+
+    /**
+     * getAllCustomerType
+     *
+     * @return void
+     */
+    public function getAllCustomerType()
+    {
+        $customerType = CustomerType::orderByDesc('id')->get();
+
+        return [
+            'customer_type' => $customerType->map(function ($item) {
+                return $item->getCustomerTypeResponse();
+            }),
+        ];
+    }
 }

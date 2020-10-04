@@ -93,7 +93,7 @@ export default {
             addLocation: "location/addLocation",
             deleteLocation: "location/deleteLocation",
             updateLocation: "location/updateLocation",
-            getCountries: "country/getCountries"
+            getAllCountry: "country/getAllCountry"
         }),
         async fetchData(query) {
             const data = await this.getLocations(query);
@@ -104,7 +104,7 @@ export default {
             }
         },
         async fetchCountries() {
-            const data = await this.getCountries();
+            const data = await this.getAllCountry();
 
             if (data) {
                 this.countries = data.countries || [];

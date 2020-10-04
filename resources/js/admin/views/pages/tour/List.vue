@@ -98,9 +98,9 @@ export default {
             addTour: "tour/addTour",
             deleteTour: "tour/deleteTour",
             updateTour: "tour/updateTour",
-            getLocations: "location/getLocations",
-            getTimesTour: "timeTour/getTimesTour",
-            getVehicleTour: "vehicleTour/getVehicleTour"
+            getAllLocation: "location/getAllLocation",
+            getAllTimeTour: "timeTour/getAllTimeTour",
+            getAllVehicleTour: "vehicleTour/getAllVehicleTour"
         }),
         async fetchData(query) {
             const data = await this.getTours(query);
@@ -111,21 +111,21 @@ export default {
             }
         },
         async fetchLocations() {
-            const data = await this.getLocations();
+            const data = await this.getAllLocation();
 
             if (data) {
                 this.locations = data.locations || [];
             }
         },
         async fetchTimesTour() {
-            const data = await this.getTimesTour();
+            const data = await this.getAllTimeTour();
 
             if (data) {
                 this.timesTour = data.time_tour || [];
             }
         },
         async fetchVehicleTour() {
-            const data = await this.getVehicleTour();
+            const data = await this.getAllVehicleTour();
 
             if (data) {
                 this.vehicleTour = data.vehicle_tour || [];

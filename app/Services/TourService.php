@@ -28,6 +28,22 @@ class TourService implements TourServiceInterface
     }
 
     /**
+     * getAllTour
+     *
+     * @return void
+     */
+    public function getAllTour()
+    {
+        $tours = Tour::orderByDesc('created_at')->get();
+
+        return [
+            'tours' => $tours->map(function ($tour) {
+                return $tour->getTourResponse();
+            }),
+        ];
+    }
+
+    /**
      * Get list tour home page
      *
      * @param  mixed $dataRequest
@@ -35,16 +51,12 @@ class TourService implements TourServiceInterface
      */
     public function listTourHomePage($dataRequest)
     {
-        $tours = Tour::with('locationDeparture', 'locationDestination', 'timeTour', 'vehicleTour', 'priceTour')
+        $tours = Tour::with('locationDeparture', 'locationDestination', 'timeTour', 'vehicleTour', 'priceTour', 'departureDay')
             ->select('tours.*');
 
-        // $tours = Tour::with(['locationDeparture' => function ($query) {
-        //     $query->where();
-        // }])
-
-        // $tours->whereHas('timeTour', function ($query) {
-        //     $query->where('startday' , '>=' , Carbon::now());
-        // });
+        $tours->whereHas('departureDay', function ($query) {
+            $query->where('start_day', '>=', Carbon::now());
+        });
 
         if (isset($dataRequest['type'])) {
             $tours->join('locations', 'tours.destination_location_id', '=', 'locations.id')
@@ -54,10 +66,10 @@ class TourService implements TourServiceInterface
         }
 
         if (isset($dataRequest['sale']) && $dataRequest['sale'] == 1) {
-            $tours->join('price_tour', 'tours.id', '=', 'price_tour.tour_id')
-                ->select('tours.*', 'price_tour.*')
-                ->whereColumn('price', '<', 'original_price')
-                ->where('original_price', '<>', 0);
+            $tours->whereHas('priceTour', function ($query) {
+                $query->whereColumn('price', '<', 'original_price')
+                    ->where('original_price', '<>', 0);
+            });
         }
 
         $toursLimit = $tours->orderByDesc('created_at')->limit(Tour::LIMIT)->get();

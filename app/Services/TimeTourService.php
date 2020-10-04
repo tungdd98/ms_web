@@ -24,4 +24,20 @@ class TimeTourService implements TimeTourServiceInterface
             'last_page' => $timeTour->lastPage(),
         ];
     }
+
+    /**
+     * getAllTimeTour
+     *
+     * @return void
+     */
+    public function getAllTimeTour()
+    {
+        $timeTour = TimeTour::orderByDesc('id')->get();
+
+        return [
+            'time_tour' => $timeTour->map(function ($item) {
+                return $item->getTimeTourResponse();
+            }),
+        ];
+    }
 }

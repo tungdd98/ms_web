@@ -24,4 +24,20 @@ class CountryService implements CountryServiceInterface
             'last_page' => $countries->lastPage(),
         ];
     }
+
+    /**
+     * getAllCountry
+     *
+     * @return void
+     */
+    public function getAllCountry()
+    {
+        $countries = Country::orderByDesc('id')->get();
+
+        return [
+            'countries' => $countries->map(function ($country) {
+                return $country->getCountryResponse();
+            })
+        ];
+    }
 }

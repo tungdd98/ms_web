@@ -56,7 +56,7 @@ class Location extends Model
             'description' => $this->description,
             'is_start' => $this->is_start,
             'country_id' => $this->country_id,
-            'country_name' => $this->country->title
+            'country_name' => $this->country->title ?? null
         ];
     }
 }

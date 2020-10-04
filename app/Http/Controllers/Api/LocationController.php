@@ -121,4 +121,29 @@ class LocationController extends ApiController
 
         return $this->response->withMessage("Delete successful");
     }
+
+    /**
+     * getLocationsHomePage
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function getLocationsHomePage(Request $request)
+    {
+        $data = $this->locationService->listLocationHomePage($request->all());
+
+        return $this->response->withData($data);
+    }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->locationService->getAllLocation();
+
+        return $this->response->withData($data);
+    }
 }
