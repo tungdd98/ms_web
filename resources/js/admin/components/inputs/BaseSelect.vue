@@ -35,7 +35,7 @@ export default {
     },
     props: {
         options: {
-            type: Array,
+            type: [Array, Object],
             required: true,
             default: []
         },
@@ -76,6 +76,13 @@ export default {
     computed: {
         typeSelected() {
             return typeof this.selected === "object";
+        }
+    },
+    created() {
+        if (this.value) {
+            this.selected = this.options.find(
+                option => option[this.optionValue] === this.value
+            );
         }
     },
     methods: {

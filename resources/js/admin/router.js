@@ -1,20 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "./store";
-import NotFound from "./views/pages/NotFoundPage.vue";
-import Dashboard from "./views/pages/dashboard/Dashboard.vue";
-import User from "./views/pages/user/List.vue";
-import Country from "./views/pages/country/List.vue";
-import TimeTour from "./views/pages/time_tour/List.vue";
-import VehicleTour from "./views/pages/vehicle_tour/List.vue";
-import CustomerType from "./views/pages/customer_type/List.vue";
-import Location from "./views/pages/location/List.vue";
-import Tour from "./views/pages/tour/List.vue";
-import DepartureDay from "./views/pages/departure_day/List.vue";
-import PriceTour from "./views/pages/price_tour/List.vue";
-import UserProfile from "./views/pages/user_profile/UserProfile.vue";
-import Login from "./views/pages/Login.vue";
-import Register from "./views/pages/Register.vue";
+import NotFound from "./views/pages/NotFoundPage";
+import Dashboard from "./views/pages/dashboard/Dashboard";
+import User from "./views/pages/user/List";
+import Country from "./views/pages/country/List";
+import TimeTour from "./views/pages/time_tour/List";
+import VehicleTour from "./views/pages/vehicle_tour/List";
+import CustomerType from "./views/pages/customer_type/List";
+import Location from "./views/pages/location/List";
+import Tour from "./views/pages/tour/List";
+import DepartureDay from "./views/pages/departure_day/List";
+import PriceTour from "./views/pages/price_tour/List";
+import UserProfile from "./views/pages/user_profile/UserProfile";
+import Login from "./views/pages/Login";
+import Register from "./views/pages/Register";
 
 Vue.use(VueRouter);
 

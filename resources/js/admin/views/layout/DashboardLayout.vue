@@ -28,7 +28,7 @@
                     :link="{
                         title: 'Locations',
                         to: '/locations',
-                        icon: 'icon icon-paperclip text-primary'
+                        icon: 'icon icon-map-pin text-primary'
                     }"
                 ></base-sidebar-item>
                 <base-sidebar-item
@@ -42,20 +42,20 @@
                     :link="{
                         title: 'Vehicle Tour',
                         to: '/vehicle_tour',
-                        icon: 'icon icon-star text-danger'
+                        icon: 'icon icon-truck text-danger'
                     }"
                 ></base-sidebar-item>
                 <base-sidebar-item
                     :link="{
                         title: 'Customer Type',
                         to: '/customer_type',
-                        icon: 'icon icon-tool text-success'
+                        icon: 'icon icon-user text-success'
                     }"
                 ></base-sidebar-item>
                 <base-sidebar-item
                     :link="{
                         title: 'Tours',
-                        icon: 'icon icon-image text-success'
+                        icon: 'icon icon-navigation text-success'
                     }"
                 >
                     <template>
@@ -64,7 +64,7 @@
                             :link="{
                                 title: 'List tour',
                                 to: '/tours',
-                                icon: 'icon icon-share-2 text-success'
+                                icon: 'icon icon-list text-success'
                             }"
                         >
                         </base-sidebar-item>
@@ -73,7 +73,7 @@
                             :link="{
                                 title: 'Departure Day',
                                 to: '/departure_day',
-                                icon: 'icon icon-instagram text-danger'
+                                icon: 'icon icon-calendar text-danger'
                             }"
                         >
                         </base-sidebar-item>
@@ -82,7 +82,7 @@
                             :link="{
                                 title: 'Price Tour',
                                 to: '/price_tour',
-                                icon: 'icon icon-heart text-primary'
+                                icon: 'icon icon-dollar-sign text-primary'
                             }"
                         ></base-sidebar-item>
                     </template>

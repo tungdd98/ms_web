@@ -13,10 +13,6 @@ ul {
     @extend .list-unstyled;
     margin: 0;
 }
-// .table th,
-// .table td {
-//     vertical-align: middle;
-// }
 .cursor-pointer {
     cursor: pointer;
 }
@@ -64,6 +60,7 @@ ul {
             }
             span {
                 color: rgba(0, 0, 0, 0.5);
+                user-select: none;
             }
             &.active {
                 span {
@@ -81,9 +78,6 @@ ul {
                 }
             }
         }
-    }
-    @include media-breakpoint-down(lg) {
-        left: -250px;
     }
 }
 .ms-content {
