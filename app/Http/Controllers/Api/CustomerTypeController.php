@@ -92,4 +92,16 @@ class CustomerTypeController extends ApiController
 
         return $this->response->withMessage("Delete successful");
     }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->customerTypeService->getAllCustomerType();
+
+        return $this->response->withData($data);
+    }
 }

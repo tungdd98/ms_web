@@ -140,4 +140,16 @@ class TourController extends ApiController
 
         return $this->response->withData($data);
     }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->tourService->getAllTour();
+
+        return $this->response->withData($data);
+    }
 }

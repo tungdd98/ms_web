@@ -88,8 +88,8 @@ export default {
             addPriceTour: "priceTour/addPriceTour",
             deletePriceTour: "priceTour/deletePriceTour",
             updatePriceTour: "priceTour/updatePriceTour",
-            getTours: "tour/getTours",
-            getCustomerType: "customerType/getCustomerType"
+            getAllTour: "tour/getAllTour",
+            getAllCustomerType: "customerType/getAllCustomerType"
         }),
         async fetchData(query) {
             const data = await this.getPriceTour(query);
@@ -100,14 +100,14 @@ export default {
             }
         },
         async fetchTours() {
-            const data = await this.getTours();
+            const data = await this.getAllTour();
 
             if (data) {
                 this.tours = data.tours || [];
             }
         },
         async fetchCustomerType() {
-            const data = await this.getCustomerType();
+            const data = await this.getAllCustomerType();
 
             if (data) {
                 this.customerType = data.customer_type || [];

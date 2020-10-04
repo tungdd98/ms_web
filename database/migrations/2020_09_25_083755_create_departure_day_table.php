@@ -18,7 +18,7 @@ class CreateDepartureDayTable extends Migration
             $table->date('start_day')->nullable();
             $table->time('start_time')->nullable();
             $table->bigInteger('tour_id')->unsigned()->nullable();
-            $table->foreign('tour_id')->references('id')->on('tours');
+            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

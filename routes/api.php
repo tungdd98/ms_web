@@ -31,36 +31,42 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 
         // Country
         Route::get('countries', 'CountryController@index');
+        Route::get('get-all-countries', 'CountryController@getAll');
         Route::post('countries', 'CountryController@store');
         Route::delete('countries/{id}', 'CountryController@destroy');
         Route::post('countries/{id}', 'CountryController@update');
 
         // Time tour
         Route::get('time_tour', 'TimeTourController@index');
+        Route::get('get-all-time_tour', 'TimeTourController@getAll');
         Route::post('time_tour', 'TimeTourController@store');
         Route::delete('time_tour/{id}', 'TimeTourController@destroy');
         Route::post('time_tour/{id}', 'TimeTourController@update');
 
         // Vehicle tour
         Route::get('vehicle_tour', 'VehicleTourController@index');
+        Route::get('get-all-vehicle_tour', 'VehicleTourController@getAll');
         Route::post('vehicle_tour', 'VehicleTourController@store');
         Route::delete('vehicle_tour/{id}', 'VehicleTourController@destroy');
         Route::post('vehicle_tour/{id}', 'VehicleTourController@update');
 
         // Customer type
         Route::get('customer_type', 'CustomerTypeController@index');
+        Route::get('get-all-customer_type', 'CustomerTypeController@getAll');
         Route::post('customer_type', 'CustomerTypeController@store');
         Route::delete('customer_type/{id}', 'CustomerTypeController@destroy');
         Route::post('customer_type/{id}', 'CustomerTypeController@update');
 
         // Location
         Route::get('locations', 'LocationController@index');
+        Route::get('get-all-locations', 'LocationController@getAll');
         Route::post('locations', 'LocationController@store');
         Route::delete('locations/{id}', 'LocationController@destroy');
         Route::post('locations/{id}', 'LocationController@update');
 
         // Tour
         Route::get('tours', 'TourController@index');
+        Route::get('get-all-tours', 'TourController@getAll');
         Route::post('tours', 'TourController@store');
         Route::delete('tours/{id}', 'TourController@destroy');
         Route::post('tours/{id}', 'TourController@update');
@@ -82,4 +88,5 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 // Client
 Route::group(['namespace' => 'Api'], function () {
     Route::get('get-tours-home-page', 'TourController@getToursHomePage');
+    Route::get('get-locations-home-page', 'LocationController@getLocationsHomePage');
 });

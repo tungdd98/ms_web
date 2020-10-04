@@ -10,37 +10,43 @@ const apis = {
             get: "auth/countries",
             create: "auth/countries",
             delete: "auth/countries/:id",
-            update: "auth/countries/:id"
+            update: "auth/countries/:id",
+            getAll: "auth/get-all-countries"
         },
         timeTour: {
             get: "auth/time_tour",
             create: "auth/time_tour",
             delete: "auth/time_tour/:id",
-            update: "auth/time_tour/:id"
+            update: "auth/time_tour/:id",
+            getAll: "auth/get-all-time_tour"
         },
         vehicleTour: {
             get: "auth/vehicle_tour",
             create: "auth/vehicle_tour",
             delete: "auth/vehicle_tour/:id",
-            update: "auth/vehicle_tour/:id"
+            update: "auth/vehicle_tour/:id",
+            getAll: "auth/get-all-vehicle_tour"
         },
         customerType: {
             get: "auth/customer_type",
             create: "auth/customer_type",
             delete: "auth/customer_type/:id",
-            update: "auth/customer_type/:id"
+            update: "auth/customer_type/:id",
+            getAll: "auth/get-all-customer_type"
         },
         locations: {
             get: "auth/locations",
             create: "auth/locations",
             delete: "auth/locations/:id",
-            update: "auth/locations/:id"
+            update: "auth/locations/:id",
+            getAll: "auth/get-all-locations"
         },
         tours: {
             get: "auth/tours",
             create: "auth/tours",
             delete: "auth/tours/:id",
-            update: "auth/tours/:id"
+            update: "auth/tours/:id",
+            getAll: "auth/get-all-tours"
         },
         departureDay: {
             get: "auth/departure_day",
@@ -58,7 +64,8 @@ const apis = {
     login: "auth/login",
     logout: "auth/logout",
     register: "auth/register",
-    tourHotHomePage: "/get-tours-home-page"
+    tourHotHomePage: "/get-tours-home-page",
+    locations: "/get-locations-home-page"
 };
 
 export default apis;

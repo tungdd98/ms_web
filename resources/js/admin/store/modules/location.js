@@ -70,6 +70,15 @@ const actions = {
                 error
             };
         }
+    },
+    async getAllLocation({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.auth.locations.getAll);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 

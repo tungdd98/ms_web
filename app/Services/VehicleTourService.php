@@ -27,4 +27,20 @@ class VehicleTourService implements VehicleTourServiceInterface
             'last_page' => $vehicleTour->lastPage(),
         ];
     }
+
+    /**
+     * getAllVehicleTour
+     *
+     * @return void
+     */
+    public function getAllVehicleTour()
+    {
+        $vehicleTour = VehicleTour::orderByDesc('id')->get();
+
+        return [
+            'vehicle_tour' => $vehicleTour->map(function ($item) {
+                return $item->getVehicleTourResponse();
+            }),
+        ];
+    }
 }

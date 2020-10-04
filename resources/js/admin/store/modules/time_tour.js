@@ -67,6 +67,15 @@ const actions = {
                 error
             };
         }
+    },
+    async getAllTimeTour({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.auth.timeTour.getAll);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 

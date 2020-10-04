@@ -92,4 +92,16 @@ class TimeTourController extends ApiController
 
         return $this->response->withMessage("Delete successful");
     }
+
+    /**
+     * getAll
+     *
+     * @return void
+     */
+    public function getAll()
+    {
+        $data = $this->timeTourService->getAllTimeTour();
+
+        return $this->response->withData($data);
+    }
 }

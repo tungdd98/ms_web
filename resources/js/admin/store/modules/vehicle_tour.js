@@ -70,6 +70,15 @@ const actions = {
                 error
             };
         }
+    },
+    async getAllVehicleTour({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.auth.vehicleTour.getAll);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 
