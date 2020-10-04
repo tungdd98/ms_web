@@ -33,11 +33,11 @@
                 </div>
                 <div class="d-flex align-items-center pt-2">
                     <div class="mx-3 flex-center">
-                        <i class="icon icon-phone mr-1"></i>
+                        <i class="icon icon-phone-call mr-1 text-warning"></i>
                         <span>19004518</span>
                     </div>
                     <div class="mx-3 flex-center">
-                        <i class="icon icon-mail mr-1"></i>
+                        <i class="icon icon-mail mr-1 text-warning"></i>
                         <span>sales@hanoitourist.vn</span>
                     </div>
                 </div>
