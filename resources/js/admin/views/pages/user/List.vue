@@ -80,7 +80,8 @@ export default {
     },
     computed: {
         ...mapState({
-            loading: state => state.display.isLoadingTable
+            loading: state => state.display.isLoadingTable,
+            userInfo: state => state.authenticate.userInfo
         }),
         listUser() {
             if (this.users && this.users.length && this.userInfo) {
