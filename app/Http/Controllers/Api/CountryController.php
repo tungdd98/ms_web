@@ -105,4 +105,16 @@ class CountryController extends ApiController
 
         return $this->response->withData($data);
     }
+
+    /**
+     * getCountryNav
+     *
+     * @return void
+     */
+    public function getCountryNav()
+    {
+        $data = $this->countryService->getCountryNav();
+
+        return $this->response->withData($data);
+    }
 }

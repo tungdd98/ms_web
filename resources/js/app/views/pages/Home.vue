@@ -142,13 +142,13 @@
         </div>
         <!-- Begin: Hot tour -->
         <div class="mb-5">
-            <tabs
+            <base-tabs
                 class-header="container"
                 title="Hot tour"
                 type="outline-primary"
                 class-content="container-fluid"
             >
-                <tab title="Tour khuyến mãi">
+                <base-tab title="Tour khuyến mãi">
                     <template v-if="toursHotSale && toursHotSale.length">
                         <base-slider
                             :items="toursHotSale"
@@ -172,9 +172,9 @@
                             >
                         </div>
                     </template>
-                </tab>
-                <tab title="Tour giờ chót">Đang cập nhật...</tab>
-            </tabs>
+                </base-tab>
+                <base-tab title="Tour giờ chót">Đang cập nhật...</base-tab>
+            </base-tabs>
         </div>
         <!-- Begin: Giới thiệu tour trong nước -->
         <div class="mb-5">
@@ -222,14 +222,14 @@
         </div>
         <!-- Begin: Tour trong nước  -->
         <div class="mb-5">
-            <tabs
+            <base-tabs
                 class-header="container"
                 title="Tour nổi bật"
                 type="outline-primary"
                 type-title="ms-subtitle"
                 class-content="container-fluid"
             >
-                <tab title="Tour khuyến mãi">
+                <base-tab title="Tour khuyến mãi">
                     <template v-if="toursNationSale && toursNationSale.length">
                         <base-slider
                             :items="toursNationSale"
@@ -253,9 +253,9 @@
                             >
                         </div>
                     </template>
-                </tab>
-                <tab title="Tour giờ chót">Đang cập nhật...</tab>
-            </tabs>
+                </base-tab>
+                <base-tab title="Tour giờ chót">Đang cập nhật...</base-tab>
+            </base-tabs>
         </div>
         <!-- Begin: Giới thiệu tour nước ngoài -->
         <div class="mb-5">
@@ -303,14 +303,14 @@
         </div>
         <!-- Begin: Tour nước ngoài  -->
         <div class="mb-5">
-            <tabs
+            <base-tabs
                 class-header="container"
                 title="Tour nổi bật"
                 type="outline-primary"
                 type-title="ms-subtitle"
                 class-content="container-fluid"
             >
-                <tab title="Tour khuyến mãi">
+                <base-tab title="Tour khuyến mãi">
                     <template
                         v-if="
                             toursEnternationSale && toursEnternationSale.length
@@ -338,9 +338,9 @@
                             >
                         </div>
                     </template>
-                </tab>
-                <tab title="Tour giờ chót">Đang cập nhật...</tab>
-            </tabs>
+                </base-tab>
+                <base-tab title="Tour giờ chót">Đang cập nhật...</base-tab>
+            </base-tabs>
         </div>
     </div>
 </template>

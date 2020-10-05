@@ -70,7 +70,7 @@ const actions = {
     },
     async getAllTour({ commit }) {
         try {
-            const res = await this.$axios.get(apis.auth.tours.getAll);
+            const res = await this.$axios.get(apis.auth.tours.all);
 
             return res.data;
         } catch (error) {

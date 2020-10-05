@@ -40,4 +40,20 @@ class CountryService implements CountryServiceInterface
             })
         ];
     }
+
+    /**
+     * getCountryNav
+     *
+     * @return void
+     */
+    public function getCountryNav()
+    {
+        $countries = Country::with('location')->orderByDesc('id')->get();
+
+        return [
+            'navs' => $countries->map(function ($country) {
+                return $country->getCountryNavResponse();
+            })
+        ];
+    }
 }

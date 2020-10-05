@@ -18,7 +18,7 @@ class Country extends Model
      */
     public function location()
     {
-        return $this->hasOne('App\Models\Location');
+        return $this->hasMany('App\Models\Location');
     }
 
     /**
@@ -40,6 +40,21 @@ class Country extends Model
             'id' => $this->id,
             'title' => $this->title,
             'is_nation' => $this->is_nation,
+        ];
+    }
+
+    /**
+     * getCountryNavResponse
+     *
+     * @return void
+     */
+    public function getCountryNavResponse()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'is_nation' => $this->is_nation,
+            'locations' => $this->location
         ];
     }
 }

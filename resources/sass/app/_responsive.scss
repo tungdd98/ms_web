@@ -1,44 +1,16 @@
-.ms-logo {
-    max-width: 222px;
-    min-width: 222px;
-    @include media-breakpoint-down(lg) {
+@include media-breakpoint-down(lg) {
+    .ms-logo {
         max-width: 150px;
         min-width: 150px;
     }
 }
-header {
-    @include media-breakpoint-down(md) {
+@include media-breakpoint-down(md) {
+    header {
         position: sticky;
         top: 0;
         z-index: 97;
     }
-}
-nav {
-    background: $primary;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    .ms-nav {
-        display: flex;
-        position: relative;
-        li {
-            position: relative;
-            a {
-                display: block;
-                padding: 12px 16px;
-                color: $white;
-                font-weight: 600;
-                text-transform: uppercase;
-                transition: all 0.2s ease;
-                &:hover,
-                &.active {
-                    background: $warning;
-                }
-            }
-        }
-    }
-
-    @include media-breakpoint-down(md) {
+    nav {
         background: transparent;
         position: relative;
         .ms-nav {
@@ -57,26 +29,33 @@ nav {
             &.active {
                 left: 0;
             }
-            li {
-                a {
-                    color: #000;
+            > li {
+                > a,
+                > div:not(.ms-sub) {
+                    color: #000 !important;
                     &:hover,
                     &.active {
-                        color: $white;
+                        color: $white !important;
                     }
                 }
+            }
+            .ms-sub {
+                background-color: transparent !important;
+                box-shadow: none;
             }
         }
     }
 }
-.ms-search {
-    position: relative;
-    @include media-breakpoint-up(lg) {
+@include media-breakpoint-up(lg) {
+    .ms-search {
         position: absolute;
         bottom: 0;
         z-index: 1;
         .form-control {
             border-right: 0;
         }
+    }
+    .ms-backdrop {
+        display: none !important;
     }
 }

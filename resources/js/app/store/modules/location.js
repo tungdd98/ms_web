@@ -16,6 +16,15 @@ const actions = {
         } catch (error) {
             return error;
         }
+    },
+    async getAllCountryNav({ commit }) {
+        try {
+            const res = await this.$axios.get(apis.allCountryNav);
+
+            return res.data;
+        } catch (error) {
+            return error;
+        }
     }
 };
 

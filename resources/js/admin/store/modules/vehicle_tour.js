@@ -73,7 +73,7 @@ const actions = {
     },
     async getAllVehicleTour({ commit }) {
         try {
-            const res = await this.$axios.get(apis.auth.vehicleTour.getAll);
+            const res = await this.$axios.get(apis.auth.vehicleTour.all);
 
             return res.data;
         } catch (error) {
