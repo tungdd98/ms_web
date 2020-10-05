@@ -160,3 +160,48 @@ ul {
 .img-fit {
     object-fit: cover;
 }
+.ms-logo {
+    max-width: 222px;
+    min-width: 222px;
+}
+.ms-search {
+    position: relative;
+}
+nav {
+    background: $primary;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    .ms-nav {
+        display: flex;
+        position: relative;
+        > li {
+            > a,
+            > div:not(.ms-sub) {
+                display: block;
+                padding: 12px 16px;
+                color: $white;
+                font-weight: 600;
+                text-transform: uppercase;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                user-select: none;
+                &:hover,
+                &.active {
+                    background: $warning;
+                }
+            }
+        }
+        .ms-sub {
+            padding: 16px;
+            position: absolute;
+            display: flex;
+            left: 0;
+            width: 100%;
+            border-radius: 0 0 4px 4px;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+        }
+    }
+}

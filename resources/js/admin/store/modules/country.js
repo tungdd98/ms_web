@@ -73,7 +73,7 @@ const actions = {
     },
     async getAllCountry({ commit }) {
         try {
-            const res = await this.$axios.get(apis.auth.countries.getAll);
+            const res = await this.$axios.get(apis.auth.countries.all);
 
             return res.data;
         } catch (error) {

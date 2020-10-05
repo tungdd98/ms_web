@@ -73,7 +73,7 @@ const actions = {
     },
     async getAllCustomerType({ commit }) {
         try {
-            const res = await this.$axios.get(apis.auth.customerType.getAll);
+            const res = await this.$axios.get(apis.auth.customerType.all);
 
             return res.data;
         } catch (error) {

@@ -31,7 +31,7 @@
 
 <script>
 export default {
-    name: "tabs",
+    name: "base-tabs",
     props: {
         type: {
             type: String,

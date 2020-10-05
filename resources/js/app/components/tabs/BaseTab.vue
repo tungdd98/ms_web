@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: "tab",
+    name: "base-tab",
     props: {
         title: { type: String, default: "Tab" }
     },

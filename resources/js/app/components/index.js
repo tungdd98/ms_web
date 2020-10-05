@@ -1,14 +1,14 @@
 import BaseBackground from "./BaseBackground";
 import BaseSlider from "./BaseSlider";
-import Tab from "./tabs/Tab";
-import Tabs from "./tabs/Tabs";
+import BaseTab from "./tabs/BaseTab";
+import BaseTabs from "./tabs/BaseTabs";
 
 const GlobalComponents = {
     install(Vue) {
         Vue.component(BaseBackground.name, BaseBackground);
         Vue.component(BaseSlider.name, BaseSlider);
-        Vue.component(Tabs.name, Tabs);
-        Vue.component(Tab.name, Tab);
+        Vue.component(BaseTabs.name, BaseTabs);
+        Vue.component(BaseTab.name, BaseTab);
     }
 };
 

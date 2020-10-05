@@ -73,7 +73,7 @@ const actions = {
     },
     async getAllLocation({ commit }) {
         try {
-            const res = await this.$axios.get(apis.auth.locations.getAll);
+            const res = await this.$axios.get(apis.auth.locations.all);
 
             return res.data;
         } catch (error) {
