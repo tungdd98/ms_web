@@ -22,7 +22,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-    Route::group(['middleware' => 'jwt.auth', 'namespace' => 'Api'], function () {
+    Route::group(['middleware' => ['jwt.auth', 'permission'], 'namespace' => 'Api'], function () {
         // User
         Route::get('get-list-user', 'UserController@index');
         Route::post('create-user', 'UserController@store');
